@@ -1,0 +1,51 @@
+body {
+  @apply bg-black;
+  @apply text-white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1, h2, h3 {
+  @apply mb-6;
+}
+p {
+  @apply mb-8;
+}
+.page-padded {
+  @apply pt-24;
+}
+
+.data-block {
+  @apply p-4;
+  @apply rounded-[32px];
+  @apply bg-[#171818];
+
+  h3 {
+    @apply text-[46px] leading-[69px];
+   }
+
+  p {
+    @apply text-lg;
+    @apply mb-8;
+  }
+}
+
+.link-round {
+  @apply flex items-center justify-center;
+  @apply rounded-full;
+  @apply bg-[#B29370];
+  @apply text-white;
+  @apply w-[144px] h-[144px];
+  @apply transition-colors;
+
+  &:hover {
+    @apply bg-[#967148];
+  }
+}
+
+
+.main {}
+
+.section-fixed {
+  @apply px-4;
+  @apply max-w-[1368px] mx-auto;
+}

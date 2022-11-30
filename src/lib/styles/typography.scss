@@ -1,0 +1,28 @@
+body {
+  font-family: 'Poppins', Verdana;
+}
+
+.h1 {
+  @apply text-[76px] leading-[114px];
+}
+
+.h2 {
+  @apply text-[76px] leading-[114px];
+}
+
+.h3 {
+  @apply text-[46px] leading-[69px];
+}
+
+
+.h1, .h2, .h3 {
+  i {
+    @apply not-italic text-black;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: white;
+  }
+}
+
+p {
+  @apply text-lg;
+}
