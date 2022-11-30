@@ -14,11 +14,11 @@ body {
   @apply text-[46px] leading-[69px];
 }
 
-
 .h1, .h2, .h3 {
   i {
     @apply not-italic text-black;
     -webkit-text-stroke-width: 1px;
+    -webkit-text-fill-color: transparent;
     -webkit-text-stroke-color: white;
   }
 }

@@ -1,6 +1,6 @@
 <script>
-	import Counter from './Counter.svelte';
-  import { ClientsList, RecentProjects } from '$lib/components/shared'
+	// import Counter from './Counter.svelte';
+  import { ClientsList, RecentProjects, GeneralStatistic } from '$lib/components/shared'
 </script>
 
 <svelte:head>
@@ -117,6 +117,10 @@
 
 <section class="section-fixed mb-[200px]">
   <RecentProjects />
+</section>
+
+<section class="section-fixed mb-[200px]">
+  <GeneralStatistic />
 </section>
 
 <style lang="scss">

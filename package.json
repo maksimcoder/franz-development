@@ -39,6 +39,8 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"sass": "^1.56.1"
+		"sass": "^1.56.1",
+		"svelte-counter": "^1.0.0",
+		"svelte-inview": "^3.0.1"
 	}
 }
