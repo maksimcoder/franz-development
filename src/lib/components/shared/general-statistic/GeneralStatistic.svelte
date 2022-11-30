@@ -7,7 +7,7 @@
   let isInView: boolean;
   const flyOptions = {
     y: 200,
-    duration: 2000,
+    duration: 3500,
   };
 
   const points = [
