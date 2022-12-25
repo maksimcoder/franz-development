@@ -46,6 +46,5 @@ p {
 .main {}
 
 .section-fixed {
-  @apply px-4;
-  @apply max-w-[1368px] mx-auto;
+  @apply max-w-[var(--max-content-width)] mx-auto;
 }

@@ -26,3 +26,16 @@ body {
 p {
   @apply text-lg;
 }
+
+.color-invert {
+  @apply text-black;
+
+  .h1, .h2, .h3 {
+    i {
+      @apply text-white;
+      -webkit-text-stroke-width: 1px;
+      -webkit-text-fill-color: transparent;
+      -webkit-text-stroke-color: black;
+    }
+  }
+}

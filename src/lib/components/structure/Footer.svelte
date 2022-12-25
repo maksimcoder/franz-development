@@ -57,7 +57,7 @@
   @apply pt-16;
 
   .footer-inner {
-    @apply max-w-[1368px];
+    @apply max-w-[var(--max-content-width)];
     @apply mx-auto
   }
 

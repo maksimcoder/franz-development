@@ -3,7 +3,7 @@
 	<meta name="description" content="About this app" />
 </svelte:head>
 
-<div class="page page-padded h-screen">
+<div class="page page-padded  min-h-screen">
   <section class="section-fixed">
     <div class="content">
       <h1 class="h1">
