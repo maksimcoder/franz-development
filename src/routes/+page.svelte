@@ -1,133 +1,92 @@
-<script>
-	// import Counter from './Counter.svelte';
-  import { ClientsList, RecentProjects, GeneralStatistic } from '$lib/components/shared'
+<script lang="ts">
+  // import { onMount } from 'svelte';
+  // import { browser } from '$app/environment';
+  import { fly } from 'svelte/transition';
+  import { inview } from 'svelte-inview';
+
+  /** @type {import('./$types').PageData} */
+  export let data: any;
+
+  // Components
+  import { GeneralStatistic } from '$lib/components/structure';
+  import { Project, ProjectGrid } from '$lib/components/shared';
+
+  import ConstructionSection from './_components/ConstructionSection.svelte';
+  import DevelopmentSections from './_components/DevelopmentSections.svelte';
+  import ClientsList from './_components/ClientsList.svelte';
+  import ArchitectureSection from './_components/ArchitectureSection.svelte';
+  import HeroSection from './_components/HeroSection.svelte';
+  import RecentProjectSection from './_components/RecentProjectSection.svelte';
+
+  // Data
+  let projects = data.projects;
+  let isInView: boolean;
+  const flyOptions = {
+    y: 200,
+    duration: 1500,
+  };
 </script>
 
 <svelte:head>
-	<title>Home</title>
+	<title>
+    Home
+  </title>
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-<section class="section-hero">
-  <div class="section-fixed">
-    <div class="flex flex-row pt-[160px]">
-      <div class="w-8/12">
-        <h1 class="h1 !text-[149px] !leading-[130px]">
-          Franz<br>
-          real <i>estate<br>
-          developer</i>
-        </h1>
-      </div>
-      <div class="w-4/12 pt-16">
-        <p class="mb-32">Invest in real estate on Bali and get up to 20% passive income per year</p>
-        <a href="/" class="link-round">
-          Contact us
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
+<div>
+  <HeroSection />
+</div>
 
-<div class="mb-[230px]">
+<div class="mb-[100px] lg:mb-[230px]">
   <ClientsList />
 </div>
 
-
-<section class="section-fixed mb-[200px]">
-  <h2 class="h2">
+<section class="section-fixed mb-[80px] lg:mb-[200px] sm:px-5 lg:px-0">
+  <h2 class="h2 px-4 lg:px-0">
     Featured <i>services</i>
   </h2>
 
   <!-- Development -->
   <div class="data-block mb-10">
-    <div class="flex flex-row">
-      <div class="w-1/3 flex flex-row space-x-4">
-        <img src="/main-page/development-1.png" alt="development-1" class="self-end w-auto max-w-auto">
-        <div class="flex flex-col space-y-4">
-          <img src="/main-page/development-2.png" alt="development-2" class="self-center w-auto max-w-auto">
-          <img src="/main-page/development-3.png" alt="development-3" class="self-start w-auto max-w-auto">
-        </div>
-      </div>
-      <div class="w-2/3 pt-12 pl-24 pr-12">
-        <h3>
-          Development
-        </h3>
-        <p>
-          We make your property in 4 steps:Land with team of professional brokers, Architecture team will provide you nowadays technoligies and trends, Construction bulk of 15 years experience and individual Managment approach to each client.
-        </p>
-
-        <a href="/" class="link-round">
-          Learn more
-        </a>
-      </div>
-    </div>
+    <DevelopmentSections />
   </div>
 
   <!-- Construction -->
   <div class="data-block mb-10">
-    <div class="flex flex-row">
-      <div class="w-1/3 pt-16 pl-20">
-        <h3>
-          Construction
-        </h3>
-        <p>
-          We do all the stages of development for you. We provide you with weekly reports. Most easies way to make passive income.
-        </p>
-
-        <a href="/" class="link-round">
-          Learn more
-        </a>
-      </div>
-      <div class="w-2/3 pl-10">
-        <div class="flex flex-row justify-between">
-          <img src="/main-page/construction-1.png" alt="construction-1" class="self-end">
-          <img src="/main-page/construction-2.png" alt="construction-2" class="self-center">
-          <img src="/main-page/construction-3.png" alt="construction-3" class="self-start">
-        </div>
-      </div>
-    </div>
+    <ConstructionSection />
   </div>
 
   <!-- Architecture -->
   <div class="data-block mb-10">
-    <div class="flex flex-row pt-12">
-      <div class="w-1/2 pl-24">
-        <h3>
-          Architecture
-        </h3>
-        <p>
-          We do all the stages of development for you. We provide you with weekly reports. Most easies way to make passive income.
-        </p>
-      </div>
-
-      <div class="w-1/2 flex justify-end">
-        <a href="/" class="link-round">
-          Learn more
-        </a>
-      </div>
-    </div>
-
-    <div class="w-full flex flex-row items-end space-x-4">
-      <img src="/main-page/architecture-1.png" alt="architecture-1" class="flex h-[180px]">
-      <img src="/main-page/architecture-2.png" alt="architecture-2" class="flex h-[180px]">
-      <img src="/main-page/architecture-3.png" alt="architecture-3" class="flex-grow w-[35%]">
-    </div>
+    <ArchitectureSection />
   </div>
 </section>
 
-<section class="section-fixed mb-[200px]">
-  <RecentProjects />
+<section
+  use:inview={{ unobserveOnEnter: true, rootMargin: '20%' }}
+  on:change={({ detail }) => { isInView = detail.inView }}
+  class="section-fixed section-recent-projects"
+>
+  {#if isInView}
+    <div in:fly={flyOptions}>
+      <RecentProjectSection {projects} />
+    </div>
+  {/if}
 </section>
 
-<section class="section-fixed mb-[200px]">
+<section class="section-fixed section-statistic">
   <GeneralStatistic />
 </section>
 
 <style lang="scss">
-.section-hero {
-  @apply bg-[url('/main-page/preview.png')];
-  @apply bg-no-repeat bg-cover bg-center;
-  @apply h-[750px];
-  @apply rounded-b-3xl;
+.section-recent-projects {
+  @apply mb-[200px];
+  @apply px-6 lg:px-0;
+}
+
+.section-statistic {
+  @apply mb-[200px];
+  @apply px-6 lg:px-0;
 }
 </style>

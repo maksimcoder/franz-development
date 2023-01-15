@@ -31,6 +31,7 @@ p {
 
 .link-round {
   @apply flex items-center justify-center;
+  @apply flex-shrink-0;
   @apply rounded-full;
   @apply bg-[#B29370];
   @apply text-white;
@@ -47,4 +48,29 @@ p {
 
 .section-fixed {
   @apply max-w-[var(--max-content-width)] mx-auto;
+}
+
+.point-list {
+  @apply grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20;
+  @apply mb-16;
+
+  .point-item {
+    @apply flex flex-row items-center;
+    @apply space-x-6;
+
+    .point {
+      &-icon {
+        @apply w-[116px] h-[116px] rounded-[28px];
+        @apply bg-[var(--color-middle-black)];
+        @apply flex flex-shrink-0 justify-center items-center;
+      }
+      &-info {}
+      &-title {
+        @apply text-2xl font-semibold;
+      }
+      &-content {
+        @apply mb-0;
+      }
+    }
+  }
 }

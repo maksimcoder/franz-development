@@ -1,10 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-  import { space } from 'svelte/internal';
+  import { t, locale } from '$lib/translations/translations';
 
-	// import logo from '$lib/images/svelte-logo.svg';
-	// import github from '$lib/images/github.svg';
-  // $page.url.pathname
+  import IconMenu from '$lib/icons/IconMenu.svelte';
 
   interface IMenuItem {
     url: string,
@@ -61,7 +59,7 @@
       submenu: [],
     }, {
       url: '/about-us',
-      key: 'about-us',
+      key: 'about_us',
       default: 'About us',
       is_active: false,
       submenu: [],
@@ -76,10 +74,17 @@
 
   let activeKey = "";
   let scrollY = 0;
+  let mobileMenu = false;
 
   // Reactive
+  $: nexLocale = getNextLocale($locale);
   $: menuList = getItemList($page.url.pathname, activeKey);
   $: activeMenuItem = getActiveItem(activeKey);
+
+
+  function getNextLocale($$locale: string) {
+    return $$locale === 'en' ? 'ru' : 'en';
+  }
 
   /**
    * On expandable menu item click
@@ -92,6 +97,7 @@
    * On menu item click
    */
   const onMenuItemClick = () => {
+    mobileMenu = false;
     if (activeKey !== "") {
       activeKey = "";
     }
@@ -120,7 +126,16 @@
    * Get active menu item
    */
   const getActiveItem = ($$activeKey: string): IMenuItem|null => {
-    return MENU.find(el => el.key === $$activeKey) ||null;
+    return MENU.find(el => el.key === $$activeKey) || null;
+  }
+
+  const onExpandMobileMenu = (): void => {
+    if (activeMenuItem) {
+      activeMenuItem = null;
+    }
+    else {
+      mobileMenu = !mobileMenu;
+    }
   }
 </script>
 
@@ -129,12 +144,32 @@
 <header
   class="header"
   class:header-blured={scrollY > 300}
-  class:header-toggled={activeMenuItem}
+  class:header-toggled={activeMenuItem || mobileMenu}
 >
   <div class="header-inner">
-    <a href="/" class="logo">
-      <img src={activeMenuItem ? `/logo-black.png` : `/logo.png`} alt="Franz Development">
+    <a href="/" class="logo" on:click={onMenuItemClick}>
+      <img src={activeMenuItem || mobileMenu ? `/logo-black.png` : `/logo.png`} alt="Franz Development">
     </a>
+
+    <button
+      class="mobile-menu-burger"
+      on:click={() => onExpandMobileMenu()}
+    >
+      {#if mobileMenu}
+
+        {#if activeMenuItem}
+          <span class="text-black text-2xl" on>
+            Back
+          </span>
+        {:else}
+          <span class="text-black text-2xl">
+            Close &times;
+          </span>
+        {/if}
+      {:else}
+        <IconMenu />
+      {/if}
+    </button>
 
     <nav class="nav">
       <ul>
@@ -146,7 +181,7 @@
                 class="menu-link"
                 on:click={() => onExpandebleMenuItemClick(item.key)}
               >
-                {item.default}
+                {$t(`common.pages.${item.key}.title`)}
               </span>
             {:else}
               <a
@@ -154,23 +189,29 @@
                 class="menu-link"
                 on:click={onMenuItemClick}
               >
-                {item.default}
+                {$t(`common.pages.${item.key}.title`)}
               </a>
             {/if}
           </li>
         {/each}
       </ul>
+
+      <!--
+      <a data-sveltekit-reload href="?lang={nexLocale}">
+        {nexLocale}
+      </a>
+      -->
     </nav>
   </div>
 
-  {#if activeMenuItem}
+  {#if activeMenuItem && !mobileMenu}
     <aside class="submenu">
       <div class="submenu-inner">
         <ul>
           {#each activeMenuItem.submenu as item }
             <li>
               <a href={item.url} on:click={onMenuItemClick}>
-                {item.default}
+                {$t(`common.pages.${item.key}.title`)}
               </a>
             </li>
           {/each}
@@ -187,16 +228,74 @@
   {/if}
 </header>
 
+{#if mobileMenu}
+  <aside class="mobile-menu">
+    <ul>
+      {#if activeMenuItem}
+        {#each activeMenuItem.submenu as item }
+          <li>
+            <a href={item.url} on:click={onMenuItemClick}>
+              {$t(`common.pages.${item.key}.title`)}
+            </a>
+          </li>
+        {/each}
+      {:else}
+        {#each menuList as item }
+          <li>
+            {#if item.submenu?.length > 0}
+              <button on:click={() => onExpandebleMenuItemClick(item.key)}>
+                {$t(`common.pages.${item.key}.title`)}
+              </button>
+            {:else}
+              <a href={item.url} on:click={onMenuItemClick}>
+                {$t(`common.pages.${item.key}.title`)}
+              </a>
+            {/if}
+          </li>
+        {/each}
+      {/if}
+
+    </ul>
+  </aside>
+{/if}
+
 <style lang="scss">
+
+  .mobile-menu {
+    @apply fixed inset-0 z-20;
+    @apply top-[var(--header-height)];
+    @apply h-[calc(100%-var(--header-height))] w-full;
+    @apply bg-white;
+    @apply text-black text-3xl;
+    @apply py-6;
+    @apply flex flex-col justify-center;
+
+    ul {
+      @apply flex flex-col;
+      @apply space-y-5;
+      @apply text-center;
+
+      li {
+        ul {
+          @apply mt-6;
+
+          li {
+            @apply text-slate-600  text-3xl;
+          }
+        }
+      }
+    }
+  }
+
   .header {
     @apply w-full;
     @apply fixed top-0 left-0 right-0 z-30;
     @apply h-[var(--header-height)];
+    @apply px-5 lg:px-0;
 
     &.header-blured {
       &:not(.header-toggled) {
         @apply bg-black/10 backdrop-blur-sm;
-        // @apply transition-all;
       }
     }
 
@@ -209,8 +308,14 @@
       @apply pt-5;
     }
 
+    .mobile-menu-burger {
+      @apply my-7;
+      @apply flex lg:hidden;
+    }
+
     .nav {
       @apply py-7;
+      @apply hidden lg:flex lg:flex-row;
 
       .menu-link {
         @apply text-white;

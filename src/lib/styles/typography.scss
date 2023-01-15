@@ -3,15 +3,21 @@ body {
 }
 
 .h1 {
-  @apply text-[76px] leading-[114px];
+  @apply text-[63px] leading-[90px];
+  @apply lg:text-[76px] lg:leading-[114px];
 }
 
 .h2 {
-  @apply text-[76px] leading-[114px];
+  @apply text-[58px] leading-[70px];
+  @apply lg:text-[76px] lg:leading-[114px];
 }
 
 .h3 {
   @apply text-[46px] leading-[69px];
+}
+
+.h4 {
+  @apply text-3xl;
 }
 
 .h1, .h2, .h3 {
@@ -30,7 +36,7 @@ p {
 .color-invert {
   @apply text-black;
 
-  .h1, .h2, .h3 {
+  .h1, .h2, .h3, .h4 {
     i {
       @apply text-white;
       -webkit-text-stroke-width: 1px;

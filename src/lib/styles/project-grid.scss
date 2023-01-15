@@ -1,0 +1,32 @@
+.project-list {
+  @apply grid grid-cols-1 lg:grid-cols-2 gap-5;
+
+
+  .project-item {
+    @apply bg-[var(--color-middle-black)];
+    @apply rounded-[32px] p-4;
+    @apply relative;
+
+    .preview {
+      @apply mb-4;
+      @apply w-full;
+      @apply rounded-3xl;
+      @apply h-[280px];
+      @apply bg-no-repeat bg-center bg-cover;
+    }
+    .title {
+      @apply text-2xl font-semibold;
+    }
+    .intro {
+      @apply mb-12;
+    }
+    .summary {
+      @apply flex flex-row;
+      @apply absolute left-5 bottom-5;
+      color: var(--color-middle-gray);
+      > span {
+        @apply ml-3;
+      }
+    }
+  }
+}

@@ -1,4 +1,4 @@
-export { default as ClientsList }         from './clients-list/ClientsList.svelte';
-export { default as RecentProjects }      from './recent-projects/RecentProjects.svelte';
-export { default as GeneralStatistic }    from './general-statistic/GeneralStatistic.svelte';
-
+export { default as Project }           from './project/Project.svelte';
+export { default as ProjectGrid }       from './project/ProjectGrid.svelte';
+export { default as Gallery }           from './gallery/Gallery.svelte';
+export { default as PointItem }         from './point-item/PointItem.svelte';

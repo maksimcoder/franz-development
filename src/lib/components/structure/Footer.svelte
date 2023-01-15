@@ -1,30 +1,43 @@
+<script lang="ts">
+  import { t } from '$lib/translations/translations';
+</script>
+
 <footer class="footer">
   <div class="footer-inner">
 
-    <div class="main-contact">
-      <div class="w-10/12">
+    <div class="main-contacts">
+      <div class="contacts-list">
         <h4 class="text-4xl mb-8">
           info@franz-group.com
         </h4>
 
         <div class="contacts">
-          <div class="w-1/3">
-            <h6>Bali office</h6>
+          <div class="w-full lg:w-1/3">
+            <h6>
+              {$t('common.footer.office')}
+            </h6>
             <p>Canggu, Kuta Utara, Badung, Bali 80361</p>
           </div>
-          <div class="w-1/3">
-            <h6>Working hours</h6>
-            <p>Monday - Friday 9:00 am - 6:00pm</p>
+          <div class="w-full lg:w-1/3">
+            <h6>
+              {$t('common.footer.working_hours')}
+            </h6>
+            <p>
+              {$t('common.footer.monday')} - {$t('common.footer.friday')} 9:00 am - 6:00pm
+            </p>
           </div>
-          <div class="w-1/3">
-            <h6>Phone</h6>
+          <div class="w-full lg:w-1/3">
+            <h6>
+              {$t('common.footer.phone')}
+            </h6>
             <p>+62 817 0 775599</p>
           </div>
         </div>
       </div>
-      <div class="w-2/12 flex justify-end">
+
+      <div class="contacts-action">
         <a href="/" class="link-round">
-          Contact us
+          {$t('common.actions.contact_us')}
         </a>
       </div>
     </div>
@@ -55,26 +68,37 @@
 .footer {
   @apply bg-[var(--color-middle-black)];
   @apply pt-16;
+  @apply px-5 lg:px-0;
 
   .footer-inner {
     @apply max-w-[var(--max-content-width)];
     @apply mx-auto
   }
 
-  .main-contact {
-    @apply flex flex-row;
+  .main-contacts {
+    @apply flex flex-col sm:flex-row;
     @apply items-center;
     @apply pb-4;
   }
 
   .contacts {
-    @apply flex flex-row w-full;
+    @apply flex flex-col lg:flex-row w-full;
     h6 {
       @apply text-lg;
     }
     p {
       @apply text-[var(--color-middle-gray)];
     }
+  }
+
+  .contacts-list {
+    @apply w-full sm:w-9/12 lg:w-10/12;
+  }
+
+  .contacts-action {
+    @apply w-full sm:w-3/12 lg:w-2/12;
+    @apply flex flex-col lg:flex-row justify-end;
+    @apply pb-5;
   }
 
   .bottom-line {

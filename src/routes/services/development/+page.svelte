@@ -9,7 +9,7 @@
 
 <div class="page page-padded mb-32">
   <section class="section-fixed pt-10">
-    <div class="content">
+    <div class="content px-4">
       <h1 class="h1">
         Our company has establisheda reputation as one of the most trustworthy housing market <i>in Bali</i>
       </h1>
@@ -21,37 +21,38 @@
   </section>
 </div>
 
-<div class="page page-padded bg-white pb-10">
-  <section class="section-fixed color-invert mb-32">
-    <div class="flex flex-row gap-10 items-center mb-10">
-      <div class="w-1/2">
+<div class="page page-padded section-plot-search">
+  <section class="section-fixed color-invert">
+    <div class="pls-content">
+      <div class="pls-content-item">
         <h2 class="h2">
           Plot <i>search</i>
         </h2>
       </div>
-      <div class="w-1/2">
+      <div class="pls-content-item">
         <p>The variety and types of land in Bali is mesmerizing. We approach each plot individually, selecting it for the personal request of the client. We do all checks on land and documents</p>
       </div>
     </div>
-    <div class="flex flex-row gap-10 items-center">
-      <div class="w-1/2">
+
+    <div class="pls-gallery">
+      <div class="pls-gallery-item">
         <img src="/development/plot-1.png" alt="" class="w-full">
       </div>
-      <div class="w-1/2">
+      <div class="pls-gallery-item">
         <img src="/development/plot-2.png" alt="" class="w-full">
       </div>
     </div>
   </section>
 </div>
 
-<div class="page page-padded mb-32">
-  <section class="section-fixed">
-    <div class="flex flex-row gap-10 items-center mb-10">
-      <div class="w-1/2 grid">
+<div class="page page-padded">
+  <section class="section-fixed section-architect-info">
+    <div class="sai-content">
+      <div class="sai-content-gallery">
         <img src="/development/architecture.png" alt="" class="w-full">
       </div>
 
-      <div class="w-1/2 px-10">
+      <div class="sai-content-text">
         <h2 class="h2">
           Architecture
         </h2>
@@ -63,10 +64,10 @@
   </section>
 </div>
 
-<div class="page page-padded bg-white py-10 mb-32">
-  <section class="section-fixed color-invert">
-    <div class="flex flex-row gap-10 items-center mb-10">
-      <div class="w-1/2 px-10">
+<div class="section-white">
+  <section class="section-fixed color-invert section-constraction">
+    <div class="inner">
+      <div class="sc-content">
         <h2 class="h2">
           Constraction
         </h2>
@@ -74,7 +75,7 @@
           The 15 years experience of our staff in Bali construction ensures the highest quality, on time delivery and state of the art technology
         </p>
       </div>
-      <div class="w-1/2 grid grid-cols-2 gap-4">
+      <div class="sc-gallery ">
         <div>
           <img src="/development/construction-1.png" alt="" class="w-full">
         </div>
@@ -89,27 +90,108 @@
   </section>
 </div>
 
-<div class="page page-padded mb-32">
+<div class="page page-padded section-managnemt ">
   <section class="section-fixed">
-    <div class="flex flex-row gap-10 items-center mb-10">
-      <div class="w-1/2 px-10">
-        <h2 class="h2">
-          Managment
-        </h2>
-        <p>
-          By focusing on the individual nature of each property, we turn villas and apartments into market leaders.
-        </p>
-      </div>
+    <div class="inner-content">
+      <h2 class="h2">
+        Managment
+      </h2>
+      <p>
+        By focusing on the individual nature of each property, we turn villas and apartments into market leaders.
+      </p>
+    </div>
 
-      <div class="w-1/2 grid">
-        <img src="/development/managment.png" alt="" class="w-full">
-      </div>
+    <div class="inner-gallery">
+      <img src="/development/managment.png" alt="" class="w-full">
     </div>
   </section>
 </div>
 
 <div class="page page-padded">
-  <section class="mb-20">
+  <section class="mb-20 px-4 lg:px-10">
     <ContactForm />
   </section>
 </div>
+
+<style lang="scss">
+.section-plot-search {
+  @apply bg-white pb-32;
+
+  .pls-content {
+    @apply flex flex-col lg:flex-row gap-10 items-center mb-10;
+    @apply px-8 lg:px-0;
+
+    .pls-content-item {
+      @apply w-full lg:w-1/2;
+    }
+  }
+
+  .pls-gallery {
+    @apply flex flex-col lg:flex-row gap-10 items-center;
+
+    .pls-gallery-item {
+      @apply w-full lg:w-1/2;
+      @apply px-8 lg:px-0;
+    }
+  }
+}
+
+.section-architect-info {
+  .sai-content {
+    @apply flex flex-col lg:flex-row  gap-10 items-center mb-10;
+    @apply px-4 lg:px-0;
+    .sai-content-gallery {
+      @apply w-full lg:w-1/2;
+    }
+    .sai-content-gallery {
+      @apply w-full lg:w-1/2;
+      @apply lg:px-10;
+    }
+  }
+}
+
+.section-white {
+  @apply bg-white;
+  @apply py-[56px] lg:py-[188px];
+}
+
+.section-constraction {
+  @apply py-4 lg:py-10;
+
+  .inner {
+    @apply flex flex-col lg:flex-row gap-10 items-center;
+  }
+
+  .sc-content {
+    @apply w-full lg:w-1/2;
+    @apply px-4 lg:px-10;
+    @apply order-2 lg:order-1;
+  }
+
+  .sc-gallery {
+    @apply w-full lg:w-1/2 grid grid-cols-2 gap-4;
+    @apply order-1 lg:order-2;
+    @apply px-4 lg:px-0;
+  }
+}
+
+.section-managnemt {
+  @apply py-[56px] lg:py-[188px];
+
+  .section-fixed {
+    @apply flex flex-col lg:flex-row gap-10 items-center mb-10;
+
+    .inner-content {
+      @apply w-full lg:w-1/2;
+      @apply px-4 lg:px-10;
+      @apply order-2 lg:order-1;
+    }
+
+    .inner-gallery {
+      @apply w-full lg:w-1/2;
+      @apply px-4 lg:px-0;
+      @apply order-1 lg:order-2;
+    }
+  }
+}
+</style>

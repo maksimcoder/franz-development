@@ -1,32 +1,44 @@
+<script>
+	import { ContactForm } from '$lib/components/structure';
+</script>
+
 <svelte:head>
 	<title>About</title>
 	<meta name="description" content="About this app" />
 </svelte:head>
 
-<div class="page page-padded  min-h-screen">
-  <section class="section-fixed">
+<div class="page page-padded min-h-screen">
+  <section class="section-fixed px-4 lg:px-0 mb-32 lg:mb-[144px]">
     <div class="content">
       <h1 class="h1">
         Contacts
       </h1>
 
-      <p>
-        This is a <a href="https://kit.svelte.dev">SvelteKit</a> app. You can make your own by typing the
-        following into your command line and following the prompts:
-      </p>
+      <div class="grid grid-col-1 sm:grid-cols-2 gap-6">
+        <div>
+          <h4 class="h4">Address</h4>
+          <p>Canggu, Kuta Utara, Badung, Bali 80361</p>
+        </div>
 
-      <pre>npm create svelte@latest</pre>
+        <div>
+          <h4 class="h4">Phone/WA</h4>
+          <p>+62 817 0 775599</p>
+        </div>
 
-      <p>
-        The page you're looking at is purely static HTML, with no client-side interactivity needed.
-        Because of that, we don't need to load any JavaScript. Try viewing the page's source, or opening
-        the devtools network panel and reloading.
-      </p>
+        <div>
+          <h4 class="h4">Working hours</h4>
+          <p>Monday - Friday 9:00 - 18:00</p>
+        </div>
 
-      <p>
-        The <a href="/sverdle">Sverdle</a> page illustrates SvelteKit's data loading and form handling. Try
-        using it with JavaScript disabled!
-      </p>
+        <div>
+          <h4 class="h4">E-mail</h4>
+          <p>franzdevelopmentgroup@gmail.com</p>
+        </div>
+      </div>
     </div>
+  </section>
+
+  <section class="mb-20 px-4 lg:px-0">
+    <ContactForm />
   </section>
 </div>

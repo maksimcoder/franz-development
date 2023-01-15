@@ -1,7 +1,9 @@
 <script lang="ts">
-  import Counter from 'svelte-counter';
   import { inview } from 'svelte-inview';
   import { fly } from 'svelte/transition';
+  import Counter from 'svelte-counter';
+
+  import { PointItem } from '$lib/components/shared';
 
   // Data
   let isInView: boolean;
@@ -65,19 +67,7 @@
       in:fly={flyOptions}
     >
       {#each points as point}
-        <div class="point-item">
-          <div class="point-icon">
-            <img src={`/icons/${point.icon}.svg`} alt={point.title}>
-          </div>
-          <div class="point-info">
-            <h4 class="point-title">
-              {point.title}
-            </h4>
-            <p class="point-content">
-              {point.content}
-            </p>
-          </div>
-        </div>
+        <PointItem {point} />
       {/each}
     </div>
   {/if}
@@ -105,31 +95,8 @@
 </div>
 
 <style scoped lang="scss">
-  .point-list {
-    @apply grid grid-cols-2 gap-20;
-    @apply mb-16;
-
-    .point-item {
-      @apply flex flex-row;
-      @apply space-x-6;
-
-      .point {
-        &-icon {
-          @apply w-[116px] h-[116px] rounded-[28px];
-          @apply bg-[var(--color-middle-black)];
-          @apply flex flex-shrink-0 justify-center items-center;
-        }
-        &-info {}
-        &-title {
-          @apply text-2xl font-semibold;
-        }
-        &-content {}
-      }
-    }
-  }
-
   .statistic-list {
-    @apply flex flex-row justify-between;
+    @apply flex flex-col md:flex-row justify-between;
 
     .statistic-item {
       @apply flex flex-col;

@@ -1,0 +1,70 @@
+{
+  "title": "About this app",
+  "text": "",
+
+  "common": {
+    "bedroom": "{{count:gt; 0:{{count}} {{count; 1:bedroom; default:bedrooms}}!; default:no bedrooms...}}",
+    "bathroom": "{{count:gt; 0:{{count}} {{count; 1:bathroom; default:bathrooms}}!; default:no bathrooms...}}",
+    "toilet": "{{count:gt; 0:{{count}} {{count; 1:toilet; default:toilets}}!; default:no toilets...}}",
+    "car": "{{count:gt; 0:{{count}} {{count; 1:car; default:cars}}!; default:no parking...}}",
+    "bike": "{{count:gt; 0:{{count}} {{count; 1:bike; default:bikes}}!; default:no parking...}}",
+    "living_area": "160 m2 living area",
+    "plot": "200 m2 plot"
+  },
+
+  "pages": {
+    "home": {
+      "title": "Home"
+    },
+    "portfolio": {
+      "title": "Портфолио"
+    },
+    "news": {
+      "title": "новости"
+    },
+    "about_us": {
+      "title": "О нас"
+    },
+    "contacts": {
+      "title": "Контакты"
+    },
+    "services": {
+      "title": "Услуги"
+    },
+    "development": {
+      "title": "Разработка"
+    },
+    "construction": {
+      "title": "Строительство"
+    },
+    "architecture": {
+      "title": "Архитектура"
+    },
+    "consulting": {
+      "title": "Консалтинг"
+    },
+    "delux": {
+      "title": "Апартаменты класса люкс"
+    }
+  },
+
+  "actions": {
+    "contact_us": "Contact us",
+    "view_all":  "View all",
+    "send":  "Send",
+    "learn_more":  "Learn more"
+  },
+  "contact_form": {
+    "title": "Get in touch",
+    "name": "Full name",
+    "email": "Email",
+    "message": "Message"
+  },
+  "footer": {
+    "office": "Bali office",
+    "working_hours": "Working hours",
+    "phone": "Phone",
+    "monday": "Monday",
+    "friday": "Friday"
+  }
+}
