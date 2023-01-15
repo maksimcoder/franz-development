@@ -1,9 +1,9 @@
-import { loadTranslations, locale, loading } from '$lib/translations/translations';
+// import { loadTranslations, locale, loading } from '$lib/translations/translations';
 import type { LayoutLoad } from './$types';
 
 export const csr = true;
 export const ssr = true;
-export const prerender = true;
+export const prerender = false;
 
 export const load: LayoutLoad = async ({ url }) => {
   // const { pathname } = url;
