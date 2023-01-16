@@ -21,7 +21,7 @@
 
   <div class="flex flex-col justify-between">
     <header>
-      <h4 class="title">
+      <h4 class="title h4">
         {@html project.title}
       </h4>
       <div class="intro">
@@ -31,11 +31,9 @@
 
     <footer class="summary">
       {#if project.bedrooms}
-
-      <figure class="bed-icon">
-        <IconBedSmall />
-      </figure>
-
+        <figure class="bed-icon">
+          <IconBedSmall />
+        </figure>
         <span>
           {$t('common.common.bedroom', {count: project.bedrooms})}
         </span>
@@ -43,4 +41,3 @@
     </footer>
   </div>
 </a>
-

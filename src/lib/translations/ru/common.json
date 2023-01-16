@@ -3,18 +3,18 @@
   "text": "",
 
   "common": {
-    "bedroom": "{{count:gt; 0:{{count}} {{count; 1:bedroom; default:bedrooms}}!; default:no bedrooms...}}",
-    "bathroom": "{{count:gt; 0:{{count}} {{count; 1:bathroom; default:bathrooms}}!; default:no bathrooms...}}",
-    "toilet": "{{count:gt; 0:{{count}} {{count; 1:toilet; default:toilets}}!; default:no toilets...}}",
-    "car": "{{count:gt; 0:{{count}} {{count; 1:car; default:cars}}!; default:no parking...}}",
-    "bike": "{{count:gt; 0:{{count}} {{count; 1:bike; default:bikes}}!; default:no parking...}}",
-    "living_area": "160 m2 living area",
-    "plot": "200 m2 plot"
+    "bedroom": "{{count:gt; 0:{{count}} {{count; 1:спальная; 2:спальные; 3:спальные; 4:спальные; default:спален}}; default:нет спален...}}",
+    "bathroom": "{{count:gt; 0:{{count}} {{count; 1:ванная; 2:ванные; 3:ванные; 4:ванные; default:ванных}}; default:no bathrooms...}}",
+    "toilet": "{{count:gt; 0:{{count}} {{count; 1:туалет; 2:туалета; 3:туалета; 4:туалета; default:туалетов}}; default:no toilets...}}",
+    "car": "{{count:gt; 0:{{count}} {{count; 1:машина; 2:машины; 3:машины; 4:машины; default:машин}}; default:no parking...}}",
+    "bike": "{{count:gt; 0:{{count}} {{count; 1:мотоцикл; 2:мотоцикла; 3:мотоцикла; 4:мотоцикла; default:мотоциклов}}; default:no parking...}}",
+    "living_area": "жилая площадь",
+    "plot": "участок"
   },
 
   "pages": {
     "home": {
-      "title": "Home"
+      "title": "Главная"
     },
     "portfolio": {
       "title": "Портфолио"
@@ -47,24 +47,24 @@
       "title": "Апартаменты класса люкс"
     }
   },
-
   "actions": {
-    "contact_us": "Contact us",
-    "view_all":  "View all",
-    "send":  "Send",
-    "learn_more":  "Learn more"
+    "contact_us": "Свжитесь с нами",
+    "view_all": "Просмотреть все",
+    "send": "Отправить",
+    "learn_more": "Подробнее",
+    "view_project": "Обзор проект"
   },
   "contact_form": {
-    "title": "Get in touch",
-    "name": "Full name",
+    "title": "Связаться",
+    "name": "Имя",
     "email": "Email",
-    "message": "Message"
+    "message": "Сообщение"
   },
   "footer": {
-    "office": "Bali office",
-    "working_hours": "Working hours",
-    "phone": "Phone",
-    "monday": "Monday",
-    "friday": "Friday"
+    "office": "Bali офис",
+    "working_hours": "Рабочие часы",
+    "phone": "Телефон",
+    "monday": "Понедельник",
+    "friday": "Пятница"
   }
 }

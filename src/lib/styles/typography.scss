@@ -20,7 +20,7 @@ body {
   @apply text-3xl;
 }
 
-.h1, .h2, .h3 {
+.h1, .h2, .h3, .h4 {
   i {
     @apply not-italic text-black;
     -webkit-text-stroke-width: 1px;

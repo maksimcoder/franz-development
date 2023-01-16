@@ -52,7 +52,8 @@
     "contact_us": "Contact us",
     "view_all":  "View all",
     "send":  "Send",
-    "learn_more":  "Learn more"
+    "learn_more":  "Learn more",
+    "view_project":  "View project"
   },
   "contact_form": {
     "title": "Get in touch",

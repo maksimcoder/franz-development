@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { t } from '$lib/translations/translations';
   import { Project, ProjectGrid } from "$lib/components/shared";
 
   // Props
@@ -18,7 +19,7 @@
   <section class="section-fixed">
     <div class="content pb-20 px-4 lx:px-0">
       <h1 class="h1">
-        Portfolio
+        {$t('common.pages.portfolio.title')}
       </h1>
 
       <ProjectGrid>

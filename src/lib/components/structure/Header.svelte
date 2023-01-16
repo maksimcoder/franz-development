@@ -51,13 +51,15 @@
           submenu: [],
         },
       ],
-    }, {
-      url: '/news',
-      key: 'news',
-      default: 'News',
-      is_active: false,
-      submenu: [],
-    }, {
+    },
+    // {
+    //   url: '/news',
+    //   key: 'news',
+    //   default: 'News',
+    //   is_active: false,
+    //   submenu: [],
+    // },
+    {
       url: '/about-us',
       key: 'about_us',
       default: 'About us',

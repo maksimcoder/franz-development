@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { t } from '$lib/translations/translations';
   import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
   // Components
@@ -126,7 +127,7 @@
         >
           <div class="project-gallery__overlay">
             <button class="link-round" on:click={openGallery}>
-              View project
+              {$t('common.actions.view_project')}
             </button>
           </div>
         </figure>
