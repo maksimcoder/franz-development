@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { t } from '$lib/translations/translations';
   import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
   import IconBedSmall from "$lib/icons/IconBedSmall.svelte";
 
@@ -29,12 +30,16 @@
     </header>
 
     <footer class="summary">
+      {#if project.bedrooms}
+
       <figure class="bed-icon">
         <IconBedSmall />
       </figure>
-      <span>
-        {project.bedrooms} bedrooms
-      </span>
+
+        <span>
+          {$t('common.common.bedroom', {count: project.bedrooms})}
+        </span>
+      {/if}
     </footer>
   </div>
 </a>

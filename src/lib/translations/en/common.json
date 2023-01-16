@@ -3,11 +3,11 @@
   "text": "",
 
   "common": {
-    "bedroom": "{{count:gt; 0:{{count}} {{count; 1:bedroom; default:bedrooms}}!; default:no bedrooms...}}",
-    "bathroom": "{{count:gt; 0:{{count}} {{count; 1:bathroom; default:bathrooms}}!; default:no bathrooms...}}",
-    "toilet": "{{count:gt; 0:{{count}} {{count; 1:toilet; default:toilets}}!; default:no toilets...}}",
-    "car": "{{count:gt; 0:{{count}} {{count; 1:car; default:cars}}!; default:no parking...}}",
-    "bike": "{{count:gt; 0:{{count}} {{count; 1:bike; default:bikes}}!; default:no parking...}}",
+    "bedroom": "{{count:gt; 0:{{count}} {{count; 1:bedroom; default:bedrooms}}; default:no bedrooms...}}",
+    "bathroom": "{{count:gt; 0:{{count}} {{count; 1:bathroom; default:bathrooms}}; default:no bathrooms...}}",
+    "toilet": "{{count:gt; 0:{{count}} {{count; 1:toilet; default:toilets}}; default:no toilets...}}",
+    "car": "{{count:gt; 0:{{count}} {{count; 1:car; default:cars}}; default:no parking...}}",
+    "bike": "{{count:gt; 0:{{count}} {{count; 1:bike; default:bikes}}; default:no parking...}}",
     "living_area": "160 m2 living area",
     "plot": "200 m2 plot"
   },
