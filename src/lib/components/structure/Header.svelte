@@ -74,13 +74,21 @@
     },
   ];
 
+  const specialItemList: IMenuItem[] = [{
+    url: '/services/deluxe-apartaments',
+    key: 'delux',
+    default: 'Deluxe apartments',
+    is_active: false,
+    submenu: [],
+  }]
+
   let activeKey = "";
   let scrollY = 0;
   let mobileMenu = false;
 
   // Reactive
   $: nexLocale = getNextLocale($locale);
-  $: menuList = getItemList($page.url.pathname, activeKey);
+  $: menuList  = getItemList($page.url.pathname, activeKey);
   $: activeMenuItem = getActiveItem(activeKey);
 
 
@@ -158,9 +166,8 @@
       on:click={() => onExpandMobileMenu()}
     >
       {#if mobileMenu}
-
         {#if activeMenuItem}
-          <span class="text-black text-2xl" on>
+          <span class="text-black text-2xl">
             Back
           </span>
         {:else}
@@ -214,6 +221,19 @@
             <li>
               <a href={item.url} on:click={onMenuItemClick}>
                 {$t(`common.pages.${item.key}.title`)}
+              </a>
+            </li>
+          {/each}
+        </ul>
+
+        <ul class="special-list">
+          {#each specialItemList as item }
+            <li>
+              <a href={item.url} on:click={onMenuItemClick}>
+                {$t(`common.pages.${item.key}.title`)}
+                <span>
+                  On going
+                </span>
               </a>
             </li>
           {/each}
@@ -294,10 +314,11 @@
     @apply fixed top-0 left-0 right-0 z-30;
     @apply h-[var(--header-height)];
     @apply px-5 lg:px-0;
+    @apply transition-colors duration-500 ease-in-out;
 
     &.header-blured {
       &:not(.header-toggled) {
-        @apply bg-black/10 backdrop-blur-sm;
+        @apply bg-black/70 backdrop-blur-md;
       }
     }
 
@@ -365,6 +386,7 @@
 
       &-inner {
         @apply w-full max-w-[var(--max-content-width)] mx-auto;
+        @apply grid grid-cols-3;
         @apply relative;
 
         &--close {
@@ -383,6 +405,24 @@
               @apply transition-all;
               &:hover {
                 @apply text-[var(--color-brown-100)];
+              }
+            }
+          }
+        }
+
+        .special-list {
+          @apply text-2xl;
+
+          li {
+            a {
+              @apply inline-block;
+              @apply relative;
+
+              span {
+                @apply absolute left-[calc(100%+10px)] -top-1;
+                @apply bg-[var(--color-brown-100)];
+                @apply inline-block rounded-lg px-1.5 py-0.5;
+                @apply whitespace-nowrap text-sm text-white;
               }
             }
           }

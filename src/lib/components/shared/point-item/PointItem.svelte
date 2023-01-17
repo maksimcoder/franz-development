@@ -1,5 +1,4 @@
 <script lang="ts">
-
   interface IPoint {
     icon: string;
     title: string;

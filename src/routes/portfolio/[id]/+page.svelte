@@ -158,9 +158,8 @@
     @apply mb-4;
     @apply w-full;
     @apply rounded-b-3xl;
-    @apply h-[746px];
+    @apply h-screen lg:h-[746px];
     @apply bg-no-repeat bg-center bg-cover;
-
 
     &__fader {
       @apply h-32 w-full;

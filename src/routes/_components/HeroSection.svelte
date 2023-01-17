@@ -51,12 +51,15 @@
     }
 
     .hero-video {
-      @apply absolute bottom-0 left-0;
+      @apply absolute bottom-0 left-0 z-[1];
+      // size < md
       @apply h-[750px] max-w-[1333px] w-[1333px] ml-[-50%];
+      // md
       @apply md:h-[750px] md:max-w-[1333px] md:w-[1333px] md:ml-0;
+      // lg
       @apply lg:h-[750px] lg:max-w-[1333px] lg:w-[1333px] lg:ml-0;
-      @apply xl:h-auto xl:max-w-full xl:w-full xl:ml-0;
-      @apply z-[1];
+      // xl
+      @apply xl:h-auto xl:max-w-[calc(110%)] xl:w-[calc(110%)] xl:ml-0;
     }
 
     .hero-title {

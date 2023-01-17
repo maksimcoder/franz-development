@@ -32,7 +32,7 @@
 
         <div>
           <h4 class="h4">E-mail</h4>
-          <p>franzdevelopmentgroup@gmail.com</p>
+          <p>info@franz-group.com</p>
         </div>
       </div>
     </div>

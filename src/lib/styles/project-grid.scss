@@ -16,6 +16,10 @@
     }
     .title {
       @apply text-2xl font-semibold;
+
+      i {
+        @apply not-italic;
+      }
     }
     .intro {
       @apply mb-12;

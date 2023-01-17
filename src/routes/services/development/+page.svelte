@@ -11,7 +11,7 @@
   <section class="section-fixed pt-10">
     <div class="content px-4">
       <h1 class="h1">
-        Our company has establisheda reputation as one of the most trustworthy housing market <i>in Bali</i>
+        Our company has established a reputation as one of the most trustworthy housing market <i>in Bali</i>
       </h1>
 
       <p>
@@ -45,11 +45,11 @@
   </section>
 </div>
 
-<div class="page page-padded">
+<div class="page">
   <section class="section-fixed section-architect-info">
     <div class="sai-content">
       <div class="sai-content-gallery">
-        <img src="/development/architecture.png" alt="" class="w-full">
+        <img src="/development/architecture.png" alt="" class="w-full lg:max-h-[477px]">
       </div>
 
       <div class="sai-content-text">
@@ -90,7 +90,7 @@
   </section>
 </div>
 
-<div class="page page-padded section-managnemt ">
+<div class="page page-padded section-managment">
   <section class="section-fixed">
     <div class="inner-content">
       <h2 class="h2">
@@ -137,14 +137,16 @@
 }
 
 .section-architect-info {
+  @apply py-[188px];
+
   .sai-content {
-    @apply flex flex-col lg:flex-row  gap-10 items-center mb-10;
+    @apply flex flex-col lg:flex-row gap-10 items-center;
     @apply px-4 lg:px-0;
     .sai-content-gallery {
-      @apply w-full lg:w-1/2;
+      @apply w-full lg:w-7/12;
     }
-    .sai-content-gallery {
-      @apply w-full lg:w-1/2;
+    .sai-content-text {
+      @apply w-full lg:w-5/12;
       @apply lg:px-10;
     }
   }
@@ -175,7 +177,7 @@
   }
 }
 
-.section-managnemt {
+.section-managment {
   @apply py-[56px] lg:py-[188px];
 
   .section-fixed {

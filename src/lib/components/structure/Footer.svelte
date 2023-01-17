@@ -43,21 +43,23 @@
     </div>
 
     <div class="bottom-line">
-      <div>
+      <div class="copyrights">
         © Franz Development Group 2022
       </div>
       <div class="social-list">
-        <a href="#">
-          <img src="/social/instagram.svg" alt="">
+        <a href="https://instagram.com/franzgroup" target="_blank" rel="noreferrer">
+          <img src="/social/instagram.svg" alt="instagram">
         </a>
-        <a href="#">
-          <img src="/social/facebook.svg" alt="">
+        <!--
+        <a href="#" target="_blank" rel="noreferrer">
+          <img src="/social/facebook.svg" alt="facebook">
         </a>
-        <a href="#">
-          <img src="/social/whatsapp.svg" alt="">
+        -->
+        <a href="https://wa.me/628170775599" target="_blank" rel="noreferrer">
+          <img src="/social/whatsapp.svg" alt="whatsapp">
         </a>
-        <a href="#">
-          <img src="/social/telegram.svg" alt="">
+        <a href="https://t.me/+628170775599" target="_blank" rel="noreferrer">
+          <img src="/social/telegram.svg" alt="telegram">
         </a>
       </div>
     </div>
@@ -102,13 +104,19 @@
   }
 
   .bottom-line {
-    @apply flex flex-row justify-between;
+    @apply flex flex-col sm:flex-row justify-between;
     @apply py-6;
     @apply border-t border-solid;
     @apply border-t-[var(--color-light-gray)];
 
     .social-list {
       @apply flex flex-row space-x-4;
+      @apply order-1 sm:order-2;
+      @apply mb-6 sm:mb-0;
+    }
+    .copyrights {
+      @apply order-2 sm:order-1;
+      @apply mb-4 sm:mb-0;
     }
   }
 }

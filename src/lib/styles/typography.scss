@@ -3,12 +3,14 @@ body {
 }
 
 .h1 {
-  @apply text-[63px] leading-[90px];
+  @apply text-[42px] leading-[60px];
+  @apply sm:text-[63px] sm:leading-[90px];
   @apply lg:text-[76px] lg:leading-[114px];
 }
 
 .h2 {
-  @apply text-[58px] leading-[70px];
+  @apply text-[38px] leading-[52px];
+  @apply sm:text-[58px] sm:leading-[70px];
   @apply lg:text-[76px] lg:leading-[114px];
 }
 

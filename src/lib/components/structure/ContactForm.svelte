@@ -17,9 +17,9 @@
   class="contact-form"
   on:submit|preventDefault={onSubmit}
 >
-  <h2 class="h2 contact-form--title">
+  <h3 class="h3 contact-form--title">
     Get in <i>touch</i>
-  </h2>
+  </h3>
 
   <input
     type="text"
@@ -53,7 +53,7 @@
     @apply flex flex-col;
 
     .form-control {
-      @apply bg-transparent;
+      @apply bg-transparent rounded-none outline-none;
       @apply text-2xl;
       @apply py-4;
       @apply mb-8;

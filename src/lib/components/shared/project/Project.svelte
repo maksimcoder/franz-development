@@ -21,7 +21,7 @@
 
   <div class="flex flex-col justify-between">
     <header>
-      <h4 class="title h4">
+      <h4 class="title">
         {@html project.title}
       </h4>
       <div class="intro">

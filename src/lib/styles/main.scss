@@ -55,12 +55,13 @@ p {
   @apply mb-16;
 
   .point-item {
-    @apply flex flex-row items-center;
-    @apply space-x-6;
+    @apply flex flex-col sm:flex-row sm:items-center;
+    @apply space-y-6 sm:space-y-0 sm:space-x-6;
 
     .point {
       &-icon {
-        @apply w-[116px] h-[116px] rounded-[28px];
+        @apply w-[94px] h-[94px] md:w-[116px] md:h-[116px];
+        @apply rounded-[22px] md:rounded-[28px];
         @apply bg-[var(--color-middle-black)];
         @apply flex flex-shrink-0 justify-center items-center;
       }

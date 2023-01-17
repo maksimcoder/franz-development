@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onMount } from "svelte";
   const clients = [
     'zurich',
     'airbnb',
@@ -8,19 +9,23 @@
     'daikin',
     'bosch',
   ];
-  const clientList = [
-    ...clients,
-    ...clients,
-    ...clients,
-    ...clients,
-    ...clients,
-    ...clients,
-  ]
+
+  onMount(() => {
+    const root = document.documentElement;
+    const marqueeElementsDisplayed = getComputedStyle(root).getPropertyValue("--marquee-elements-displayed");
+    const marqueeContent = document.querySelector("ul.marquee-content");
+
+    root.style.setProperty("--marquee-elements", marqueeContent.children.length);
+
+    for(let i=0; i<marqueeElementsDisplayed; i++) {
+      marqueeContent.appendChild(marqueeContent.children[i].cloneNode(true));
+    }
+  })
 </script>
 
-<section class="client-list">
-  <ul>
-    {#each clientList as client}
+<section class="marquee">
+  <ul class="marquee-content">
+    {#each clients as client}
       <li>
         <img src={`/clients/${client}.png`} alt={client} />
       </li>
@@ -29,30 +34,74 @@
 </section>
 
 <style lang="scss">
-  .client-list {
-    @apply my-0 mx-auto;
-    @apply w-full;
-    @apply flex flex-row;
-    @apply whitespace-nowrap;
-    @apply overflow-hidden;
-    @apply h-[108px];
-
-    ul {
-      @apply flex flex-row w-full;
-      animation: marquee 40s linear infinite;
-
-      li {
-        @apply flex-shrink-0 h-[108px] w-[268px];
-      }
-    }
+  :root {
+    --marquee-width: 98vw;
+    --marquee-height: 20vh;
+    --marquee-elements-displayed: 5;
+    --marquee-element-width: calc(var(--marquee-width) / var(--marquee-elements-displayed));
+    --marquee-animation-duration: calc(var(--marquee-elements) * 5s);
   }
 
-  @keyframes marquee {
-    0% {
-      transform: translate(0, 0);
+  .marquee {
+    width: var(--marquee-width);
+    height: var(--marquee-height);
+    color: #eee;
+    overflow: hidden;
+    position: relative;
+  }
+  .marquee:before, .marquee:after {
+    position: absolute;
+    top: 0;
+    width: 8rem;
+    height: 100%;
+    content: "";
+    z-index: 1;
+  }
+  .marquee:before {
+    left: 0;
+    background: linear-gradient(to right, #000 0%, transparent 100%);
+  }
+  .marquee:after {
+    right: 0;
+    background: linear-gradient(to left, #000 0%, transparent 100%);
+  }
+  .marquee-content {
+    list-style: none;
+    height: 100%;
+    display: flex;
+    animation: scrolling var(--marquee-animation-duration) linear infinite;
+  }
+
+  @keyframes scrolling {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-1 * var(--marquee-element-width) * var(--marquee-elements))); }
+  }
+  .marquee-content li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* text-align: center; */
+    flex-shrink: 0;
+    width: var(--marquee-element-width);
+    max-height: 100%;
+    font-size: calc(var(--marquee-height)*3/4); /* 5rem; */
+    white-space: nowrap;
+  }
+  .marquee-content li img {
+    width: 100%;
+  }
+
+  @media (max-width: 600px) {
+    html { font-size: 12px; }
+    :root {
+      --marquee-width: 100vw;
+      --marquee-height: 16vh;
+      --marquee-elements-displayed: 3;
+      --marquee-animation-duration: calc(var(--marquee-elements) * 4s);
     }
-    100% {
-      transform: translate(-100%, 0);
+    .marquee:before,
+    .marquee:after {
+      width: 5rem;
     }
   }
 </style>
