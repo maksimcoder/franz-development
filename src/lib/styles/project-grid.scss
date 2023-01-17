@@ -24,6 +24,12 @@
     .intro {
       @apply mb-12;
     }
+
+    &.post-item {
+      .intro {
+        @apply mb-3;
+      }
+    }
     .summary {
       @apply flex flex-row;
       @apply absolute left-5 bottom-5;

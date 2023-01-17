@@ -1,32 +1,32 @@
+<script lang="ts">
+  import { t } from '$lib/translations/translations';
+  import { Post, ProjectGrid } from "$lib/components/shared";
+
+  // Props
+  /** @type {import('./$types').PageData} */
+  export let data: any;
+
+  // Data
+  let posts = data.posts;
+</script>
+
 <svelte:head>
-	<title>About</title>
+	<title>News</title>
 	<meta name="description" content="About this app" />
 </svelte:head>
 
-<div class="page page-padded  min-h-screen">
+<div class="page page-padded first-letter:min-h-screen">
   <section class="section-fixed">
-    <div class="content">
+    <div class="content pb-20 px-4 lx:px-0">
       <h1 class="h1">
-        News
+        {$t('common.pages.news.title')}
       </h1>
 
-      <p>
-        This is a <a href="https://kit.svelte.dev">SvelteKit</a> app. You can make your own by typing the
-        following into your command line and following the prompts:
-      </p>
-
-      <pre>npm create svelte@latest</pre>
-
-      <p>
-        The page you're looking at is purely static HTML, with no client-side interactivity needed.
-        Because of that, we don't need to load any JavaScript. Try viewing the page's source, or opening
-        the devtools network panel and reloading.
-      </p>
-
-      <p>
-        The <a href="/sverdle">Sverdle</a> page illustrates SvelteKit's data loading and form handling. Try
-        using it with JavaScript disabled!
-      </p>
+      <ProjectGrid>
+        {#each posts as {fields}}
+          <Post post={fields} />
+        {/each}
+      </ProjectGrid>
     </div>
   </section>
 </div>
