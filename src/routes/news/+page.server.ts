@@ -11,7 +11,6 @@ export const load = (async ({ params }) => {
     };
 
     const posts = await client.getEntries(criteria);
-    console.log(posts)
     if (posts) {
       return {
         posts: posts?.items || [],

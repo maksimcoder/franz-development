@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import "$lib/styles/app.scss";
 
   // Components

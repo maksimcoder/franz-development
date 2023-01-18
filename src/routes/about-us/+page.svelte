@@ -7,7 +7,6 @@
   // Data
   let { page } = data;
   let content = page.fields;
-  console.log(content)
   let blocks = content.contentBlockReference || [];
 </script>
 

@@ -1,5 +1,5 @@
-import {  locale } from '$lib/translations/translations';
+// import {  locale } from '$lib/translations/translations';
 
-export const getLocale = (): string => {
-  return (locale.get() === 'ru') ? 'ru' : 'en-US';
+export const getLocale = (locale = "en"): string => {
+  return (locale && locale === 'ru') ? 'ru' : 'en-US';
 }

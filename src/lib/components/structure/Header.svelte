@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+  import { goto } from '$app/navigation';
   import { t, locale } from '$lib/translations/translations';
 
   import IconMenu from '$lib/icons/IconMenu.svelte';
@@ -87,13 +88,24 @@
   let mobileMenu = false;
 
   // Reactive
-  $: nexLocale = getNextLocale($locale);
-  $: menuList  = getItemList($page.url.pathname, activeKey);
+  $: menuList   = getItemList($page.url.pathname, activeKey);
   $: activeMenuItem = getActiveItem(activeKey);
+  $: nextLocale = getNextLocale($locale);
 
-
+  // Methods
+  /**
+   * Get next locale
+   * @param $$locale
+   */
   function getNextLocale($$locale: string) {
     return $$locale === 'en' ? 'ru' : 'en';
+  }
+
+  const changeLocale = async (lang: string) => {
+    const LANG = lang;
+    await locale.set(lang);
+    console.log("LANG", LANG)
+    goto(`/change-lang?locale=${LANG}`)
   }
 
   /**
@@ -139,6 +151,9 @@
     return MENU.find(el => el.key === $$activeKey) || null;
   }
 
+  /**
+   * On expand mobile menu
+   */
   const onExpandMobileMenu = (): void => {
     if (activeMenuItem) {
       activeMenuItem = null;
@@ -205,11 +220,12 @@
         {/each}
       </ul>
 
-      <!--
-      <a data-sveltekit-reload href="?lang={nexLocale}">
-        {nexLocale}
-      </a>
-      -->
+      <button
+        class="ml-4"
+        on:click={() => { changeLocale(nextLocale) }}
+      >
+        {nextLocale}
+      </button>
     </nav>
   </div>
 
@@ -282,7 +298,6 @@
 {/if}
 
 <style lang="scss">
-
   .mobile-menu {
     @apply fixed inset-0 z-20;
     @apply top-[var(--header-height)];

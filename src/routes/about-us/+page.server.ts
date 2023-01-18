@@ -1,5 +1,5 @@
 import { error } from '@sveltejs/kit';
-import { getLocale } from '$lib//translations/helper';
+import { getLocale } from '$lib/translations/helper';
 
 import client from '$lib/services';
 
@@ -9,9 +9,8 @@ import type { PageServerLoad } from './$types';
 export const load = (async ({ cookies }) => {
   try {
     const pageId = '6VwHrlLYhwZRYf4JPrTjAZ';
-
     const query = {
-      locale: getLocale()
+      locale: getLocale(cookies.get("locale"))
     };
 
     const page = await client.getEntry(pageId, query);

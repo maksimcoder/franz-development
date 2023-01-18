@@ -6,7 +6,7 @@ import en from './en/common.json';
 
 /** @type {import('sveltekit-i18n').Config} */
 const config = ({
-  fallbackLocale: 'en',
+  // fallbackLocale: 'en',
   translations: {
     en: { lang },
     ru: { lang },

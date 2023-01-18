@@ -5,8 +5,6 @@ import type { PageServerLoad } from './$types';
 
 /** @type {import('./$types').PageLoad} */
 export const load = (async ({ params }) => {
-
-
   try {
     let index = 0;
     const slug = params.id;

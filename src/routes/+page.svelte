@@ -19,6 +19,8 @@
   import RecentProjectSection from './_components/RecentProjectSection.svelte';
 
   // Data
+  let definedLocale = data.locale;
+  console.log(definedLocale)
   let projects = data.projects;
   let isInView: boolean;
   const flyOptions = {

@@ -9,7 +9,7 @@
    * On form submit
    */
   const onSubmit = (): void => {
-    console.log(form);
+    // console.log(form);
   }
 </script>
 
