@@ -1,21 +1,29 @@
-<script>
+<script lang="ts">
+  import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 	import { ContactForm } from '$lib/components/structure';
+
+  /** @type {import('./$types').PageData} */
+  export let data: any;
+
+  // Data
+  const { page } = data;
+  const blocks = page.fields.contentBlockReference;
 </script>
 
 <svelte:head>
-	<title>Development</title>
-	<meta name="description" content="About this app" />
+	<title>{page.fields.metaTitle}</title>
+	<meta name="description" content={page.fields.metaDescription} />
 </svelte:head>
 
 <div class="page page-padded mb-32">
   <section class="section-fixed pt-10">
     <div class="content px-4">
       <h1 class="h1">
-        Our company has established a reputation as one of the most trustworthy housing market <i>in Bali</i>
+        {@html page.fields.title}
       </h1>
 
       <p>
-        Our objects are a combination of the most essential factors for high profitability - location, quality and design. In order to provide each customer with a comfortable and fulfilling life, we don't just build houses; we carefully plan out the external and internal infrastructure of each residential complex. There are four stages to the entire cycle of real estate development services
+        {@html documentToHtmlString(blocks[0].fields.content)}
       </p>
     </div>
   </section>
@@ -26,11 +34,11 @@
     <div class="pls-content">
       <div class="pls-content-item">
         <h2 class="h2">
-          Plot <i>search</i>
+          {@html blocks[1].fields.title}
         </h2>
       </div>
       <div class="pls-content-item">
-        <p>The variety and types of land in Bali is mesmerizing. We approach each plot individually, selecting it for the personal request of the client. We do all checks on land and documents</p>
+        {@html documentToHtmlString(blocks[1].fields.content)}
       </div>
     </div>
 
@@ -54,10 +62,10 @@
 
       <div class="sai-content-text">
         <h2 class="h2">
-          Architecture
+          {@html blocks[2].fields.title}
         </h2>
         <p>
-          Our company has a full staff of architects and designers who work on high standards. We can make any dream come true.
+          {@html documentToHtmlString(blocks[2].fields.content)}
         </p>
       </div>
     </div>
@@ -69,10 +77,10 @@
     <div class="inner">
       <div class="sc-content">
         <h2 class="h2">
-          Constraction
+          {@html blocks[3].fields.title}
         </h2>
         <p>
-          The 15 years experience of our staff in Bali construction ensures the highest quality, on time delivery and state of the art technology
+          {@html documentToHtmlString(blocks[3].fields.content)}
         </p>
       </div>
       <div class="sc-gallery ">
@@ -94,10 +102,10 @@
   <section class="section-fixed">
     <div class="inner-content">
       <h2 class="h2">
-        Managment
+        {@html blocks[4].fields.title}
       </h2>
       <p>
-        By focusing on the individual nature of each property, we turn villas and apartments into market leaders.
+        {@html documentToHtmlString(blocks[4].fields.content)}
       </p>
     </div>
 

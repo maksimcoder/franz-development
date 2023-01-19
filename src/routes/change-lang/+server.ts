@@ -10,7 +10,6 @@ export const GET = (({ url, cookies }) => {
   const newLocale = (localeList.includes(<string>locale)) ? locale : defaultLocale;
   cookies.set("locale", <string>newLocale);
   const cookiesLocale = cookies.get("locale");
-  console.log("New cookie locale", cookiesLocale);
 
   throw redirect(307, '/');
   // return new Response(String(cookiesLocale));

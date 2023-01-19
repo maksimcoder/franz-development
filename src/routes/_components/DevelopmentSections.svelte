@@ -1,4 +1,11 @@
 <script lang="ts">
+  import { t } from '$lib/translations/translations';
+
+  // Props
+  export let title   = "Development";
+  export let content = "We make your property in 4 steps:Land with team of professional brokers, Architecture team will provide you nowadays technoligies and trends, Construction bulk of 15 years experience and individual Managment approach to each client.";
+
+  // Data
   const pictures = [
     {src: '/main-page/development-1.jpg',},
     {src: '/main-page/development-2.jpg',},
@@ -37,15 +44,15 @@
   <div class="dev-content">
     <div>
       <h3>
-        Development
+        {@html title}
       </h3>
       <p>
-        We make your property in 4 steps:Land with team of professional brokers, Architecture team will provide you nowadays technoligies and trends, Construction bulk of 15 years experience and individual Managment approach to each client.
+        {@html content}
       </p>
     </div>
 
     <a href="/services/development" class="link-round">
-      Learn more
+      {@html $t("common.actions.learn_more")}
     </a>
   </div>
 </div>

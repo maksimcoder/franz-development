@@ -3,6 +3,7 @@
   import { goto } from '$app/navigation';
   import { t, locale } from '$lib/translations/translations';
 
+  import IconLocale from '$lib/icons/IconLocale.svelte';
   import IconMenu from '$lib/icons/IconMenu.svelte';
 
   interface IMenuItem {
@@ -104,7 +105,6 @@
   const changeLocale = async (lang: string) => {
     const LANG = lang;
     await locale.set(lang);
-    console.log("LANG", LANG)
     goto(`/change-lang?locale=${LANG}`)
   }
 
@@ -221,10 +221,11 @@
       </ul>
 
       <button
-        class="ml-4"
+        class="ml-4 pt-1 flex flex-row space-x-1"
         on:click={() => { changeLocale(nextLocale) }}
       >
-        {nextLocale}
+        <IconLocale/>
+        <span>{nextLocale}</span>
       </button>
     </nav>
   </div>
@@ -248,7 +249,7 @@
               <a href={item.url} on:click={onMenuItemClick}>
                 {$t(`common.pages.${item.key}.title`)}
                 <span>
-                  On going
+                  {$t(`common.common.ongoing`)}
                 </span>
               </a>
             </li>
@@ -259,7 +260,7 @@
           class="submenu-inner--close"
           on:click={closeSubmenu}
         >
-          Close &times;
+          {$t(`common.actions.close`)} &times;
         </button>
       </div>
     </aside>

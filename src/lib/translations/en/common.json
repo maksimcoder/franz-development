@@ -1,7 +1,6 @@
 {
   "title": "About this app",
   "text": "",
-
   "common": {
     "bedroom": "{{count:gt; 0:{{count}} {{count; 1:bedroom; default:bedrooms}}; default:no bedrooms...}}",
     "bathroom": "{{count:gt; 0:{{count}} {{count; 1:bathroom; default:bathrooms}}; default:no bathrooms...}}",
@@ -9,12 +8,25 @@
     "car": "{{count:gt; 0:{{count}} {{count; 1:car; default:cars}}; default:no parking...}}",
     "bike": "{{count:gt; 0:{{count}} {{count; 1:bike; default:bikes}}; default:no parking...}}",
     "living_area": "160 m2 living area",
-    "plot": "200 m2 plot"
+    "plot": "200 m2 plot",
+    "ongoing": "On going"
   },
-
+  "units": {
+    "years": "years",
+    "percent": "%",
+    "more": "more"
+  },
   "pages": {
     "home": {
-      "title": "Home"
+      "title": "Home",
+      "title2": "Featured <i>services</i>",
+      "title3": "Recent <i>projects</i>",
+      "title4": "Generate, develop <i>and implement</i>",
+      "stats": {
+        "term": "On real estate market",
+        "projects": "Unique projects developed",
+        "profitability": "Profitability per year"
+      }
     },
     "portfolio": {
       "title": "Portfolio"
@@ -53,13 +65,14 @@
     "view_all":  "View all",
     "send":  "Send",
     "learn_more":  "Learn more",
-    "view_project":  "View project"
+    "view_project":  "View project",
+    "close": "Closer"
   },
   "contact_form": {
-    "title": "Get in touch",
+    "title": "Get in <i>touch</i>",
     "name": "Full name",
     "email": "Email",
-    "message": "Message"
+    "message": "Message..."
   },
   "footer": {
     "office": "Bali office",

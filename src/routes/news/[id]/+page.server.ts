@@ -1,16 +1,18 @@
 import { error } from '@sveltejs/kit';
 import client from '$lib/services';
+import { getLocale } from '$lib/translations/helper';
 
 import type { PageServerLoad } from './$types';
 
 /** @type {import('./$types').PageLoad} */
-export const load = (async ({ params }) => {
+export const load = (async ({ params, cookies }) => {
   try {
     let index = 0;
     const slug = params.id;
-
+    const locale = cookies.get("locale") || "en";
     const criteria = {
       content_type: 'post',
+      locale: getLocale(locale)
     };
 
     const result = await client.getEntries(criteria);

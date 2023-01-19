@@ -1,24 +1,27 @@
-<script>
+<script lang="ts">
+  import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 	import { ContactForm } from '$lib/components/structure';
+
+  /** @type {import('./$types').PageData} */
+  export let data: any;
+
+  // Data
+  const { page } = data;
+  const blocks = page.fields.contentBlockReference;
 </script>
 
 <svelte:head>
-	<title>Architecture</title>
-	<meta name="description" content="Architecture" />
+	<title>{page.fields.metaTitle}</title>
+	<meta name="description" content={page.fields.metaDescription} />
 </svelte:head>
 
 <div class="page page-padded min-h-screen page-architecture">
   <section class="section-fixed pt-10 lg:mb-32">
     <div class="content px-4 lg:px-0">
       <h1 class="h1">
-        Huge experience in <i>architecture</i>
+        {@html blocks[0].fields.title}
       </h1>
-      <p>
-        From concept to execution, our team of architects offers expert design services. The core element of our work is an integrated approach and the creation of a relaxed environment, starting with the house's exterior and outlining with interior decorations. We complete the entire architectural cycle. Our team consists of skilled architects with a combined experience of more than 8 years. We design and build contemporary, cozy, and useful residential and commercial spaces. From designing five-star hotels to private villas, our architects are capable of handling projects of any complexity. We supervise every stage of the process and always take responsibility for our work.
-      </p>
-      <p>
-        Inspire with the architecture
-      </p>
+      {@html documentToHtmlString(blocks[0].fields.content)}
     </div>
   </section>
 

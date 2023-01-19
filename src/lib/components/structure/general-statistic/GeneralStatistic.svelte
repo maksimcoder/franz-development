@@ -1,9 +1,15 @@
 <script lang="ts">
+  import { t } from '$lib/translations/translations';
+  import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+
   import { inview } from 'svelte-inview';
   import { fly } from 'svelte/transition';
   import Counter from 'svelte-counter';
 
   import { PointItem } from '$lib/components/shared';
+
+  // Props
+  export let blocks = [];
 
   // Data
   let isInView: boolean;
@@ -15,20 +21,28 @@
   const points = [
     {
       icon: "color-swatch",
-      title: "Experience",
-      content: "our company has been in the real estate market for more than 15 years, and has all necessary licenses to carry out a full cycle in development",
+      title: blocks[0]?.fields?.title || "Experience",
+      content: blocks[0]?.fields?.content
+        ? documentToHtmlString(blocks[0]?.fields?.content)
+        : "our company has been in the real estate market for more than 15 years, and has all necessary licenses to carry out a full cycle in development",
     }, {
       icon: "calendar",
-      title: "Quality assurance",
-      content: "Quality assurance - we work with trusted suppliers of building materials. There are 4 levels of quality control for each project",
+      title: blocks[1]?.fields?.title || "Quality assurance",
+      content:  blocks[1]?.fields?.content
+        ? documentToHtmlString(blocks[1]?.fields?.content)
+        : "Quality assurance - we work with trusted suppliers of building materials. There are 4 levels of quality control for each project",
     }, {
       icon: "verify",
-      title: "Meeting deadlines",
-      content: "We provide regular reporting on the progress of work through all the stages",
+      title: blocks[2]?.fields?.title || "Meeting deadlines",
+      content: blocks[2]?.fields?.content
+        ? documentToHtmlString(blocks[2]?.fields?.content)
+        : "We provide regular reporting on the progress of work through all the stages",
     }, {
       icon: "building",
-      title: "The best conditions",
-      content: "We offer complete assistance from project development and construction to the commissioning of the facility",
+      title: blocks[3]?.fields?.title || "The best conditions",
+      content: blocks[3]?.fields?.content
+        ? documentToHtmlString(blocks[3]?.fields?.content)
+        : "We offer complete assistance from project development and construction to the commissioning of the facility",
     },
   ];
 
@@ -37,17 +51,17 @@
       prefix: "",
       counter: "15",
       units: "years",
-      label: "On real estate market",
+      label: "term",
     }, {
       prefix: "",
       counter: "100",
-      units: "More",
-      label: "Unique projects developed",
+      units: "more",
+      label: "projects",
     }, {
       prefix: "≈",
       counter: "20",
-      units: "%",
-      label: "Profitability per year",
+      units: "percent",
+      label: "profitability",
     },
   ];
 </script>
@@ -58,7 +72,7 @@
   on:change={({ detail }) => { isInView = detail.inView }}
 >
   <h1 class="h1 mb-16">
-    Generate, develop <i>and implement</i>
+    {@html $t("common.pages.home.title4")}
   </h1>
 
   {#if isInView}
@@ -82,12 +96,14 @@
             </Counter>
           </h4>
 
-          <h5>
-            {stat.units}
-          </h5>
+          {#if stat.units}
+            <h5>
+              {$t(`common.units.${stat.units}`)}
+            </h5>
+          {/if}
         </div>
         <p class="statistic-label">
-          {stat.label}
+          {@html $t(`common.pages.home.stats.${stat.label}`)}
         </p>
       </div>
     {/each}

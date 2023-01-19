@@ -39,8 +39,8 @@ p {
   @apply flex-shrink-0;
   @apply rounded-full;
   @apply bg-[#B29370];
-  @apply text-white;
-  @apply w-[144px] h-[144px];
+  @apply text-white text-[15px] leading-[20px];
+  @apply w-[148px] h-[148px];
   @apply transition-colors;
 
   &:hover {

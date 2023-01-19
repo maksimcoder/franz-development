@@ -1,22 +1,28 @@
-<script>
+<script lang="ts">
+  import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 	import { ContactForm } from '$lib/components/structure';
+
+  /** @type {import('./$types').PageData} */
+  export let data: any;
+
+  // Data
+  const { page } = data;
+  const blocks = page.fields.contentBlockReference;
 </script>
 
 <svelte:head>
-	<title>Construction</title>
-	<meta name="description" content="Construction " />
+	<title>{page.fields.metaTitle}</title>
+	<meta name="description" content={page.fields.metaDescription} />
 </svelte:head>
 
 <div class="page page-padded min-h-screen">
   <section class="section-fixed pt-10 mb-32">
     <div class="content px-4 lg:px-0">
       <h1 class="h1 max-w-[68%]">
-        15 years of construction experience, over 100 <i>completed projects</i>
+        {@html blocks[0].fields.title}
       </h1>
 
-      <p>
-        The Franz Group holding includes Franz Construction & Design, which has highly skilled employees with years of experience. We only use premium components produced by the finest European and American manufacturers. High quality at a reasonable cost. We keep up with advances in construction technology and implement them in all of our facilities. The progress of each stage of construction is monitored by three levels of technical supervision. A qualified team guarantees adherence to all construction deadlines
-      </p>
+      {@html documentToHtmlString(blocks[0].fields.content)}
     </div>
   </section>
 

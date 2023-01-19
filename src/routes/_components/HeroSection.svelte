@@ -1,4 +1,10 @@
 <script lang="ts">
+  import { t } from '$lib/translations/translations';
+
+  // Props
+  export let subtitle = "Invest in real estate on Bali and get up to 20% passive income per year";
+
+  // Data
   const videoUrl = 'https://videos.ctfassets.net/hcz4k2i65d18/OKUdvqv44CbL3LHcH34l4/a40949f56c41437b16db558fc193a0f0/franz-development-bg.mp4'
 </script>
 
@@ -14,10 +20,10 @@
       </div>
       <div class="w-full lg:w-4/12 flex flex-col sm:flex-row: lg:flex-col pt-8 sm:pt-16">
         <p class="lg:mb-32">
-          Invest in real estate on Bali and get up to 20% passive income per year
+          {@html subtitle}
         </p>
         <a href="/" class="link-round mx-5 md:mx-12 lg:mx-0 mt-8 sm:mt-0">
-          Contact us
+          {@html $t("common.actions.contact_us")}
         </a>
       </div>
     </div>
@@ -35,7 +41,6 @@
     <track kind="captions">
   </video>
 </section>
-
 
 <style lang="scss">
   .section-hero {

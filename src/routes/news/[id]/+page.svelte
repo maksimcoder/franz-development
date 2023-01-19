@@ -1,15 +1,18 @@
 <script lang="ts">
-  import { t } from '$lib/translations/translations';
   import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+  import dayjs from 'dayjs';
 
   // Props
   /** @type {import('./$types').PageData} */
   export let data: any;
 
   // Data
-  let post     = data.post;
-  $: next       = data.next;
-  $: previewUrl = post.fields?.poster?.fields?.file?.url || '';
+  let post        = data.post;
+  let publishedAt = dayjs(post.fields.publishedAt).format('DD.MM.YYYY');
+
+  // Reactive
+  $: next         = data.next;
+  $: previewUrl   = post.fields?.poster?.fields?.file?.url || '';
 </script>
 
 <svelte:head>
@@ -28,7 +31,7 @@
   <section class="section-fixed px-4 lg:px-0">
     <div class="content">
       <div class="post-date">
-        {post.fields.publishedAt}
+        {publishedAt}
       </div>
       <h1 class="h1">
         {@html post.fields.title}

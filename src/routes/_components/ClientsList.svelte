@@ -17,7 +17,7 @@
 
     root.style.setProperty("--marquee-elements", marqueeContent.children.length);
 
-    for(let i=0; i<marqueeElementsDisplayed; i++) {
+    for (let i = 0; i < marqueeElementsDisplayed; i++) {
       marqueeContent.appendChild(marqueeContent.children[i].cloneNode(true));
     }
   })
@@ -94,7 +94,7 @@
   @media (max-width: 600px) {
     html { font-size: 12px; }
     :root {
-      --marquee-width: 100vw;
+      --marquee-width: 96vw;
       --marquee-height: 16vh;
       --marquee-elements-displayed: 3;
       --marquee-animation-duration: calc(var(--marquee-elements) * 4s);

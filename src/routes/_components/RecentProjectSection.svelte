@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { t } from '$lib/translations/translations';
   import emblaCarouselSvelte from 'embla-carousel-svelte';
 
   // Components
@@ -24,7 +25,6 @@
     },
   };
 
-
   // /**
   //  * On slider init
   //  */
@@ -40,13 +40,12 @@
   //  const setActiveIndex = () => {
   //   activeIndex = emblaApi.selectedScrollSnap();
   // }
-
 </script>
 
 
 <div >
   <h2 class="h2">
-    Recent <i>projects</i>
+    {@html $t("common.pages.home.title3")}
   </h2>
 
   <div
@@ -60,17 +59,9 @@
     </ProjectGrid>
   </div>
 
-  <!--
-  <ProjectGrid>
-    {#each projects as {fields}}
-      <Project project={fields} />
-    {/each}
-  </ProjectGrid>
-  -->
-
   <div class="flex flex-row justify-center pt-20">
     <a href="/portfolio" class="link-round">
-      View all
+      {@html $t("common.actions.view_all")}
     </a>
   </div>
 </div>

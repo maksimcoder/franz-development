@@ -8,7 +8,11 @@ import type { PageServerLoad } from './$types';
 export const load = (async ({ params, cookies }) => {
   try {
     const locale = cookies.get("locale") || "en";
-    const indexPageId = '2iEk1pjHs9Zn1qCuPZlM9d';
+    const pageId = '2iEk1pjHs9Zn1qCuPZlM9d';
+    const query = {
+      locale: getLocale(locale),
+    };
+
     const criteria = {
       content_type: 'project',
       limit: 4,
@@ -16,7 +20,7 @@ export const load = (async ({ params, cookies }) => {
     };
 
     const [ page, projects ] = await Promise.all([
-      client.getEntry(indexPageId),
+      client.getEntry(pageId, query),
       client.getEntries(criteria),
     ]);
 

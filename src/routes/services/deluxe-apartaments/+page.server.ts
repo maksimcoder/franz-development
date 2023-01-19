@@ -1,22 +1,23 @@
 import { error } from '@sveltejs/kit';
-import client from '$lib/services';
 import { getLocale } from '$lib/translations/helper';
+
+import client from '$lib/services';
 
 import type { PageServerLoad } from './$types';
 
 /** @type {import('./$types').PageLoad} */
-export const load = (async ({ params, cookies }) => {
+export const load = (async ({ cookies }) => {
   try {
-    const locale = cookies.get("locale") || "en";
-    const criteria = {
-      content_type: 'post',
-      locale: getLocale(locale)
+    const pageId = '67UYP4UXAjSVeZT66hnVJQ';
+    const query = {
+      locale: getLocale(cookies.get("locale"))
     };
 
-    const posts = await client.getEntries(criteria);
-    if (posts) {
+    const page = await client.getEntry(pageId, query);
+
+    if (page) {
       return {
-        posts: posts?.items || [],
+        page: page,
       };
     }
     throw error(404, 'Not found');
@@ -25,4 +26,3 @@ export const load = (async ({ params, cookies }) => {
     throw error(404, 'Not found');
   }
 }) satisfies PageServerLoad;
-

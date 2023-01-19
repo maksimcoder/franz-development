@@ -1,7 +1,6 @@
 {
   "title": "About this app",
   "text": "",
-
   "common": {
     "bedroom": "{{count:gt; 0:{{count}} {{count; 1:спальная; 2:спальные; 3:спальные; 4:спальные; default:спален}}; default:нет спален...}}",
     "bathroom": "{{count:gt; 0:{{count}} {{count; 1:ванная; 2:ванные; 3:ванные; 4:ванные; default:ванных}}; default:no bathrooms...}}",
@@ -9,12 +8,25 @@
     "car": "{{count:gt; 0:{{count}} {{count; 1:машина; 2:машины; 3:машины; 4:машины; default:машин}}; default:no parking...}}",
     "bike": "{{count:gt; 0:{{count}} {{count; 1:мотоцикл; 2:мотоцикла; 3:мотоцикла; 4:мотоцикла; default:мотоциклов}}; default:no parking...}}",
     "living_area": "жилая площадь",
-    "plot": "участок"
+    "plot": "участок",
+    "ongoing": "В разработке"
   },
-
+  "units": {
+    "years": "лет",
+    "percent": "%",
+    "more": "+"
+  },
   "pages": {
     "home": {
-      "title": "Главная"
+      "title": "Главная",
+      "title2": "Рекомендуемые <i>услуги</i>",
+      "title3": "Недавние <i>проекты</i>",
+      "title4": "Генерировать, разрабатывать <i>и внедрять</i>",
+      "stats": {
+        "term": "На рынке недвижимости",
+        "projects": "Разработано уникальных проектов",
+        "profitability": "Рентабельность в год"
+      }
     },
     "portfolio": {
       "title": "Портфолио"
@@ -48,17 +60,18 @@
     }
   },
   "actions": {
-    "contact_us": "Контакты",
+    "contact_us": "Связаться",
     "view_all": "Просмотреть все",
     "send": "Отправить",
     "learn_more": "Подробнее",
-    "view_project": "Обзор проект"
+    "view_project": "Обзор проект",
+    "close": "Закрыть"
   },
   "contact_form": {
-    "title": "Связаться",
+    "title": "Связаться <i>с нами</i>",
     "name": "Имя",
     "email": "Email",
-    "message": "Сообщение"
+    "message": "Сообщение..."
   },
   "footer": {
     "office": "Bali офис",

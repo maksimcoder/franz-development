@@ -1,4 +1,11 @@
 <script lang="ts">
+  import { t } from '$lib/translations/translations';
+
+  // Props
+  export let title   = "Construction";
+  export let content = "We do all the stages of development for you. We provide you with weekly reports. Most easies way to make passive income.";
+
+  // Data
   const pictures = [
     {src: '/main-page/construction-1.jpg',},
     {src: '/main-page/construction-2.jpg',},
@@ -10,15 +17,15 @@
   <div class="construct-content">
     <div>
       <h3 class="h3">
-        Construction
+        {@html title}
       </h3>
       <p>
-        We do all the stages of development for you. We provide you with weekly reports. Most easies way to make passive income.
+        {@html content}
       </p>
     </div>
 
     <a href="/services/construction" class="link-round">
-      Learn more
+      {@html $t("common.actions.learn_more")}
     </a>
   </div>
 

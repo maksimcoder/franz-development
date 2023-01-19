@@ -1,4 +1,7 @@
 <script lang="ts">
+  import { t } from '$lib/translations/translations';
+
+  // Data
   const form = {
     full_name: '',
     email: '',
@@ -18,31 +21,31 @@
   on:submit|preventDefault={onSubmit}
 >
   <h3 class="h3 contact-form--title">
-    Get in <i>touch</i>
+    {@html $t("common.contact_form.title")}
   </h3>
 
   <input
     type="text"
-    placeholder="Full name"
+    placeholder={$t("common.contact_form.name")}
     class="form-control"
     bind:value={form.full_name}
   >
   <input
     type="email"
-    placeholder="Email"
+    placeholder={$t("common.contact_form.email")}
     class="form-control"
     bind:value={form.email}
   >
   <input
     type="text"
-    placeholder="Message..."
+    placeholder={$t("common.contact_form.message")}
     class="form-control"
     bind:value={form.message}
   >
 
   <footer class="contact-form--footer">
     <button class="link-round">
-      Send
+      {$t("common.actions.send")}
     </button>
   </footer>
 </form>

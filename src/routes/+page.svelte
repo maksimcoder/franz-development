@@ -1,6 +1,6 @@
 <script lang="ts">
-  // import { onMount } from 'svelte';
-  // import { browser } from '$app/environment';
+  import { t } from '$lib/translations/translations';
+  import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
   import { fly } from 'svelte/transition';
   import { inview } from 'svelte-inview';
 
@@ -9,7 +9,6 @@
 
   // Components
   import { GeneralStatistic } from '$lib/components/structure';
-  import { Project, ProjectGrid } from '$lib/components/shared';
 
   import ConstructionSection from './_components/ConstructionSection.svelte';
   import DevelopmentSections from './_components/DevelopmentSections.svelte';
@@ -19,9 +18,10 @@
   import RecentProjectSection from './_components/RecentProjectSection.svelte';
 
   // Data
-  let definedLocale = data.locale;
-  console.log(definedLocale)
-  let projects = data.projects;
+  const page = data.page;
+  const blocks = page.fields.contentBlockReference;
+  const points = blocks.filter(el => el.fields.slug.includes("home-stats"))
+  const projects = data.projects;
   let isInView: boolean;
   const flyOptions = {
     y: 200,
@@ -31,13 +31,13 @@
 
 <svelte:head>
 	<title>
-    Home
+    {page.fields.metaTitle}
   </title>
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
 <div>
-  <HeroSection />
+  <HeroSection subtitle={page.fields.title} />
 </div>
 
 <div class="mb-[100px] lg:mb-[230px]">
@@ -46,22 +46,31 @@
 
 <section class="section-fixed mb-[80px] lg:mb-[200px] sm:px-5 lg:px-0">
   <h2 class="h2 px-4 lg:px-0">
-    Featured <i>services</i>
+    {@html $t("common.pages.home.title2")}
   </h2>
 
   <!-- Development -->
   <div class="data-block mb-10">
-    <DevelopmentSections />
+    <DevelopmentSections
+      title={blocks[0].fields.title}
+      content={documentToHtmlString(blocks[0].fields.content)}
+    />
   </div>
 
   <!-- Construction -->
   <div class="data-block mb-10">
-    <ConstructionSection />
+    <ConstructionSection
+      title={blocks[1].fields.title}
+      content={documentToHtmlString(blocks[1].fields.content)}
+    />
   </div>
 
   <!-- Architecture -->
   <div class="data-block mb-10">
-    <ArchitectureSection />
+    <ArchitectureSection
+      title={blocks[2].fields.title}
+      content={documentToHtmlString(blocks[2].fields.content)}
+    />
   </div>
 </section>
 
@@ -78,7 +87,7 @@
 </section>
 
 <section class="section-fixed section-statistic">
-  <GeneralStatistic />
+  <GeneralStatistic blocks={points} />
 </section>
 
 <style lang="scss">

@@ -41,6 +41,7 @@
 	"dependencies": {
 		"@contentful/rich-text-html-renderer": "^16.0.2",
 		"contentful": "^9.2.15",
+		"dayjs": "^1.11.7",
 		"embla-carousel": "^7.0.5",
 		"embla-carousel-svelte": "^7.0.5",
 		"sass": "^1.57.1",

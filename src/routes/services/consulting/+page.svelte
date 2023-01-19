@@ -1,47 +1,55 @@
-<script>
-	import { ContactForm } from '$lib/components/structure';
+<script lang="ts">
+  import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+
+  import { ContactForm } from '$lib/components/structure';
   import { PointItem } from '$lib/components/shared';
 
+  /** @type {import('./$types').PageData} */
+  export let data: any;
+
+  // Data
+  const { page } = data;
+  const blocks = page.fields.contentBlockReference;
+
+  const pointBlocks = blocks.filter(el => el.fields.slug.includes("consulting-points"));
   const points = [
     {
       icon: "color-swatch",
       title: "",
-      content: "Properly plan the development of the project",
+      content: pointBlocks[0]?.fields?.content ? documentToHtmlString(pointBlocks[0]?.fields?.content) : "",
     }, {
       icon: "status-up",
       title: "",
-      content: "Create a cost-effective and competitive real estate object",
+      content: pointBlocks[1]?.fields?.content ? documentToHtmlString(pointBlocks[1]?.fields?.content) : "",
     }, {
       icon: "math",
       title: "",
-      content: "Calculate the economic benefits of investments",
+      content: pointBlocks[2]?.fields?.content ? documentToHtmlString(pointBlocks[2]?.fields?.content) : "",
     }, {
       icon: "shield-tick",
       title: "",
-      content: "Foresee the course of events and circumstances",
+      content: pointBlocks[3]?.fields?.content ? documentToHtmlString(pointBlocks[3]?.fields?.content) : "",
     }, {
       icon: "wallet",
       title: "",
-      content: "Take into account the main risks and save time and money",
+      content: pointBlocks[4]?.fields?.content ? documentToHtmlString(pointBlocks[4]?.fields?.content) : "",
     },
   ];
 </script>
 
 <svelte:head>
-	<title>Consulting</title>
-	<meta name="description" content="Consulting" />
+	<title>{page.fields.metaTitle}</title>
+	<meta name="description" content={page.fields.metaDescription} />
 </svelte:head>
 
 <div class="page page-padded min-h-screen page-consulting">
   <section class="section-fixed pt-10 mb-32">
     <div class="content px-4 lg:px-0">
       <h1 class="h1">
-        Real estate is one of the most alluring ways to <i>invest capital</i>
+        {@html blocks[0].fields.title}
       </h1>
 
-      <p>
-        It requires mindful planning, a careful approach, and awareness of the challenges of the market and the nuances of law. Any real estate project begins with the development of a business concept. Consulting for commercial real estate or land involves the search for ideas that, after thorough analysis, turn into the most effective concept for the best use. The business concept is completely suitable for development in the future
-      </p>
+      {@html documentToHtmlString(blocks[0].fields.content)}
     </div>
   </section>
 
@@ -61,7 +69,7 @@
 
   <section class="section-fixed mb-32 px-4 lg:px-0">
     <h2 class="h2">
-      Our team of professionals will help <i>you to:</i>
+      {@html blocks[1].fields.title}
     </h2>
 
     <div class="point-list mb-16 w-full sm:w-[75%] lg:w-full">

@@ -16,11 +16,11 @@
   <div class="point-info">
     {#if point.title.length > 0}
       <h4 class="point-title">
-        {point.title}
+        {@html point.title}
       </h4>
     {/if}
     <p class="point-content">
-      {point.content}
+      {@html point.content}
     </p>
   </div>
 </div>
