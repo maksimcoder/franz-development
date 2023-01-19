@@ -1,16 +1,19 @@
 import { error } from '@sveltejs/kit';
+import { getLocale } from '$lib/translations/helper';
 import client from '$lib/services';
 
 import type { PageServerLoad } from './$types';
 
 /** @type {import('./$types').PageLoad} */
-export const load = (async ({ params }) => {
+export const load = (async ({ params, cookies }) => {
   try {
-    const projectsCriteria = {
+    const locale = cookies.get("locale") || "en";
+    const criteria = {
       content_type: 'project',
+      locale: getLocale(locale),
     };
 
-    const projects = await client.getEntries(projectsCriteria);
+    const projects = await client.getEntries(criteria);
     if (projects) {
       return {
         projects: projects?.items || [],

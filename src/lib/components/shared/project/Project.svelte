@@ -35,7 +35,7 @@
           <IconBedSmall />
         </figure>
         <span>
-          {$t('common.common.bedroom', {count: project.bedrooms})}
+          {$t('common.common.bedrooms', {count: project.bedrooms})}
         </span>
       {/if}
     </footer>

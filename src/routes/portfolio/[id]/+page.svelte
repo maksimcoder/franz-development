@@ -4,6 +4,7 @@
 
   // Components
   import { Gallery } from '$lib/components/shared';
+  import { NextProjectMarquee } from '$lib/components/shared';
 
   import IconBed    from '$lib/icons/IconBed.svelte';
   import IconBath   from '$lib/icons/IconBath.svelte';
@@ -32,31 +33,38 @@
   const optionKeys = {
     'bedrooms': {
       'icon': IconBed,
-      'template': `{val} bedroom`,
+      'hasValue': false,
+      'unit': null
     },
     'bathroom': {
       'icon': IconBath,
-      'template': `{val} bathroom`,
+      'hasValue': false,
+      'unit': null
     },
     'toilet': {
       'icon': IconToilet,
-      'template': `{val} toilet`,
+      'hasValue': false,
+      'unit': null
     },
     'cars': {
       'icon': IconCar,
-      'template': `{val} car`,
+      'hasValue': false,
+      'unit': null
     },
     'bikes': {
       'icon': IconBike,
-      'template': `{val} bike`,
+      'hasValue': false,
+      'unit': null
     },
     'livingArea': {
       'icon': IconLivingArea,
-      'template': `{val} m<sup>2</sup> living area`,
+      'hasValue': true,
+      'unit': $t(`common.units.m2`),
     },
     'plotArea': {
       'icon': IconPlotArea,
-      'template': `{val} m<sup>2</sup> plot`,
+      'hasValue': true,
+      'unit': $t(`common.units.m2`),
     }
   };
 
@@ -67,9 +75,11 @@
     if (project.fields[key]) {
       options.push({
         key,
-        value: project.fields[key],
+        value: optionKeys[key].hasValue ? project.fields[key] : "",
         icon: optionKeys[key].icon,
-        template: optionKeys[key].template.replace('{val}', project.fields[key]),
+        unit: optionKeys[key].unit,
+        template: $t(`common.common.${key}`, {count: project.fields[key]}),
+        // template: optionKeys[key].template.replace('{val}', project.fields[key]),
       });
     }
   });
@@ -105,6 +115,9 @@
               <svelte:component this={option.icon} />
             </span>
             <p>
+              {#if option.value > 0}
+                {option.value} {@html option.unit}
+              {/if}
               {@html option.template}
             </p>
           </div>
@@ -114,7 +127,7 @@
       {#if project.fields.specification}
         <div class="mb-20">
           <h2 class="h2">
-            Specification
+            {$t('common.pages.portfolio.specification')}
           </h2>
           {@html documentToHtmlString(project.fields.specification)}
         </div>
@@ -140,6 +153,8 @@
   </section>
 
   <section class="mb-[120px] next-project">
+
+    <!-- <NextProjectMarquee title={next.fields.title} /> -->
     <!-- svelte-ignore a11y-distracting-elements -->
     <marquee>
       <h2 class="h2">

@@ -2,17 +2,18 @@
   "title": "About this app",
   "text": "",
   "common": {
-    "bedroom": "{{count:gt; 0:{{count}} {{count; 1:спальная; 2:спальные; 3:спальные; 4:спальные; default:спален}}; default:нет спален...}}",
+    "bedrooms": "{{count:gt; 0:{{count}} {{count; 1:спальная; 2:спальные; 3:спальные; 4:спальные; default:спален}}; default:нет спален...}}",
     "bathroom": "{{count:gt; 0:{{count}} {{count; 1:ванная; 2:ванные; 3:ванные; 4:ванные; default:ванных}}; default:no bathrooms...}}",
     "toilet": "{{count:gt; 0:{{count}} {{count; 1:туалет; 2:туалета; 3:туалета; 4:туалета; default:туалетов}}; default:no toilets...}}",
-    "car": "{{count:gt; 0:{{count}} {{count; 1:машина; 2:машины; 3:машины; 4:машины; default:машин}}; default:no parking...}}",
-    "bike": "{{count:gt; 0:{{count}} {{count; 1:мотоцикл; 2:мотоцикла; 3:мотоцикла; 4:мотоцикла; default:мотоциклов}}; default:no parking...}}",
-    "living_area": "жилая площадь",
-    "plot": "участок",
+    "cars": "{{count:gt; 0:{{count}} {{count; 1:машина; 2:машины; 3:машины; 4:машины; default:машин}}; default:no parking...}}",
+    "bikes": "{{count:gt; 0:{{count}} {{count; 1:мотоцикл; 2:мотоцикла; 3:мотоцикла; 4:мотоцикла; default:мотоциклов}}; default:no parking...}}",
+    "livingArea": "жилая площадь",
+    "plotArea": "участок",
     "ongoing": "В разработке"
   },
   "units": {
     "years": "лет",
+    "m2": "м<sup>2</sup>",
     "percent": "%",
     "more": "+"
   },
@@ -29,7 +30,8 @@
       }
     },
     "portfolio": {
-      "title": "Портфолио"
+      "title": "Портфолио",
+      "specification": "Спецификация"
     },
     "news": {
       "title": "Новости"

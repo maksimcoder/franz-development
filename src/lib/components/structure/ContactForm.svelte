@@ -11,8 +11,17 @@
   /**
    * On form submit
    */
-  const onSubmit = (): void => {
-    // console.log(form);
+  const onSubmit = async (): Promise<any> => {
+    const url = "/send-mail";
+    const options = {
+      method: "post",
+      body: JSON.stringify({
+        name: "Andrew",
+      }),
+    }
+    const response = await fetch(url, options);
+    const data = await response.json();
+    console.log(data);
   }
 </script>
 

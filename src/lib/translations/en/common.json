@@ -2,17 +2,18 @@
   "title": "About this app",
   "text": "",
   "common": {
-    "bedroom": "{{count:gt; 0:{{count}} {{count; 1:bedroom; default:bedrooms}}; default:no bedrooms...}}",
+    "bedrooms": "{{count:gt; 0:{{count}} {{count; 1:bedroom; default:bedrooms}}; default:no bedrooms...}}",
     "bathroom": "{{count:gt; 0:{{count}} {{count; 1:bathroom; default:bathrooms}}; default:no bathrooms...}}",
     "toilet": "{{count:gt; 0:{{count}} {{count; 1:toilet; default:toilets}}; default:no toilets...}}",
-    "car": "{{count:gt; 0:{{count}} {{count; 1:car; default:cars}}; default:no parking...}}",
-    "bike": "{{count:gt; 0:{{count}} {{count; 1:bike; default:bikes}}; default:no parking...}}",
-    "living_area": "160 m2 living area",
-    "plot": "200 m2 plot",
+    "cars": "{{count:gt; 0:{{count}} {{count; 1:car; default:cars}}; default:no parking...}}",
+    "bikes": "{{count:gt; 0:{{count}} {{count; 1:bike; default:bikes}}; default:no parking...}}",
+    "livingArea": "160 m2 living area",
+    "plotArea": "200 m2 plot",
     "ongoing": "On going"
   },
   "units": {
     "years": "years",
+    "m2": "m<sup>2</sup>",
     "percent": "%",
     "more": "more"
   },
@@ -29,7 +30,8 @@
       }
     },
     "portfolio": {
-      "title": "Portfolio"
+      "title": "Portfolio",
+      "specification": "Specification"
     },
     "news": {
       "title": "News"
