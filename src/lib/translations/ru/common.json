@@ -9,6 +9,7 @@
     "bikes": "{{count:gt; 0:{{count}} {{count; 1:мотоцикл; 2:мотоцикла; 3:мотоцикла; 4:мотоцикла; default:мотоциклов}}; default:no parking...}}",
     "livingArea": "жилая площадь",
     "plotArea": "участок",
+    "sharedParking": "Общая парковка",
     "ongoing": "В разработке"
   },
   "units": {
@@ -58,7 +59,7 @@
       "title": "Консалтинг"
     },
     "delux": {
-      "title": "Апартаменты класса люкс"
+      "title": "Deluxe апартаменты"
     }
   },
   "actions": {

@@ -16,7 +16,6 @@
   $: currentImage = images[index]
 
   // Methods
-
   const onClickClose = () => {
     visible = false;
   }

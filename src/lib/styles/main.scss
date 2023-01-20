@@ -80,3 +80,22 @@ p {
     }
   }
 }
+
+.option-list {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8;
+
+  &.option-list-2cols {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2
+  }
+
+  .option-item {
+    @apply h-[200px] bg-[var(--color-middle-black)];
+    @apply flex flex-col items-center justify-center;
+    @apply rounded-[40px];
+    @apply space-y-2;
+
+    p {
+      @apply mb-0;
+    }
+  }
+}

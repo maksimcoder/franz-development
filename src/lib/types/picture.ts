@@ -12,7 +12,7 @@ export interface IPictureFile {
   contentType: string;
   fileName: string;
   url: string;
-  details: IPictureFileDetails;
+  details: null|IPictureFileDetails;
 }
 
 export interface IPicture {

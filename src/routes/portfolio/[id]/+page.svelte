@@ -108,7 +108,7 @@
         {@html documentToHtmlString(project.fields.description)}
       </div>
 
-      <div class="option-list mb-20">
+      <div class="option-list lg:pr-40 mb-20">
         {#each options as option}
           <div class="option-item">
             <span>
@@ -204,24 +204,6 @@
       @apply max-w-[100px];
     }
   }
-
-  .option-list {
-    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-8;
-    @apply lg:pr-40;
-
-    .option-item {
-      @apply h-[200px] bg-[var(--color-middle-black)];
-      @apply flex flex-col items-center justify-center;
-      @apply rounded-[40px];
-      @apply space-y-2;
-
-      p {
-        @apply mb-0;
-      }
-    }
-  }
-
-
   .next-project {
     @apply mx-auto;
     @apply w-full;

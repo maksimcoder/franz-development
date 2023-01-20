@@ -102,6 +102,10 @@
     return $$locale === 'en' ? 'ru' : 'en';
   }
 
+  /**
+   * On change locale click
+   * @param lang
+   */
   const changeLocale = async (lang: string) => {
     const LANG = lang;
     await locale.set(lang);
@@ -155,8 +159,8 @@
    * On expand mobile menu
    */
   const onExpandMobileMenu = (): void => {
-    if (activeMenuItem) {
-      activeMenuItem = null;
+    if (activeKey.length > 0) {
+      activeKey = "";
     }
     else {
       mobileMenu = !mobileMenu;
@@ -176,24 +180,35 @@
       <img src={activeMenuItem || mobileMenu ? `/logo-black.png` : `/logo.png`} alt="Franz Development">
     </a>
 
-    <button
-      class="mobile-menu-burger"
-      on:click={() => onExpandMobileMenu()}
-    >
-      {#if mobileMenu}
-        {#if activeMenuItem}
-          <span class="text-black text-2xl">
-            Back
-          </span>
+    <div class="mobile-actions flex flex-row lg:hidden space-x-6">
+      <button
+        class="ml-0 mt-7 flex flex-row space-x-1"
+        on:click={() => { changeLocale(nextLocale) }}
+      >
+        <IconLocale/>
+        <span>{nextLocale}</span>
+      </button>
+
+      <button
+        class="mobile-menu-burger"
+        on:click={() => onExpandMobileMenu()}
+      >
+        {#if mobileMenu}
+          {#if activeMenuItem}
+            <span class="text-black text-2xl">
+              Back
+            </span>
+          {:else}
+            <span class="text-black text-2xl">
+              Close &times;
+            </span>
+          {/if}
         {:else}
-          <span class="text-black text-2xl">
-            Close &times;
-          </span>
+          <IconMenu />
         {/if}
-      {:else}
-        <IconMenu />
-      {/if}
-    </button>
+      </button>
+    </div>
+
 
     <nav class="nav">
       <ul>
@@ -271,6 +286,18 @@
   <aside class="mobile-menu">
     <ul>
       {#if activeMenuItem}
+        <ul class="special-list">
+          {#each specialItemList as item }
+            <li>
+              <a href={item.url} on:click={onMenuItemClick}>
+                {$t(`common.pages.${item.key}.title`)}
+                <span>
+                  {$t(`common.common.ongoing`)}
+                </span>
+              </a>
+            </li>
+          {/each}
+        </ul>
         {#each activeMenuItem.submenu as item }
           <li>
             <a href={item.url} on:click={onMenuItemClick}>
@@ -304,7 +331,7 @@
     @apply top-[var(--header-height)];
     @apply h-[calc(100%-var(--header-height))] w-full;
     @apply bg-white;
-    @apply text-black text-3xl;
+    @apply text-black text-2xl;
     @apply py-6;
     @apply flex flex-col justify-center;
 
@@ -319,6 +346,22 @@
 
           li {
             @apply text-slate-600  text-3xl;
+          }
+        }
+      }
+    }
+
+    .special-list {
+      @apply text-xl;
+
+      li {
+        a {
+          @apply flex flex-col items-center;
+
+          span {
+            @apply bg-[var(--color-brown-100)];
+            @apply inline-block w-fit rounded-lg mt-1 px-1.5 py-0.5;
+            @apply whitespace-nowrap text-sm text-white;
           }
         }
       }
@@ -382,6 +425,7 @@
 
     &.header-toggled {
       @apply bg-white;
+      @apply text-black;
 
       .menu-link {
         @apply text-black;

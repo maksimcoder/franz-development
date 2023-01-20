@@ -9,6 +9,7 @@
     "bikes": "{{count:gt; 0:{{count}} {{count; 1:bike; default:bikes}}; default:no parking...}}",
     "livingArea": "160 m2 living area",
     "plotArea": "200 m2 plot",
+    "sharedParking": "Shared parking",
     "ongoing": "On going"
   },
   "units": {
