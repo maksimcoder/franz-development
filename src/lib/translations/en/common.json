@@ -10,7 +10,15 @@
     "livingArea": "160 m2 living area",
     "plotArea": "200 m2 plot",
     "sharedParking": "Shared parking",
-    "ongoing": "On going"
+    "ongoing": "On going",
+    "roadAccess": "Road access",
+    "lobby": "Lobby",
+    "parking1": "Parking 1",
+    "parking2": "Parking 2 (First floor) and Gym (Second floor)",
+    "recreation": "Recreation area, Garden, Swimming pool",
+    "apartments8": "8 Apartments",
+    "apartments12": "12 Apartments",
+    "playground": "Kids playground"
   },
   "units": {
     "years": "years",

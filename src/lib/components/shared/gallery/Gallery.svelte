@@ -73,13 +73,16 @@
 
     .control-close {
       @apply top-1 right-1;
-      @apply rounded-[32px] h-[60px] w-[60px];
+      @apply rounded-[32px];
+      @apply h-[60px];
+      @apply w-[60px];
       @apply bg-black/50;
     }
 
     .control-prev,
     .control-next {
-      @apply h-[120px] w-[120px];
+      @apply h-[80px] lg:h-[120px];
+      @apply w-[80px] lg:w-[120px];
       @apply bg-[var(--color-middle-black)];
       @apply bottom-0;
     }

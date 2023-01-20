@@ -11,7 +11,6 @@
 
   // Data
   let visible = false;
-
   const pictures = [
     "/deluxe/1.jpg",
     "/deluxe/2.jpg",
@@ -87,27 +86,35 @@
     {
       sign: "A",
       title: "Road access",
+      key: "roadAccess",
     }, {
       sign: "B",
       title: "Lobby",
+      key: "lobby",
     }, {
       sign: "C",
       title: "Parking 1",
+      key: "parking1",
     }, {
       sign: "D",
       title: "Parking 2 (First floor) and Gym (Second floor)",
+      key: "parking2",
     }, {
       sign: "E",
       title: "Recreation area, Garden, Swimming pool",
+      key: "recreation",
     }, {
       sign: "F",
       title: "8 Apartments",
+      key: "apartments8",
     }, {
       sign: "G",
       title: "12 Apartments",
+      key: "apartments12",
     }, {
       sign: "H",
       title: "Kids playground",
+      key: "playground",
     },
   ];
 
@@ -123,15 +130,15 @@
 </svelte:head>
 
 <div class="page page-padded min-h-screen page-deluxe">
-  <section class="section-fixed pt-10 mb-32">
-    <div class="content max-w-[1064px] m-auto">
+  <section class="section-fixed pt-10 mb-[84px] md:mb-32">
+    <div class="content max-w-[1064px] m-auto px-5 lg:px-0">
       <h1 class="h1">
         Deluxe apartments in the heart of the most tourist destination <i>on earth</i>
       </h1>
     </div>
   </section>
 
-  <section class="section-fixed mb-32 px-4 lg:px-0">
+  <section class="section-fixed">
     <div class="section-gallery">
       <!-- svelte-ignore a11y-click-events-have-key-events -->
       <picture class="slide slide-1" on:click={openGallery} style={`background-image: url(${pictures[0]})`} />
@@ -142,8 +149,8 @@
     </div>
   </section>
 
-  <section class="section-fixed mb-32 px-4 lg:px-0 flex flex-col items-end">
-    <div class="w-1/2">
+  <section class="section-fixed mb-[84px] md:mb-32 px-4 lg:px-0 flex flex-col items-end">
+    <div class="w-full lg:w-1/2">
       <p>
         This stunning one bedroom duplex apartment
         in a prestigious gated community in Canggu is
@@ -159,7 +166,7 @@
       </p>
     </div>
 
-    <div class="option-list option-list-2cols w-1/2 lg:pr-40 mb-20">
+    <div class="option-list option-list-2cols w-full lg:w-1/2 lg:pr-40 mb-20">
       {#each options as option}
         <div class="option-item">
           <span>
@@ -188,7 +195,7 @@
       <picture class="slide slide-2" on:click={openGallery} style={`background-image: url(${pictures[3]})`} />
     </div>
 
-    <div class="w-1/2">
+    <div class="w-full lg:w-1/2">
       <p>
         Duplex apartment of 50 m2 with beautiful views of the pool and garden. It features a cozy open plan living and dining area with a fully equipped kitchen and a bathroom at the entrance level. Master suite on the second level with a cool walk-in closet with stunning views.
       </p>
@@ -198,16 +205,17 @@
     </div>
   </section>
 
-  <section class="section-fixed mb-32 px-4 lg:px-0">
-    <h2 class="h2 mb-[94px]">
+  <section class="section-fixed mb-[84px] md:mb-32 px-4 lg:px-0">
+    <h2 class="h2 mb-8 lg:mb-[94px]">
       General plan of the apartments complex with <i>property description</i>
     </h2>
 
-    <div class="flex flex-row space-x-8">
-      <div class="w-1/2">
-        <img src="/deluxe/map.jpg" alt="" class="rounded-3xl">
+    <div class="flex flex-col lg:flex-row lg:space-x-8">
+      <div class="w-full mb-8 lg:mb-0 lg:w-1/2">
+        <img src="/deluxe/map.jpg" alt="" class="rounded-3xl block w-full">
       </div>
-      <div class="w-1/2">
+
+      <div class="w-full lg:w-1/2">
         <ul class="pros-list">
 
           {#each points as point}
@@ -216,13 +224,12 @@
                 {point.sign}
               </div>
               <p class="pros-title">
-                {point.title}
+                {$t(`common.common.${point.key}`, {default: point.title})}
               </p>
             </li>
           {/each}
         </ul>
       </div>
-
     </div>
   </section>
 
@@ -243,37 +250,39 @@
 
     .gallery-small {
       @apply flex flex-col;
-      @apply space-y-12;
-      @apply w-1/2;
+      @apply space-y-5 lg:space-y-12;
+      @apply w-full lg:w-1/2;
       @apply mb-12;
 
       .slide-1 {
-        @apply w-full h-[320px];
+        @apply w-full h-[194px] md:h-[320px];
       }
 
       .slide-2 {
-        @apply w-full max-w-[60%] h-[320px];
+        @apply w-full lg:max-w-[60%];
+        @apply h-[245px] md:h-[520px] lg:h-[320px];
       }
     }
 
     .section-gallery {
-      @apply flex flex-col sm:flex-row;
+      @apply flex flex-col sm:flex-row sm:flex-wrap sm:justify-between;
       @apply items-end;
       @apply space-y-4 lg:space-y-0;
-      @apply space-x-10;
+      @apply lg:space-x-10;
+      @apply mb-8 lg:mb-32 px-5 lg:px-0;
 
       .slide-1 {
-        @apply h-[400px];
-        @apply w-full max-w-[40%]
+        @apply h-[194px] md:h-[400px];
+        @apply w-full md:max-w-[49%] lg:max-w-[40%]
       }
       .slide-2 {
-        @apply h-[264px];
-        @apply w-full max-w-[40%]
+        @apply h-[194px] md:h-[264px];
+        @apply w-full md:max-w-[49%] lg:max-w-[40%]
       }
 
       .slide-3 {
-        @apply h-[400px];
-        @apply w-full max-w-[20%];
+        @apply h-[400px] md:h-[800px] lg:h-[400px];
+        @apply w-full md:max-w-full lg:max-w-[20%];
       }
     }
   }
@@ -287,7 +296,7 @@
       @apply space-x-4;
     }
     &-sign {
-      @apply flex flex-row justify-center items-center;
+      @apply flex flex-row flex-shrink-0 justify-center items-center;
       @apply w-[64px] h-[64px] rounded-2xl;
       @apply bg-[var(--color-middle-black)];
       @apply text-[var(--color-brown-100)];
