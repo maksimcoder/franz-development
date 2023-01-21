@@ -39,7 +39,7 @@
       </span>
     </button>
 
-    <div class="w-full max-w-[640px]">
+    <div class="w-full px-10 max-w-[680px]">
       <ContactForm />
     </div>
   </div>
