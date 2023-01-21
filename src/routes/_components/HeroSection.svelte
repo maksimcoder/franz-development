@@ -39,15 +39,14 @@
   </div>
 
   <video
+    preload="auto"
     class="hero-video"
-    src={videoUrl}
     autoplay={true}
-    loop={true}
     paused={false}
-    muted
-    playsinline
     controls={false}
+    loop muted playsinline
   >
+    <source src={videoUrl} type="video/mp4">
     <track kind="captions">
   </video>
 </section>
