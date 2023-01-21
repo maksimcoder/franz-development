@@ -45,6 +45,7 @@
     loop={true}
     paused={false}
     muted
+    playsinline
     controls={false}
   >
     <track kind="captions">
