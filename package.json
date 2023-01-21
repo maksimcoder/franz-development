@@ -44,7 +44,6 @@
 		"dayjs": "^1.11.7",
 		"embla-carousel": "^7.0.5",
 		"embla-carousel-svelte": "^7.0.5",
-		"nodemailer": "^6.9.0",
 		"sass": "^1.57.1",
 		"sendmail": "^1.6.1",
 		"svelte-counter": "^1.0.0",
