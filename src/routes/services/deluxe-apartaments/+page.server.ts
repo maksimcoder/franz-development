@@ -8,7 +8,7 @@ import type { PageServerLoad } from './$types';
 /** @type {import('./$types').PageLoad} */
 export const load = (async ({ cookies }) => {
   try {
-    const pageId = '67UYP4UXAjSVeZT66hnVJQ';
+    const pageId = '235NJ7q9ew65Iy29J20Ob';
     const query = {
       locale: getLocale(cookies.get("locale"))
     };

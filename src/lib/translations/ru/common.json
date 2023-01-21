@@ -82,7 +82,8 @@
     "title": "Связаться <i>с нами</i>",
     "name": "Имя",
     "email": "Email",
-    "message": "Сообщение..."
+    "message": "Сообщение...",
+    "submitted": "Ваше сообщение отправлено!"
   },
   "footer": {
     "office": "Bali офис",

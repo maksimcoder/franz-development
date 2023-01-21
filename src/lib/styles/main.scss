@@ -46,6 +46,13 @@ p {
   &:hover {
     @apply bg-[#967148];
   }
+
+  &:disabled {
+    @apply opacity-80;
+    &:hover {
+      @apply bg-[#B29370];
+    }
+  }
 }
 
 

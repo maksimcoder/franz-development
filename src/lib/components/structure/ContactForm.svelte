@@ -1,27 +1,73 @@
 <script lang="ts">
+  import { fly } from 'svelte/transition';
+  import { browser } from "$app/environment";
+  import { z } from "zod";
   import { t } from '$lib/translations/translations';
 
   // Data
   const form = {
+    loading: false,
     full_name: '',
     email: '',
     message: '',
+    is_sent: false,
+    errors: [],
+  }
+
+  const FormValidator = z.object({
+    full_name: z.string().min(1).max(20),
+    email: z.string().email(),
+    message: z.string().min(5).max(200),
+  });
+
+  $: isValid = validateFormData(form);
+
+  function validateFormData(input: unknown): boolean {
+    if (browser) {
+      const isValidData = FormValidator.safeParse(input);
+      if (!isValidData.success) {
+        form.errors = isValidData.error.issues;
+        return false;
+      }
+      else {
+        return true;
+      }
+    }
   }
 
   /**
    * On form submit
    */
-  const onSubmit = async (): Promise<any> => {
-    const url = "/send-mail";
-    const options = {
-      method: "post",
-      body: JSON.stringify({
-        name: "Andrew",
-      }),
+  const onSubmit = async (event: Event): Promise<any> => {
+    form.loading = true;
+
+    try {
+      const url = "/send-mail";
+      const contactForm = event.target as HTMLFormElement
+      const formData = new FormData(contactForm)
+
+      const options = {
+        method: "post",
+        body: formData,
+      }
+      const response = await fetch(url, options);
+      const data = await response.json();
+
+      form.is_sent   = true;
+      form.full_name = "";
+      form.email     = "";
+      form.message   = "";
+
+      setTimeout(() => {
+        form.is_sent = false;
+      }, 5000);
     }
-    const response = await fetch(url, options);
-    const data = await response.json();
-    console.log(data);
+    catch(err) {
+      throw new Error(err)
+    }
+    finally {
+      form.loading = false;
+    }
   }
 </script>
 
@@ -35,25 +81,37 @@
 
   <input
     type="text"
+    name="full_name"
     placeholder={$t("common.contact_form.name")}
+    disabled={form.loading}
     class="form-control"
     bind:value={form.full_name}
   >
   <input
     type="email"
+    name="email"
     placeholder={$t("common.contact_form.email")}
+    disabled={form.loading}
     class="form-control"
     bind:value={form.email}
   >
   <input
     type="text"
+    name="message"
     placeholder={$t("common.contact_form.message")}
+    disabled={form.loading}
     class="form-control"
     bind:value={form.message}
   >
 
+  {#if form.is_sent}
+    <div transition:fly={{ y: 15, duration: 300 }}>
+      <p class="text-lg">{$t("common.contact_form.submitted")}</p>
+    </div>
+  {/if}
+
   <footer class="contact-form--footer">
-    <button class="link-round">
+    <button class="link-round" disabled={form.loading || !isValid}>
       {$t("common.actions.send")}
     </button>
   </footer>

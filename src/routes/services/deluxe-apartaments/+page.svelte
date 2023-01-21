@@ -1,5 +1,8 @@
-<script>
+<script lang="ts">
   import { t } from '$lib/translations/translations';
+  import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+
+  // Components
 	import { ContactForm } from '$lib/components/structure';
   import { Gallery } from '$lib/components/shared';
 
@@ -9,7 +12,14 @@
   import IconLivingArea   from '$lib/icons/IconLivingArea.svelte';
   import IconPlotArea     from '$lib/icons/IconPlotArea.svelte';
 
+
+  /** @type {import('./$types').PageData} */
+  export let data: any;
+
   // Data
+  const { page } = data;
+  const blocks = page.fields.contentBlockReference;
+
   let visible = false;
   const pictures = [
     "/deluxe/1.jpg",
@@ -125,15 +135,15 @@
 </script>
 
 <svelte:head>
-	<title>Deluxe apartments</title>
-	<meta name="description" content="Deluxe apartments" />
+	<title>{page.fields.metaTitle}</title>
+	<meta name="description" content={page.fields.metaDescription} />
 </svelte:head>
 
 <div class="page page-padded min-h-screen page-deluxe">
   <section class="section-fixed pt-10 mb-[84px] md:mb-32">
     <div class="content max-w-[1064px] m-auto px-5 lg:px-0">
       <h1 class="h1">
-        Deluxe apartments in the heart of the most tourist destination <i>on earth</i>
+        {@html page.fields.title}
       </h1>
     </div>
   </section>
@@ -151,19 +161,7 @@
 
   <section class="section-fixed mb-[84px] md:mb-32 px-4 lg:px-0 flex flex-col items-end">
     <div class="w-full lg:w-1/2">
-      <p>
-        This stunning one bedroom duplex apartment
-        in a prestigious gated community in Canggu is
-        located within walking distance of the most
-        popular street - Batu Bolong, western restaurants,
-        cafes and shops, and only 8 minutes drive from the ocean.
-      </p>
-      <p>
-        With its clean lines and simplicity, this sublime
-        apartment represents timeless modernity, and the
-        resulting home can blend seamlessly into a
-        tropical style. This elegant apartment, fully furnished, is located in one of the most prestigious areas of Bali
-      </p>
+      {@html documentToHtmlString(blocks[0].fields.content)}
     </div>
 
     <div class="option-list option-list-2cols w-full lg:w-1/2 lg:pr-40 mb-20">
@@ -196,18 +194,13 @@
     </div>
 
     <div class="w-full lg:w-1/2">
-      <p>
-        Duplex apartment of 50 m2 with beautiful views of the pool and garden. It features a cozy open plan living and dining area with a fully equipped kitchen and a bathroom at the entrance level. Master suite on the second level with a cool walk-in closet with stunning views.
-      </p>
-      <p>
-        The complex offers its residents well-kept landscaped gardens and a large communal swimming pool with sunbathing area. Nearby you will find supermarkets, restaurants, pharmacies, banks and shops that cover your basic daily needs. The airport is less than 1 hour away. Another advantage of the area is the ideal ecological conditions provided by the surrounding fields.
-      </p>
+      {@html documentToHtmlString(blocks[1].fields.content)}
     </div>
   </section>
 
   <section class="section-fixed mb-[84px] md:mb-32 px-4 lg:px-0">
     <h2 class="h2 mb-8 lg:mb-[94px]">
-      General plan of the apartments complex with <i>property description</i>
+      {@html blocks[2].fields.title}
     </h2>
 
     <div class="flex flex-col lg:flex-row lg:space-x-8">
@@ -273,11 +266,11 @@
 
       .slide-1 {
         @apply h-[194px] md:h-[400px];
-        @apply w-full md:max-w-[49%] lg:max-w-[40%]
+        @apply w-full md:max-w-[49%] lg:max-w-[36%]
       }
       .slide-2 {
         @apply h-[194px] md:h-[264px];
-        @apply w-full md:max-w-[49%] lg:max-w-[40%]
+        @apply w-full md:max-w-[49%] lg:max-w-[36%]
       }
 
       .slide-3 {

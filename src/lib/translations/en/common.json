@@ -83,7 +83,8 @@
     "title": "Get in <i>touch</i>",
     "name": "Full name",
     "email": "Email",
-    "message": "Message..."
+    "message": "Message...",
+    "submitted": "Submitted successfully!"
   },
   "footer": {
     "office": "Bali office",

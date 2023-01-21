@@ -46,10 +46,12 @@
 		"embla-carousel-svelte": "^7.0.5",
 		"nodemailer": "^6.9.0",
 		"sass": "^1.57.1",
+		"sendmail": "^1.6.1",
 		"svelte-counter": "^1.0.0",
 		"svelte-i18n": "^3.6.0",
 		"svelte-inview": "^3.0.2",
 		"svelte-local-storage-store": "^0.3.2",
-		"sveltekit-i18n": "^2.2.2"
+		"sveltekit-i18n": "^2.2.2",
+		"zod": "^3.20.2"
 	}
 }
