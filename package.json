@@ -40,6 +40,7 @@
 	"type": "module",
 	"dependencies": {
 		"@contentful/rich-text-html-renderer": "^16.0.2",
+		"@emailjs/browser": "^3.10.0",
 		"contentful": "^9.2.15",
 		"dayjs": "^1.11.7",
 		"embla-carousel": "^7.0.5",

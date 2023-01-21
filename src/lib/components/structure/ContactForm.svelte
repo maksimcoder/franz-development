@@ -3,6 +3,11 @@
   import { browser } from "$app/environment";
   import { z } from "zod";
   import { t } from '$lib/translations/translations';
+  import emailjs from '@emailjs/browser';
+
+  const SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+  const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+  const PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
   // Data
   const form = {
@@ -42,16 +47,8 @@
     form.loading = true;
 
     try {
-      const url = "/send-mail";
       const contactForm = event.target as HTMLFormElement
-      const formData = new FormData(contactForm)
-
-      const options = {
-        method: "post",
-        body: formData,
-      }
-      const response = await fetch(url, options);
-      const data = await response.json();
+      const result = await emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, contactForm, PUBLIC_KEY);
 
       form.is_sent   = true;
       form.full_name = "";
