@@ -106,3 +106,17 @@ p {
     }
   }
 }
+
+.fly-transition {
+  transition: all 1s;
+}
+.fly-hidden {
+  filter: blur(2px);
+  opacity: 0;
+  transform: translateY(250px);
+}
+.fly-show {
+  filter: blur(0px);
+  opacity: 1;
+  transform: translateY(0px);
+}

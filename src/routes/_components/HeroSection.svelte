@@ -1,6 +1,8 @@
 <script lang="ts">
   import { t } from '$lib/translations/translations';
 
+  import { contactFormStore } from "$lib/stores";
+
   // Props
   export let subtitle = "Invest in real estate on Bali and get up to 20% passive income per year";
 
@@ -22,9 +24,16 @@
         <p class="lg:mb-32">
           {@html subtitle}
         </p>
-        <a href="/" class="link-round mx-5 md:mx-12 lg:mx-0 mt-8 sm:mt-0">
+        <button class="link-round mx-5 md:mx-12 lg:mx-0 mt-8 sm:mt-0"
+          on:click={() => {
+            contactFormStore.update(value => {
+              value.visible = true;
+              return value;
+            });
+          }}
+        >
           {@html $t("common.actions.contact_us")}
-        </a>
+        </button>
       </div>
     </div>
   </div>

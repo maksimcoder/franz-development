@@ -13,6 +13,8 @@
   import IconPlotArea     from '$lib/icons/IconPlotArea.svelte';
 
 
+  import { contactFormStore } from "$lib/stores";
+
   /** @type {import('./$types').PageData} */
   export let data: any;
 
@@ -180,9 +182,16 @@
       {/each}
 
       <div class="flex flex-row justify-center items-center">
-        <a href="/" class="link-round">
-          {$t('common.actions.contact_us')}
-        </a>
+        <button class="link-round"
+          on:click={() => {
+            contactFormStore.update(value => {
+              value.visible = true;
+              return value;
+            });
+          }}
+        >
+          {@html $t("common.actions.contact_us")}
+        </button>
       </div>
     </div>
 

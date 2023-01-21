@@ -87,6 +87,7 @@
     "submitted": "Submitted successfully!"
   },
   "footer": {
+    "address": "Address",
     "office": "Bali office",
     "working_hours": "Working hours",
     "phone": "Phone",

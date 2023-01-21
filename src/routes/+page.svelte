@@ -1,32 +1,33 @@
 <script lang="ts">
   import { t } from '$lib/translations/translations';
   import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
-  import { fly } from 'svelte/transition';
   import { inview } from 'svelte-inview';
 
   /** @type {import('./$types').PageData} */
   export let data: any;
 
   // Components
-  import { GeneralStatistic } from '$lib/components/structure';
-
   import ConstructionSection from './_components/ConstructionSection.svelte';
   import DevelopmentSections from './_components/DevelopmentSections.svelte';
   import ClientsList from './_components/ClientsList.svelte';
   import ArchitectureSection from './_components/ArchitectureSection.svelte';
   import HeroSection from './_components/HeroSection.svelte';
   import RecentProjectSection from './_components/RecentProjectSection.svelte';
+  import GeneralStatistic from './_components/GeneralStatistic.svelte';
 
   // Data
   const page = data.page;
   const blocks = page.fields.contentBlockReference;
   const points = blocks.filter(el => el.fields.slug.includes("home-stats"))
   const projects = data.projects;
-  let isInView: boolean;
-  const flyOptions = {
-    y: 200,
-    duration: 1500,
-  };
+  const animate = {
+    development: false,
+    construction: false,
+    architecture: false,
+    projects: false,
+    points: false,
+    stats: false,
+  }
 </script>
 
 <svelte:head>
@@ -50,44 +51,66 @@
   </h2>
 
   <!-- Development -->
-  <div class="data-block mb-10">
-    <DevelopmentSections
-      title={blocks[0].fields.title}
-      content={documentToHtmlString(blocks[0].fields.content)}
-    />
+  <div
+    use:inview={{ unobserveOnEnter: true, rootMargin: '-20%' }}
+    on:change={({ detail }) => { animate.development = detail.inView }}
+    class={`fly-transition ${animate.development ? "fly-show" : "fly-hidden"}`}
+  >
+    <div class="data-block mb-10">
+      <DevelopmentSections
+        title={blocks[0].fields.title}
+        content={documentToHtmlString(blocks[0].fields.content)}
+      />
+    </div>
   </div>
 
   <!-- Construction -->
-  <div class="data-block mb-10">
-    <ConstructionSection
-      title={blocks[1].fields.title}
-      content={documentToHtmlString(blocks[1].fields.content)}
-    />
+  <div
+    use:inview={{ unobserveOnEnter: true, rootMargin: '-20%' }}
+    on:change={({ detail }) => { animate.construction = detail.inView }}
+    class={`fly-transition ${animate.construction ? "fly-show" : "fly-hidden"}`}
+  >
+    <div class="data-block mb-10">
+      <ConstructionSection
+        title={blocks[1].fields.title}
+        content={documentToHtmlString(blocks[1].fields.content)}
+      />
+    </div>
   </div>
 
   <!-- Architecture -->
-  <div class="data-block mb-10">
-    <ArchitectureSection
-      title={blocks[2].fields.title}
-      content={documentToHtmlString(blocks[2].fields.content)}
-    />
+  <div
+    use:inview={{ unobserveOnEnter: true, rootMargin: '-20%' }}
+    on:change={({ detail }) => { animate.architecture = detail.inView }}
+    class={`fly-transition ${animate.architecture ? "fly-show" : "fly-hidden"}`}
+  >
+    <div class="data-block mb-10">
+      <ArchitectureSection
+        title={blocks[2].fields.title}
+        content={documentToHtmlString(blocks[2].fields.content)}
+      />
+    </div>
   </div>
 </section>
 
 <section
-  use:inview={{ unobserveOnEnter: true, rootMargin: '20%' }}
-  on:change={({ detail }) => { isInView = detail.inView }}
+  use:inview={{ unobserveOnEnter: true, rootMargin: '-20%' }}
+  on:change={({ detail }) => { animate.projects = detail.inView }}
   class="section-fixed section-recent-projects"
 >
-  {#if isInView}
-    <div in:fly={flyOptions}>
-      <RecentProjectSection {projects} />
-    </div>
-  {/if}
+  <div class={`fly-transition ${animate.projects ? "fly-show" : "fly-hidden"}`}>
+    <RecentProjectSection {projects} />
+  </div>
 </section>
 
-<section class="section-fixed section-statistic">
-  <GeneralStatistic blocks={points} />
+<section
+  use:inview={{ unobserveOnEnter: true, rootMargin: '-20%' }}
+  on:change={({ detail }) => { animate.stats = detail.inView }}
+  class="section-fixed section-statistic"
+>
+  <div class={`fly-transition ${animate.stats ? "fly-show" : "fly-hidden"}`}>
+    <GeneralStatistic blocks={points} showCounter={animate.stats}/>
+  </div>
 </section>
 
 <style lang="scss">

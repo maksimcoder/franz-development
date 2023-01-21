@@ -1,6 +1,7 @@
 <script lang="ts">
   import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 	import { ContactForm } from '$lib/components/structure';
+  import { inview } from 'svelte-inview';
 
   /** @type {import('./$types').PageData} */
   export let data: any;
@@ -8,6 +9,14 @@
   // Data
   const { page } = data;
   const blocks = page.fields.contentBlockReference;
+
+  const animate = {
+    title: false,
+    plot: false,
+    architecture: false,
+    constraction: false,
+    managment: false,
+  }
 </script>
 
 <svelte:head>
@@ -16,103 +25,135 @@
 </svelte:head>
 
 <div class="page page-padded mb-32">
-  <section class="section-fixed pt-10">
-    <div class="content px-4">
-      <h1 class="h1">
-        {@html page.fields.title}
-      </h1>
+  <div
+    use:inview={{ unobserveOnEnter: true, rootMargin: '-20%' }}
+    on:change={({ detail }) => { animate.title = detail.inView }}
+    class={`fly-transition ${animate.title ? "fly-show" : "fly-hidden"}`}
+  >
+    <section class="section-fixed pt-10">
 
-      <p>
-        {@html documentToHtmlString(blocks[0].fields.content)}
-      </p>
-    </div>
-  </section>
+      <div class="content px-4">
+        <h1 class="h1">
+          {@html page.fields.title}
+        </h1>
+
+        <p>
+          {@html documentToHtmlString(blocks[0].fields.content)}
+        </p>
+      </div>
+    </section>
+  </div>
 </div>
 
-<div class="page page-padded section-plot-search">
-  <section class="section-fixed color-invert">
-    <div class="pls-content">
-      <div class="pls-content-item">
-        <h2 class="h2">
-          {@html blocks[1].fields.title}
-        </h2>
+<div
+  use:inview={{ unobserveOnEnter: true, rootMargin: '-20%' }}
+  on:change={({ detail }) => { animate.plot = detail.inView }}
+  class={`fly-transition ${animate.plot ? "fly-show" : "fly-hidden"}`}
+>
+  <div class="page page-padded section-plot-search">
+    <section class="section-fixed color-invert">
+      <div class="pls-content">
+        <div class="pls-content-item">
+          <h2 class="h2">
+            {@html blocks[1].fields.title}
+          </h2>
+        </div>
+        <div class="pls-content-item">
+          {@html documentToHtmlString(blocks[1].fields.content)}
+        </div>
       </div>
-      <div class="pls-content-item">
-        {@html documentToHtmlString(blocks[1].fields.content)}
-      </div>
-    </div>
 
-    <div class="pls-gallery">
-      <div class="pls-gallery-item">
-        <img src="/development/plot-1.png" alt="" class="w-full">
+      <div class="pls-gallery">
+        <div class="pls-gallery-item">
+          <img src="/development/plot-1.png" alt="" class="w-full">
+        </div>
+        <div class="pls-gallery-item">
+          <img src="/development/plot-2.png" alt="" class="w-full">
+        </div>
       </div>
-      <div class="pls-gallery-item">
-        <img src="/development/plot-2.png" alt="" class="w-full">
-      </div>
-    </div>
-  </section>
+    </section>
+  </div>
 </div>
 
 <div class="page">
-  <section class="section-fixed section-architect-info">
-    <div class="sai-content">
-      <div class="sai-content-gallery">
-        <img src="/development/architecture.png" alt="" class="w-full lg:max-h-[477px]">
-      </div>
+  <div
+    use:inview={{ unobserveOnEnter: true, rootMargin: '-20%' }}
+    on:change={({ detail }) => { animate.architecture = detail.inView }}
+    class={`fly-transition ${animate.architecture ? "fly-show" : "fly-hidden"}`}
+  >
+    <section class="section-fixed section-architect-info">
+      <div class="sai-content">
+        <div class="sai-content-gallery">
+          <img src="/development/architecture.png" alt="" class="w-full lg:max-h-[477px]">
+        </div>
 
-      <div class="sai-content-text">
-        <h2 class="h2">
-          {@html blocks[2].fields.title}
-        </h2>
-        <p>
-          {@html documentToHtmlString(blocks[2].fields.content)}
-        </p>
+        <div class="sai-content-text">
+          <h2 class="h2">
+            {@html blocks[2].fields.title}
+          </h2>
+          <p>
+            {@html documentToHtmlString(blocks[2].fields.content)}
+          </p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 </div>
 
-<div class="section-white">
-  <section class="section-fixed color-invert section-constraction">
-    <div class="inner">
-      <div class="sc-content">
-        <h2 class="h2">
-          {@html blocks[3].fields.title}
-        </h2>
-        <p>
-          {@html documentToHtmlString(blocks[3].fields.content)}
-        </p>
+<div
+  use:inview={{ unobserveOnEnter: true, rootMargin: '-20%' }}
+  on:change={({ detail }) => { animate.constraction = detail.inView }}
+  class={`fly-transition ${animate.constraction ? "fly-show" : "fly-hidden"}`}
+>
+  <div class="section-white">
+
+    <section class="section-fixed color-invert section-constraction">
+      <div class="inner">
+        <div class="sc-content">
+          <h2 class="h2">
+            {@html blocks[3].fields.title}
+          </h2>
+          <p>
+            {@html documentToHtmlString(blocks[3].fields.content)}
+          </p>
+        </div>
+        <div class="sc-gallery ">
+          <div>
+            <img src="/development/construction-1.png" alt="" class="w-full">
+          </div>
+          <div class="row-span-2">
+            <img src="/development/construction-3.png" alt="" class="w-full">
+          </div>
+          <div>
+            <img src="/development/construction-2.png" alt="" class="w-full">
+          </div>
+        </div>
       </div>
-      <div class="sc-gallery ">
-        <div>
-          <img src="/development/construction-1.png" alt="" class="w-full">
-        </div>
-        <div class="row-span-2">
-          <img src="/development/construction-3.png" alt="" class="w-full">
-        </div>
-        <div>
-          <img src="/development/construction-2.png" alt="" class="w-full">
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
+  </div>
 </div>
 
 <div class="page page-padded section-managment">
-  <section class="section-fixed">
-    <div class="inner-content">
-      <h2 class="h2">
-        {@html blocks[4].fields.title}
-      </h2>
-      <p>
-        {@html documentToHtmlString(blocks[4].fields.content)}
-      </p>
-    </div>
+  <div
+    use:inview={{ unobserveOnEnter: true, rootMargin: '-20%' }}
+    on:change={({ detail }) => { animate.managment = detail.inView }}
+    class={`fly-transition ${animate.managment ? "fly-show" : "fly-hidden"}`}
+  >
+    <section class="section-fixed">
+      <div class="inner-content">
+        <h2 class="h2">
+          {@html blocks[4].fields.title}
+        </h2>
+        <p>
+          {@html documentToHtmlString(blocks[4].fields.content)}
+        </p>
+      </div>
 
-    <div class="inner-gallery">
-      <img src="/development/managment.png" alt="" class="w-full">
-    </div>
-  </section>
+      <div class="inner-gallery">
+        <img src="/development/managment.png" alt="" class="w-full">
+      </div>
+    </section>
+  </div>
 </div>
 
 <div class="page page-padded">

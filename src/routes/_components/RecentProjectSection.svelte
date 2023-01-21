@@ -11,12 +11,13 @@
   const emblaConfig = {
     options: {
       loop: false,
+      // align: 'center',
       breakpoints: {
         '(min-width: 420px)': {
           slidesToScroll: 1,
         },
         '(min-width: 768px)': {
-          slidesToScroll: 2,
+          slidesToScroll: 1,
         },
         '(min-width: 1024px)': {
           active: false,
@@ -48,10 +49,7 @@
     {@html $t("common.pages.home.title3")}
   </h2>
 
-  <div
-    class="embla"
-    use:emblaCarouselSvelte={emblaConfig}
-  >
+  <div class="hidden lg:flex">
     <ProjectGrid class="embla__container">
       {#each projects as {fields}}
         <Project project={fields} class="embla__slide" />
@@ -59,7 +57,22 @@
     </ProjectGrid>
   </div>
 
-  <div class="flex flex-row justify-center pt-20">
+  <div class="block lg:hidden">
+    <div
+      class="embla"
+      use:emblaCarouselSvelte={emblaConfig}
+    >
+      <div class="embla__container">
+        {#each projects as {fields}}
+          <div class="embla__slide">
+            <Project project={fields}  />
+          </div>
+        {/each}
+      </div>
+    </div>
+  </div>
+
+  <div class="flex flex-row justify-center pt-10 lg:pt-20">
     <a href="/portfolio" class="link-round">
       {@html $t("common.actions.view_all")}
     </a>
@@ -77,7 +90,7 @@
   .embla__slide {
     @apply max-w-[98%];
     @apply flex-[0_0_98%] md:w-[98%];
-    @apply md:flex-[0_0_46%] md:w-[46%];
+    @apply md:flex-[0_0_98%] md:w-[98%];
     @apply lg:flex-[0_0_100%] lg:w-full;
   }
 </style>

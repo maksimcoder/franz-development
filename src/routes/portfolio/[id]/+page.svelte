@@ -153,16 +153,7 @@
   </section>
 
   <section class="mb-[120px] next-project">
-
-    <!-- <NextProjectMarquee title={next.fields.title} /> -->
-    <!-- svelte-ignore a11y-distracting-elements -->
-    <marquee>
-      <h2 class="h2">
-        <a data-sveltekit-reload href={`/portfolio/${next.fields.slug}`}>
-          {@html next.fields.title}
-        </a>
-      </h2>
-    </marquee>
+      <NextProjectMarquee title={next.fields.title} slug={next.fields.slug} />
   </section>
 </div>
 

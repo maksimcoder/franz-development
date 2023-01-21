@@ -2,103 +2,97 @@
   import { onMount } from "svelte";
 
   export let title: string;
+  export let slug: string;
 
   const list = [
     title,
+    title,
+    title,
+    title,
+    title,
+    title,
+    title,
+    title,
   ];
+  let itemWidth = "200%";
 
   onMount(() => {
-    const root = document.documentElement;
-    const marqueeElementsDisplayed = getComputedStyle(root).getPropertyValue("--marquee-elements-displayed");
-    const marqueeContent = document.querySelector("ul.marquee-content");
-
-    root.style.setProperty("--marquee-elements", marqueeContent.children.length);
-
-    for (let i = 0; i < marqueeElementsDisplayed; i++) {
-      marqueeContent.appendChild(marqueeContent.children[i].cloneNode(true));
-    }
+    // const items = document.getElementsByClassName("marquee-item");
+    // const newItemWidth = items[0].clientWidth * 2.7 + 20;
+    // itemWidth = `${newItemWidth}px`;
+    // console.log(itemWidth)
   })
 </script>
 
-<section class="marquee">
+<section class="marquee-string">
+  <a data-sveltekit-reload href={`/portfolio/${slug}`}>
+
   <ul class="marquee-content">
     {#each list as item}
-      <li>
+      <li class="marquee-item">
         {@html item}
       </li>
     {/each}
   </ul>
+</a>
+
 </section>
 
 <style lang="scss">
-  :root {
-    --marquee-width: 98vw;
-    --marquee-height: 20vh;
-    --marquee-elements-displayed: 5;
-    --marquee-element-width: calc(var(--marquee-width) / var(--marquee-elements-displayed));
-    --marquee-animation-duration: calc(var(--marquee-elements) * 5s);
-  }
-
-  .marquee {
-    width: var(--marquee-width);
-    height: var(--marquee-height);
-    color: #eee;
+  .marquee-string {
+    height: 76px;
+    width: 100%;
     overflow: hidden;
     position: relative;
+
+    ul {
+      @apply flex flex-row;
+      height: 76px;
+      position: absolute;
+      overflow: hidden;
+      animation: marquee 10s linear infinite;
+    }
+
+    li {
+      float: left;
+      width: 50%;
+      font-size: 76px;
+      line-height: 76px;
+      font-weight: 400;
+      margin: 0 80px;
+    }
   }
-  .marquee:before, .marquee:after {
+
+  .marquee-string:before, .marquee-string:after {
     position: absolute;
     top: 0;
-    width: 8rem;
+    width: 12rem;
     height: 100%;
     content: "";
     z-index: 1;
   }
-  .marquee:before {
+  .marquee-string:before {
     left: 0;
     background: linear-gradient(to right, #000 0%, transparent 100%);
   }
-  .marquee:after {
+  .marquee-string:after {
     right: 0;
     background: linear-gradient(to left, #000 0%, transparent 100%);
   }
-  .marquee-content {
-    list-style: none;
-    height: 100%;
-    display: flex;
-    animation: scrolling var(--marquee-animation-duration) linear infinite;
+
+.marquee-string ul {
+  transform: translateX(0%);
+  animation: left-one 140s linear infinite;
+}
+
+@keyframes left-one {
+  0%  {
+    transform:translateX(0%);
   }
 
-  @keyframes scrolling {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(calc(-1 * var(--marquee-element-width) * var(--marquee-elements))); }
+  100%{
+    transform:translateX(-90%);
   }
-  .marquee-content li {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* text-align: center; */
-    flex-shrink: 0;
-    width: var(--marquee-element-width);
-    max-height: 100%;
-    font-size: calc(var(--marquee-height)*3/4); /* 5rem; */
-    white-space: nowrap;
-  }
-  .marquee-content li img {
-    width: 100%;
-  }
+}
 
-  @media (max-width: 600px) {
-    html { font-size: 12px; }
-    :root {
-      --marquee-width: 96vw;
-      --marquee-height: 16vh;
-      --marquee-elements-displayed: 3;
-      --marquee-animation-duration: calc(var(--marquee-elements) * 4s);
-    }
-    .marquee:before,
-    .marquee:after {
-      width: 5rem;
-    }
-  }
 </style>

@@ -1,5 +1,6 @@
 <script lang="ts">
   import { t } from '$lib/translations/translations';
+  import { contactFormStore } from "$lib/stores";
 </script>
 
 <footer class="footer">
@@ -36,9 +37,16 @@
       </div>
 
       <div class="contacts-action">
-        <a href="/" class="link-round">
-          {$t('common.actions.contact_us')}
-        </a>
+        <button class="link-round mx-5 md:mx-12 lg:mx-0 mt-8 sm:mt-0"
+          on:click={() => {
+            contactFormStore.update(value => {
+              value.visible = true;
+              return value;
+            });
+          }}
+        >
+          {@html $t("common.actions.contact_us")}
+        </button>
       </div>
     </div>
 
