@@ -50,10 +50,11 @@
     id="hero-video"
     preload="metadata"
     class="hero-video"
-    autoplay={true}
-    paused={false}
-    controls={false}
-    loop muted playsinline
+    controls={true}
+    autoplay
+    loop
+    muted
+    playsinline
   >
     <source src={videoUrl} type="video/mp4">
     <track kind="captions">
