@@ -48,9 +48,9 @@
 
   <video
     id="hero-video"
-    preload="metadata"
+    preload="yes"
     class="hero-video"
-    controls={true}
+    controls={false}
     autoplay
     loop
     muted
