@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import { t } from '$lib/translations/translations';
 
   import { contactFormStore } from "$lib/stores";
@@ -9,12 +10,12 @@
   // Data
   const videoUrl = 'https://videos.ctfassets.net/hcz4k2i65d18/OKUdvqv44CbL3LHcH34l4/a40949f56c41437b16db558fc193a0f0/franz-development-bg.mp4'
 
-
-//   video.addEventListener('click',function(){
-//   video.play();
-// },false);
-// $(video).click();
-// video.play();
+  onMount(() => {
+    const videoElement = document.getElementById('hero-video');
+    setTimeout(() => {
+      videoElement?.play();
+    }, 1000);
+  });
 </script>
 
 <section class="section-hero">
@@ -46,6 +47,7 @@
   </div>
 
   <video
+    id="hero-video"
     preload="auto"
     class="hero-video"
     autoplay={true}
