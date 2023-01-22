@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { onMount, onDestroy } from 'svelte';
+  import { fade } from 'svelte/transition';
   import { t } from '$lib/translations/translations';
   import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
@@ -13,23 +15,28 @@
   import IconBike   from '$lib/icons/IconBike.svelte';
   import IconLivingArea   from '$lib/icons/IconLivingArea.svelte';
   import IconPlotArea     from '$lib/icons/IconPlotArea.svelte';
+  import { slide } from 'svelte/transition';
 
   // Props
   /** @type {import('./$types').PageData} */
   export let data: any;
 
   // Data
-  let project   = data.project;
-  $: next       = data.next;
-  $: previewUrl = project.fields?.poster?.fields?.file?.url || '';
+  let project = data.project;
+  let next    = data.next;
+  let sliderIndex = 0;
+  let interval: any;
+
+  // Reactive
   $: nextPreviewUrl = next.fields?.poster?.fields?.file?.url || '';
-  $: gallery    = project.fields.gallery.map(el => el.fields);
-  $: visible    = false;
+  $: previewUrl = getNewSlide(sliderIndex);
+  // $: visible    = false;
 
   // Methods
-  const openGallery = () => {
-    visible = true;
-  }
+
+  // const openGallery = () => {
+  //   visible = true;
+  // }
 
   const optionKeys = {
     'bedrooms': {
@@ -80,10 +87,25 @@
         icon: optionKeys[key].icon,
         unit: optionKeys[key].unit,
         template: $t(`common.common.${key}`, {count: project.fields[key]}),
-        // template: optionKeys[key].template.replace('{val}', project.fields[key]),
       });
     }
   });
+
+  function getNewSlide(index: number) {
+    return project.fields.gallery[sliderIndex]?.fields?.file?.url;
+  }
+
+  onMount(() => {
+    interval = setInterval(() => {
+      sliderIndex = sliderIndex + 1 < project.fields.gallery.length
+        ? sliderIndex + 1
+        : 0;
+    }, 4000);
+  });
+
+  onDestroy(() => {
+    clearInterval(interval);
+  })
 </script>
 
 <svelte:head>
@@ -91,14 +113,16 @@
 	<meta name="description" content={project.fields.title} />
 </svelte:head>
 
-<section
-  class="project-poster"
-  style={`background-image: url(${previewUrl})`}
->
-
-{#each gallery as item}
-<!-- <img src={item.file.url} alt={item.title}> -->
-{/each}
+<section class="project-poster">
+  {#each project.fields.gallery as item, index}
+    {#if index === sliderIndex}
+      <picture
+        transition:fade={{duration: 700}}
+        class="project-poster__slides"
+        style={`background-image: url(${item?.fields?.file?.url})`}
+      />
+    {/if}
+  {/each}
   <figure class="project-poster__fader" />
 </section>
 
@@ -139,12 +163,20 @@
       {/if}
 
       <div class="project-gallery mb-20">
+        {#each project.fields.gallery as item}
+          <img
+            src={item?.fields?.file?.url}
+            alt={item?.fields.title}
+            class="absolute top-3 left-3 w-100px"
+          >
+        {/each}
+
         <figure
           class="project-gallery__preview"
           style={`background-image: url(${nextPreviewUrl})`}
         >
           <div class="project-gallery__overlay">
-            <a class="link-round" href={`/portfolio/${next.fields.slug}`}>
+            <a data-sveltekit-reload  class="link-round" href={`/portfolio/${next.fields.slug}`}>
               {$t('common.actions.view_project')}
             </a>
           </div>
@@ -167,6 +199,14 @@
     @apply rounded-b-3xl;
     @apply h-screen lg:h-[746px];
     @apply bg-no-repeat bg-center bg-cover;
+    @apply relative overflow-hidden;
+
+    &__slides {
+      @apply absolute top-0 left-0;
+      @apply w-full;
+      @apply h-screen lg:h-[746px];
+      @apply bg-no-repeat bg-center bg-cover;
+    }
 
     &__fader {
       @apply h-32 w-full;

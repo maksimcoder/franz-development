@@ -27,8 +27,10 @@
     message: z.string().min(5).max(200),
   });
 
-  // $: isValid = validateFormData(form);
 
+  /**
+   * Contact form validator
+   */
   function validateFormData(input: unknown) {
     if (browser) {
       const isValidData = FormValidator.safeParse(input);
