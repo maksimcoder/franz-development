@@ -9,6 +9,8 @@
 
   // Data
   const videoUrl = 'https://videos.ctfassets.net/hcz4k2i65d18/OKUdvqv44CbL3LHcH34l4/a40949f56c41437b16db558fc193a0f0/franz-development-bg.mp4'
+  const videoMovUrl = 'https://videos.ctfassets.net/hcz4k2i65d18/2G7JGZ3VBbFEqqL7ILtBl3/a9ea54a0de354812a813d858d2ab7884/franz-development-bg.mov'
+  // https://videos.ctfassets.net/hcz4k2i65d18/2G7JGZ3VBbFEqqL7ILtBl3/a9ea54a0de354812a813d858d2ab7884/franz-development-bg.mov
 
   onMount(() => {
     const videoElement = document.getElementById('hero-video');
@@ -56,6 +58,7 @@
     playsinline
   >
     <source src={videoUrl} type="video/mp4">
+    <source src={videoMovUrl} type="video/mov">
     <track kind="captions">
   </video>
 </section>
