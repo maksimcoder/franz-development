@@ -14,7 +14,7 @@
     const videoElement = document.getElementById('hero-video');
     setTimeout(() => {
       videoElement?.play();
-    }, 1000);
+    }, 2500);
   });
 </script>
 
@@ -48,7 +48,7 @@
 
   <video
     id="hero-video"
-    preload="auto"
+    preload="metadata"
     class="hero-video"
     autoplay={true}
     paused={false}
