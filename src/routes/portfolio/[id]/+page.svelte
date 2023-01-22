@@ -192,6 +192,7 @@
     &__slides {
       @apply absolute top-0 left-0;
       @apply w-full;
+      @apply rounded-b-3xl;
       @apply h-screen lg:h-[746px];
       @apply bg-no-repeat bg-center bg-cover;
     }
