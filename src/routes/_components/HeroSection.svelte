@@ -48,9 +48,8 @@
 
   <video
     id="hero-video"
-    preload="yes"
+    preload="auto"
     class="hero-video"
-    controls={false}
     autoplay
     loop
     muted
@@ -66,6 +65,7 @@
     // @apply bg-[url('/main-page/preview.png')];
     // @apply bg-no-repeat bg-cover bg-center;
     @apply h-[750px];
+    @apply w-full;
     @apply rounded-b-3xl;
     @apply relative;
     @apply overflow-hidden;
