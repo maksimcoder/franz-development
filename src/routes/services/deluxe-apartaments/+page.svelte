@@ -1,6 +1,7 @@
 <script lang="ts">
   import { t } from '$lib/translations/translations';
   import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+  import { inview } from 'svelte-inview';
 
   // Components
 	import { ContactForm } from '$lib/components/structure';
@@ -130,7 +131,13 @@
     },
   ];
 
-    // Methods
+  const animate = {
+    main: false,
+    stats: false,
+    plan: false,
+  }
+
+  // Methods
   const openGallery = () => {
     visible = true;
   }
@@ -142,98 +149,118 @@
 </svelte:head>
 
 <div class="page page-padded min-h-screen page-deluxe">
-  <section class="section-fixed pt-10 mb-[84px] md:mb-32">
-    <div class="content max-w-[1064px] m-auto px-5 lg:px-0">
-      <h1 class="h1">
-        {@html page.fields.title}
-      </h1>
-    </div>
-  </section>
-
-  <section class="section-fixed">
-    <div class="section-gallery">
-      <!-- svelte-ignore a11y-click-events-have-key-events -->
-      <picture class="slide slide-1" on:click={openGallery} style={`background-image: url(${pictures[0]})`} />
-      <!-- svelte-ignore a11y-click-events-have-key-events -->
-      <picture class="slide slide-2" on:click={openGallery} style={`background-image: url(${pictures[1]})`} />
-      <!-- svelte-ignore a11y-click-events-have-key-events -->
-      <picture class="slide slide-3" on:click={openGallery} style={`background-image: url(${pictures[2]})`} />
-    </div>
-  </section>
-
-  <section class="section-fixed mb-[84px] md:mb-32 px-4 lg:px-0 flex flex-col items-end">
-    <div class="w-full lg:w-1/2">
-      {@html documentToHtmlString(blocks[0].fields.content)}
-    </div>
-
-    <div class="option-list option-list-2cols w-full lg:w-1/2 lg:pr-40 mb-20">
-      {#each options as option}
-        <div class="option-item">
-          <span>
-            <svelte:component this={option.icon} />
-          </span>
-          <p>
-            {#if option.value > 0}
-              {option.value} {@html option.unit}
-            {/if}
-            {@html option.template}
-          </p>
-        </div>
-      {/each}
-
-      <div class="flex flex-row justify-center items-center">
-        <button class="link-round"
-          on:click={() => {
-            contactFormStore.update(value => {
-              value.visible = true;
-              return value;
-            });
-          }}
-        >
-          {@html $t("common.actions.contact_us")}
-        </button>
+  <div
+    use:inview={{ unobserveOnEnter: true, rootMargin: '-20%' }}
+    on:change={({ detail }) => { animate.main = detail.inView }}
+    class={`fly-transition ${animate.main ? "fly-show" : "fly-hidden"}`}
+  >
+    <section class="section-fixed pt-10 mb-[84px] md:mb-32">
+      <div class="content max-w-[1064px] m-auto px-5 lg:px-0">
+        <h1 class="h1">
+          {@html page.fields.title}
+        </h1>
       </div>
-    </div>
+    </section>
 
-    <div class="gallery-small">
-      <!-- svelte-ignore a11y-click-events-have-key-events -->
-      <picture class="slide slide-1" on:click={openGallery} style={`background-image: url(${pictures[1]})`} />
-      <!-- svelte-ignore a11y-click-events-have-key-events -->
-      <picture class="slide slide-2" on:click={openGallery} style={`background-image: url(${pictures[3]})`} />
-    </div>
+    <section class="section-fixed">
+      <div class="section-gallery">
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <picture class="slide slide-1" on:click={openGallery} style={`background-image: url(${pictures[0]})`} />
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <picture class="slide slide-2" on:click={openGallery} style={`background-image: url(${pictures[1]})`} />
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <picture class="slide slide-3" on:click={openGallery} style={`background-image: url(${pictures[2]})`} />
+      </div>
+    </section>
+  </div>
 
-    <div class="w-full lg:w-1/2">
-      {@html documentToHtmlString(blocks[1].fields.content)}
-    </div>
-  </section>
+  <div
+    use:inview={{ unobserveOnEnter: true, rootMargin: '-20%' }}
+    on:change={({ detail }) => { animate.stats = detail.inView }}
+    class={`fly-transition ${animate.stats ? "fly-show" : "fly-hidden"}`}
+  >
+    <section class="section-fixed mb-[84px] md:mb-32 px-4 lg:px-0 flex flex-col items-end">
 
-  <section class="section-fixed mb-[84px] md:mb-32 px-4 lg:px-0">
-    <h2 class="h2 mb-8 lg:mb-[94px]">
-      {@html blocks[2].fields.title}
-    </h2>
+      <div class="w-full lg:w-1/2">
+        {@html documentToHtmlString(blocks[0].fields.content)}
+      </div>
 
-    <div class="flex flex-col lg:flex-row lg:space-x-8">
-      <div class="w-full mb-8 lg:mb-0 lg:w-1/2">
-        <img src="/deluxe/map.jpg" alt="" class="rounded-3xl block w-full">
+      <div class="option-list option-list-2cols w-full lg:w-1/2 lg:pr-40 mb-20">
+        {#each options as option}
+          <div class="option-item">
+            <span>
+              <svelte:component this={option.icon} />
+            </span>
+            <p>
+              {#if option.value > 0}
+                {option.value} {@html option.unit}
+              {/if}
+              {@html option.template}
+            </p>
+          </div>
+        {/each}
+
+        <div class="flex flex-row justify-center items-center">
+          <button class="link-round"
+            on:click={() => {
+              contactFormStore.update(value => {
+                value.visible = true;
+                return value;
+              });
+            }}
+          >
+            {@html $t("common.actions.contact_us")}
+          </button>
+        </div>
+      </div>
+
+
+      <div class="gallery-small">
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <picture class="slide slide-1" on:click={openGallery} style={`background-image: url(${pictures[1]})`} />
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <picture class="slide slide-2" on:click={openGallery} style={`background-image: url(${pictures[3]})`} />
       </div>
 
       <div class="w-full lg:w-1/2">
-        <ul class="pros-list">
-
-          {#each points as point}
-            <li class="pros-item">
-              <div class="pros-sign">
-                {point.sign}
-              </div>
-              <p class="pros-title">
-                {$t(`common.common.${point.key}`, {default: point.title})}
-              </p>
-            </li>
-          {/each}
-        </ul>
+        {@html documentToHtmlString(blocks[1].fields.content)}
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
+
+  <div
+    use:inview={{ unobserveOnEnter: true, rootMargin: '-20%' }}
+    on:change={({ detail }) => { animate.plan = detail.inView }}
+    class={`fly-transition ${animate.plan ? "fly-show" : "fly-hidden"}`}
+  >
+    <section class="section-fixed mb-[84px] md:mb-32 px-4 lg:px-0">
+      <h2 class="h2 mb-8 lg:mb-[94px]">
+        {@html blocks[2].fields.title}
+      </h2>
+
+      <div class="flex flex-col lg:flex-row lg:space-x-8">
+        <div class="w-full mb-8 lg:mb-0 lg:w-1/2">
+          <img src="/deluxe/map.jpg" alt="" class="rounded-3xl block w-full">
+        </div>
+
+        <div class="w-full lg:w-1/2">
+          <ul class="pros-list">
+
+            {#each points as point}
+              <li class="pros-item">
+                <div class="pros-sign">
+                  {point.sign}
+                </div>
+                <p class="pros-title">
+                  {$t(`common.common.${point.key}`, {default: point.title})}
+                </p>
+              </li>
+            {/each}
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
 
   <section class="mb-20 px-4 lg:px-0">
     <ContactForm />

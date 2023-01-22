@@ -3,6 +3,7 @@
 
   import { ContactForm } from '$lib/components/structure';
   import { PointItem } from '$lib/components/shared';
+  import { inview } from 'svelte-inview';
 
   /** @type {import('./$types').PageData} */
   export let data: any;
@@ -35,6 +36,10 @@
       content: pointBlocks[4]?.fields?.content ? documentToHtmlString(pointBlocks[4]?.fields?.content) : "",
     },
   ];
+  const animate = {
+    title: false,
+    other: false,
+  }
 </script>
 
 <svelte:head>
@@ -43,41 +48,53 @@
 </svelte:head>
 
 <div class="page page-padded min-h-screen page-consulting">
-  <section class="section-fixed pt-10 mb-32">
-    <div class="content px-4 lg:px-0">
-      <h1 class="h1">
-        {@html blocks[0].fields.title}
-      </h1>
+    <div
+      use:inview={{ unobserveOnEnter: true, rootMargin: '-20%' }}
+      on:change={({ detail }) => { animate.title = detail.inView }}
+      class={`fly-transition ${animate.title ? "fly-show" : "fly-hidden"}`}
+    >
+      <section class="section-fixed pt-10 mb-32">
+        <div class="content px-4 lg:px-0">
+          <h1 class="h1">
+            {@html blocks[0].fields.title}
+          </h1>
 
-      {@html documentToHtmlString(blocks[0].fields.content)}
+          {@html documentToHtmlString(blocks[0].fields.content)}
+        </div>
+      </section>
+
+      <section class="section-fixed mb-32 px-4 lg:px-0">
+        <div class="section-gallery">
+          <div class="slide-1">
+            <img src="/consulting/consulting-1.png" alt="" class="w-full">
+          </div>
+          <div class="slide-2">
+            <img src="/consulting/consulting-2.png" alt="" class="w-full">
+          </div>
+          <div class="slide-3">
+            <img src="/consulting/consulting-3.png" alt="" class="w-full">
+          </div>
+        </div>
+      </section>
     </div>
-  </section>
 
-  <section class="section-fixed mb-32 px-4 lg:px-0">
-    <div class="section-gallery">
-      <div class="slide-1">
-        <img src="/consulting/consulting-1.png" alt="" class="w-full">
-      </div>
-      <div class="slide-2">
-        <img src="/consulting/consulting-2.png" alt="" class="w-full">
-      </div>
-      <div class="slide-3">
-        <img src="/consulting/consulting-3.png" alt="" class="w-full">
-      </div>
-    </div>
-  </section>
+  <div
+    use:inview={{ unobserveOnEnter: true, rootMargin: '-20%' }}
+    on:change={({ detail }) => { animate.other = detail.inView }}
+    class={`fly-transition ${animate.other ? "fly-show" : "fly-hidden"}`}
+  >
+    <section class="section-fixed mb-32 px-4 lg:px-0">
+      <h2 class="h2">
+        {@html blocks[1].fields.title}
+      </h2>
 
-  <section class="section-fixed mb-32 px-4 lg:px-0">
-    <h2 class="h2">
-      {@html blocks[1].fields.title}
-    </h2>
-
-    <div class="point-list mb-16 w-full sm:w-[75%] lg:w-full">
-      {#each points as point}
-        <PointItem {point} />
-      {/each}
-    </div>
-  </section>
+      <div class="point-list mb-16 w-full sm:w-[75%] lg:w-full">
+        {#each points as point}
+          <PointItem {point} />
+        {/each}
+      </div>
+    </section>
+  </div>
 
   <section class="mb-20 px-4 lg:px-0">
     <ContactForm />

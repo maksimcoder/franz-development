@@ -22,6 +22,7 @@
   let project   = data.project;
   $: next       = data.next;
   $: previewUrl = project.fields?.poster?.fields?.file?.url || '';
+  $: nextPreviewUrl = next.fields?.poster?.fields?.file?.url || '';
   $: gallery    = project.fields.gallery.map(el => el.fields);
   $: visible    = false;
 
@@ -94,6 +95,10 @@
   class="project-poster"
   style={`background-image: url(${previewUrl})`}
 >
+
+{#each gallery as item}
+<!-- <img src={item.file.url} alt={item.title}> -->
+{/each}
   <figure class="project-poster__fader" />
 </section>
 
@@ -136,28 +141,24 @@
       <div class="project-gallery mb-20">
         <figure
           class="project-gallery__preview"
-          style={`background-image: url(${gallery[0].file.url})`}
+          style={`background-image: url(${nextPreviewUrl})`}
         >
           <div class="project-gallery__overlay">
-            <button class="link-round" on:click={openGallery}>
+            <a class="link-round" href={`/portfolio/${next.fields.slug}`}>
               {$t('common.actions.view_project')}
-            </button>
+            </a>
           </div>
         </figure>
-
-        {#each gallery as item}
-          <img src={item.file.url} alt={item.title}>
-        {/each}
       </div>
     </div>
   </section>
 
   <section class="mb-[120px] next-project">
-      <NextProjectMarquee title={next.fields.title} slug={next.fields.slug} />
+    <NextProjectMarquee title={next.fields.title} slug={next.fields.slug} />
   </section>
 </div>
 
-<Gallery bind:visible={visible} images={gallery} />
+<!-- <Gallery bind:visible={visible} images={gallery} /> -->
 
 <style lang="scss">
   .project-poster {

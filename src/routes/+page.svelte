@@ -14,6 +14,7 @@
   import HeroSection from './_components/HeroSection.svelte';
   import RecentProjectSection from './_components/RecentProjectSection.svelte';
   import GeneralStatistic from './_components/GeneralStatistic.svelte';
+  import Counters from './_components/Counters.svelte';
 
   // Data
   const page = data.page;
@@ -27,7 +28,9 @@
     projects: false,
     points: false,
     stats: false,
+    counters: false,
   }
+  const rootMargin = "-17%";
 </script>
 
 <svelte:head>
@@ -52,7 +55,7 @@
 
   <!-- Development -->
   <div
-    use:inview={{ unobserveOnEnter: true, rootMargin: '-20%' }}
+    use:inview={{ unobserveOnEnter: true, rootMargin }}
     on:change={({ detail }) => { animate.development = detail.inView }}
     class={`fly-transition ${animate.development ? "fly-show" : "fly-hidden"}`}
   >
@@ -66,7 +69,7 @@
 
   <!-- Construction -->
   <div
-    use:inview={{ unobserveOnEnter: true, rootMargin: '-20%' }}
+    use:inview={{ unobserveOnEnter: true, rootMargin }}
     on:change={({ detail }) => { animate.construction = detail.inView }}
     class={`fly-transition ${animate.construction ? "fly-show" : "fly-hidden"}`}
   >
@@ -80,7 +83,7 @@
 
   <!-- Architecture -->
   <div
-    use:inview={{ unobserveOnEnter: true, rootMargin: '-20%' }}
+    use:inview={{ unobserveOnEnter: true, rootMargin }}
     on:change={({ detail }) => { animate.architecture = detail.inView }}
     class={`fly-transition ${animate.architecture ? "fly-show" : "fly-hidden"}`}
   >
@@ -94,7 +97,7 @@
 </section>
 
 <section
-  use:inview={{ unobserveOnEnter: true, rootMargin: '-20%' }}
+  use:inview={{ unobserveOnEnter: true, rootMargin }}
   on:change={({ detail }) => { animate.projects = detail.inView }}
   class="section-fixed section-recent-projects"
 >
@@ -104,12 +107,25 @@
 </section>
 
 <section
-  use:inview={{ unobserveOnEnter: true, rootMargin: '-20%' }}
-  on:change={({ detail }) => { animate.stats = detail.inView }}
+
   class="section-fixed section-statistic"
 >
-  <div class={`fly-transition ${animate.stats ? "fly-show" : "fly-hidden"}`}>
-    <GeneralStatistic blocks={points} showCounter={animate.stats}/>
+  <div
+    use:inview={{ unobserveOnEnter: true, rootMargin }}
+    on:change={({ detail }) => { animate.stats = detail.inView }}
+  >
+    <div class={`fly-transition ${animate.stats ? "fly-show" : "fly-hidden"}`}>
+      <GeneralStatistic blocks={points} showCounter={animate.stats}/>
+    </div>
+  </div>
+
+  <div
+    use:inview={{ unobserveOnEnter: true, rootMargin }}
+    on:change={({ detail }) => { animate.counters = detail.inView }}
+  >
+    <div class={`fly-transition ${animate.counters ? "fly-show" : "fly-hidden"}`}>
+      <Counters showCounter={animate.counters} />
+    </div>
   </div>
 </section>
 

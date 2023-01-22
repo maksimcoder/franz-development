@@ -4,6 +4,7 @@
   import { z } from "zod";
   import { t } from '$lib/translations/translations';
   import emailjs from '@emailjs/browser';
+  import { error } from '@sveltejs/kit';
 
   const SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID;
   const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
@@ -16,6 +17,7 @@
     email: '',
     message: '',
     is_sent: false,
+    has_errors: false,
     errors: [],
   }
 
@@ -25,14 +27,19 @@
     message: z.string().min(5).max(200),
   });
 
-  $: isValid = validateFormData(form);
+  // $: isValid = validateFormData(form);
 
-  function validateFormData(input: unknown): boolean {
+  function validateFormData(input: unknown) {
     if (browser) {
       const isValidData = FormValidator.safeParse(input);
       if (!isValidData.success) {
-        form.errors = isValidData.error.issues;
-        return false;
+
+        form.has_errors = true;
+        setTimeout(() => {
+          form.errors = [];
+          form.has_errors = false;
+        }, 4000);
+        return isValidData.error.issues;
       }
       else {
         return true;
@@ -44,6 +51,12 @@
    * On form submit
    */
   const onSubmit = async (event: Event): Promise<any> => {
+    const validate = validateFormData(form);
+    if (validate !== true) {
+      form.errors = validate.map(el => el.path[0]);
+      return;
+    }
+
     form.loading = true;
 
     try {
@@ -54,6 +67,7 @@
       form.full_name = "";
       form.email     = "";
       form.message   = "";
+      form.errors = [];
 
       setTimeout(() => {
         form.is_sent = false;
@@ -81,7 +95,7 @@
     name="full_name"
     placeholder={$t("common.contact_form.name")}
     disabled={form.loading}
-    class="form-control"
+    class={`form-control ${form.errors.includes("full_name") && "!border-red-400"}`}
     bind:value={form.full_name}
   >
   <input
@@ -89,7 +103,7 @@
     name="email"
     placeholder={$t("common.contact_form.email")}
     disabled={form.loading}
-    class="form-control"
+    class={`form-control ${form.errors.includes("email") && "!border-red-400"}`}
     bind:value={form.email}
   >
   <input
@@ -97,9 +111,15 @@
     name="message"
     placeholder={$t("common.contact_form.message")}
     disabled={form.loading}
-    class="form-control"
+    class={`form-control ${form.errors.includes("message") && "!border-red-400"}`}
     bind:value={form.message}
   >
+
+  {#if form.has_errors}
+    <div transition:fly={{ y: 15, duration: 300 }}>
+      <p class="text-lg text-red-400">{$t("common.contact_form.has_errors")}</p>
+    </div>
+  {/if}
 
   {#if form.is_sent}
     <div transition:fly={{ y: 15, duration: 300 }}>
@@ -108,7 +128,7 @@
   {/if}
 
   <footer class="contact-form--footer">
-    <button class="link-round" disabled={form.loading || !isValid}>
+    <button class="link-round" disabled={form.loading }>
       {$t("common.actions.send")}
     </button>
   </footer>
@@ -121,9 +141,9 @@
 
     .form-control {
       @apply bg-transparent rounded-none outline-none;
-      @apply text-2xl;
-      @apply py-4;
-      @apply mb-8;
+      @apply text-lg lg:text-2xl;
+      @apply py-3 lg:py-4;
+      @apply mb-6 lg:mb-8;
       @apply border-b border-solid border-b-[var(--color-light-gray)];
       @apply placeholder:text-gray-500;
 

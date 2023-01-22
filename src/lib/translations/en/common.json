@@ -84,7 +84,8 @@
     "name": "Full name",
     "email": "Email",
     "message": "Message...",
-    "submitted": "Submitted successfully!"
+    "submitted": "Submitted successfully!",
+    "has_errors": "Not all fields of the form are filled in correctly"
   },
   "footer": {
     "address": "Address",

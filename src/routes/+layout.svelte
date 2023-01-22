@@ -19,7 +19,7 @@
   <Footer />
 
   <div
-    class="flex-col items-center justify-center fixed inset-0 z-50 bg-black"
+    class="form-overlay"
     class:hidden={!$contactFormStore.visible}
     class:flex={$contactFormStore.visible}
   >
@@ -33,13 +33,12 @@
         });
       }}
     >
-      <span>{$t(`common.actions.close`)} </span>
       <span class="cross">
         <IconClose />
       </span>
     </button>
 
-    <div class="w-full px-10 max-w-[680px]">
+    <div class="w-full px-10 max-w-[550px] lg:max-w-[680px]">
       <ContactForm />
     </div>
   </div>
@@ -47,6 +46,13 @@
 
 
 <style lang="scss">
+.form-overlay {
+  @apply flex-col items-center justify-center;
+  @apply pt-10 sm:pt-0;
+  @apply fixed inset-0 z-50;
+  @apply bg-black;
+}
+
 .overlay-close {
   @apply flex flex-row items-center justify-center;
   @apply text-2xl;

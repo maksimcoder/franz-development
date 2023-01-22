@@ -1,6 +1,9 @@
 <script lang="ts">
+  import { t } from '$lib/translations/translations';
   import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
   import dayjs from 'dayjs';
+
+  import NextPostMarquee from '$lib/components/shared/post/NextPostMarquee.svelte';
 
   // Props
   /** @type {import('./$types').PageData} */
@@ -13,6 +16,7 @@
   // Reactive
   $: next         = data.next;
   $: previewUrl   = post.fields?.poster?.fields?.file?.url || '';
+  $: nextPreviewUrl = next.fields?.poster?.fields?.file?.url || '';
 </script>
 
 <svelte:head>
@@ -28,7 +32,7 @@
 </section>
 
 <div class="page page-padded min-h-screen">
-  <section class="section-fixed px-4 lg:px-0">
+  <section class="section-fixed px-4 lg:px-0 mb-20">
     <div class="content">
       <div class="post-date">
         {publishedAt}
@@ -43,15 +47,23 @@
     </div>
   </section>
 
+  <section class="section-fixed px-4 lg:px-0 mb-20">
+    <div class="project-gallery mb-20">
+      <figure
+        class="project-gallery__preview"
+        style={`background-image: url(${nextPreviewUrl})`}
+      >
+        <div class="project-gallery__overlay">
+          <a data-sveltekit-reload class="link-round" href={`/news/${next.fields.slug}`}>
+            {$t('common.actions.learn_more')}
+          </a>
+        </div>
+      </figure>
+    </div>
+  </section>
+
   <section class="mb-[120px] next-project">
-    <!-- svelte-ignore a11y-distracting-elements -->
-    <marquee>
-      <h2 class="h2">
-        <a data-sveltekit-reload href={`/news/${next.fields.slug}`}>
-          {@html next.fields.title}
-        </a>
-      </h2>
-    </marquee>
+    <NextPostMarquee title={next.fields.title} slug={next.fields.slug} />
   </section>
 </div>
 

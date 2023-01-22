@@ -15,7 +15,8 @@ body {
 }
 
 .h3 {
-  @apply text-[46px] leading-[69px];
+  @apply text-[38px] leading-[46px];
+  @apply lg:text-[46px] lg:leading-[69px];
 }
 
 .h4 {
