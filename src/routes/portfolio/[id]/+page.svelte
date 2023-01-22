@@ -5,7 +5,7 @@
   import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
   // Components
-  import { Gallery } from '$lib/components/shared';
+  // import { Gallery } from '$lib/components/shared';
   import { NextProjectMarquee } from '$lib/components/shared';
 
   import IconBed    from '$lib/icons/IconBed.svelte';
@@ -15,7 +15,6 @@
   import IconBike   from '$lib/icons/IconBike.svelte';
   import IconLivingArea   from '$lib/icons/IconLivingArea.svelte';
   import IconPlotArea     from '$lib/icons/IconPlotArea.svelte';
-  import { slide } from 'svelte/transition';
 
   // Props
   /** @type {import('./$types').PageData} */
@@ -29,15 +28,8 @@
 
   // Reactive
   $: nextPreviewUrl = next.fields?.poster?.fields?.file?.url || '';
-  $: previewUrl = getNewSlide(sliderIndex);
-  // $: visible    = false;
 
   // Methods
-
-  // const openGallery = () => {
-  //   visible = true;
-  // }
-
   const optionKeys = {
     'bedrooms': {
       'icon': IconBed,
@@ -90,10 +82,6 @@
       });
     }
   });
-
-  function getNewSlide(index: number) {
-    return project.fields.gallery[sliderIndex]?.fields?.file?.url;
-  }
 
   onMount(() => {
     interval = setInterval(() => {
