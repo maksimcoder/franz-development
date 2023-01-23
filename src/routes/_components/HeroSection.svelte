@@ -59,7 +59,6 @@
   >
     <source src={videoUrl} type="video/mp4">
     <source src={videoMovUrl} type="video/mov">
-    <track kind="captions">
   </video>
 </section>
 
