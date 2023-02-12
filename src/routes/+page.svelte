@@ -44,7 +44,7 @@
   <HeroSection subtitle={page.fields.title} />
 </div>
 
-<div class="mb-[100px] lg:mb-[230px]">
+<div class="mb-[100px] lg:mb-[180px]">
   <ClientsList />
 </div>
 
