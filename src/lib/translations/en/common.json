@@ -29,8 +29,8 @@
   "pages": {
     "home": {
       "title": "Home",
-      "title2": "Featured <i>services</i>",
-      "title3": "Recent <i>projects</i>",
+      "title2": "Our <i>services</i>",
+      "title3": "<i>Projects</i>",
       "title4": "Generate, develop <i>and implement</i>",
       "stats": {
         "term": "On real estate market",
@@ -38,8 +38,8 @@
         "profitability": "Profitability per year"
       }
     },
-    "portfolio": {
-      "title": "Portfolio",
+    "projects": {
+      "title": "Projects",
       "specification": "Specification"
     },
     "news": {

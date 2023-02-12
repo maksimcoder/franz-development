@@ -144,7 +144,7 @@
       {#if project.fields.specification}
         <div class="mb-20">
           <h2 class="h2">
-            {$t('common.pages.portfolio.specification')}
+            {$t('common.pages.projects.specification')}
           </h2>
           {@html documentToHtmlString(project.fields.specification)}
         </div>
@@ -164,7 +164,7 @@
           style={`background-image: url(${nextPreviewUrl})`}
         >
           <div class="project-gallery__overlay">
-            <a data-sveltekit-reload  class="link-round" href={`/portfolio/${next.fields.slug}`}>
+            <a data-sveltekit-reload  class="link-round" href={`/projects/${next.fields.slug}`}>
               {$t('common.actions.view_project')}
             </a>
           </div>

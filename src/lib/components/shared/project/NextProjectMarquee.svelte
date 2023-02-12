@@ -25,7 +25,7 @@
 </script>
 
 <section class="marquee-string">
-  <a data-sveltekit-reload href={`/portfolio/${slug}`}>
+  <a data-sveltekit-reload href={`/projects/${slug}`}>
 
   <ul class="marquee-content">
     {#each list as item}

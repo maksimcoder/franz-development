@@ -11,7 +11,7 @@
 </script>
 
 <svelte:head>
-	<title>Portfolio</title>
+	<title>Projects</title>
 	<meta name="description" content="About this app" />
 </svelte:head>
 
@@ -19,7 +19,7 @@
   <section class="section-fixed">
     <div class="content pb-20 px-4 lx:px-0">
       <h1 class="h1">
-        {$t('common.pages.portfolio.title')}
+        {$t('common.pages.projects.title')}
       </h1>
 
       <ProjectGrid>

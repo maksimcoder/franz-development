@@ -73,7 +73,7 @@
   </div>
 
   <div class="flex flex-row justify-center pt-10 lg:pt-20">
-    <a href="/portfolio" class="link-round">
+    <a href="/projects" class="link-round">
       {@html $t("common.actions.view_all")}
     </a>
   </div>

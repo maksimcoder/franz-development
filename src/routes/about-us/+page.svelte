@@ -91,8 +91,8 @@
     on:change={({ detail }) => { animate.description = detail.inView }}
     class={`fly-transition ${animate.description ? "fly-show" : "fly-hidden"}`}
   >
-    <section class="section-fixed  section-about">
-      <div class="content px-5 lg:px-0 lg:pl-[50%]">
+    <section class="section-fixed section-about">
+      <div class="content px-5 w-full lg:w-1/2">
         {@html documentToHtmlString(blocks[0].fields.content)}
       </div>
     </section>
@@ -141,6 +141,7 @@
 
   .section-about {
     @apply mb-20 sm:mb-[140px] lg:mb-[200px];
+    @apply flex flex-row justify-center;
   }
 
   .section-map {

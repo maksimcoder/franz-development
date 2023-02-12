@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { fly } from 'svelte/transition';
 	import { page } from '$app/stores';
   import { goto } from '$app/navigation';
   import { t, locale } from '$lib/translations/translations';
@@ -11,45 +12,59 @@
     key: string,
     default: string,
     is_active: boolean,
+    is_open: boolean,
     submenu: IMenuItem[]|[],
   }
 
   const MENU: IMenuItem[] = [
     {
-      url: '/portfolio',
-      key: 'portfolio',
-      default: 'Portfolio',
+      url: '/projects',
+      key: 'projects',
+      default: 'Projects',
       is_active: false,
+      is_open: false,
       submenu: [],
     }, {
       url: '/services',
       key: 'services',
       default: 'Services',
       is_active: false,
+      is_open: false,
       submenu: [
         {
           url: '/services/development',
           key: 'development',
           default: 'Development',
           is_active: false,
+          is_open: false,
+          submenu: [],
+        }, {
+          url: '/services/deluxe-apartaments',
+          key: 'delux',
+          default: 'Deluxe apartments',
+          is_active: false,
+          is_open: false,
           submenu: [],
         }, {
           url: '/services/construction',
           key: 'construction',
           default: 'Construction',
           is_active: false,
+          is_open: false,
           submenu: [],
         }, {
           url: '/services/architecture',
           key: 'architecture',
           default: 'Architecture',
           is_active: false,
+          is_open: false,
           submenu: [],
         }, {
           url: '/services/consulting',
           key: 'consulting',
           default: 'Consulting',
           is_active: false,
+          is_open: false,
           submenu: [],
         },
       ],
@@ -59,6 +74,7 @@
       key: 'news',
       default: 'News',
       is_active: false,
+      is_open: false,
       submenu: [],
     },
     {
@@ -66,12 +82,14 @@
       key: 'about_us',
       default: 'About us',
       is_active: false,
+      is_open: false,
       submenu: [],
     }, {
       url: '/contacts',
       key: 'contacts',
       default: 'Contacts',
       is_active: false,
+      is_open: false,
       submenu: [],
     },
   ];
@@ -81,6 +99,7 @@
     key: 'delux',
     default: 'Deluxe apartments',
     is_active: false,
+    is_open: false,
     submenu: [],
   }]
 
@@ -130,13 +149,6 @@
   }
 
   /**
-   * Close submenu
-   */
-  const closeSubmenu = () => {
-    activeKey = "";
-  }
-
-  /**
    * Get actual menu
    */
   const getItemList = (pathname: string, $$activeKey: string): IMenuItem[] => {
@@ -153,6 +165,14 @@
    */
   const getActiveItem = ($$activeKey: string): IMenuItem|null => {
     return MENU.find(el => el.key === $$activeKey) || null;
+  }
+
+  const openSubmenu = (key: string) => {
+    activeKey = (activeKey === key) ? "" : key;
+  }
+
+  const closeSubmenu = (key: string) => {
+    activeKey = "";
   }
 
   /**
@@ -173,11 +193,11 @@
 <header
   class="header"
   class:header-blured={scrollY > 300}
-  class:header-toggled={activeMenuItem || mobileMenu}
+  class:header-toggled={ mobileMenu}
 >
   <div class="header-inner">
     <a href="/" class="logo" on:click={onMenuItemClick}>
-      <img src={activeMenuItem || mobileMenu ? `/logo-black.png` : `/logo.png`} alt="Franz Development">
+      <img src={ mobileMenu ? `/logo-black.png` : `/logo.png`} alt="Franz Development">
     </a>
 
     <div class="mobile-actions flex flex-row lg:hidden space-x-6">
@@ -209,19 +229,46 @@
       </button>
     </div>
 
-
     <nav class="nav">
       <ul>
         {#each menuList as item}
-          <li class:is-active={item.is_active}>
+          <li
+            class:is-active={item.is_active}
+            on:mouseenter={() => {
+              if(item.submenu?.length > 0) {
+                openSubmenu(item.key)
+              }
+            }}
+            on:mouseleave={() => {
+              if(item.submenu?.length > 0) {
+                closeSubmenu(item.key)
+              }
+            }}
+          >
             {#if item.submenu?.length > 0}
-              <!-- svelte-ignore a11y-click-events-have-key-events -->
-              <span
-                class="menu-link"
-                on:click={() => onExpandebleMenuItemClick(item.key)}
-              >
+              <span class="menu-link">
                 {$t(`common.pages.${item.key}.title`)}
               </span>
+              {#if activeKey === item.key}
+                <ul transition:fly={{ y: -20, duration: 200 }}>
+                  {#each item.submenu as subitem }
+                    <li>
+                      {#if subitem.key === "delux"}
+                        <a href={subitem.url} on:click={onMenuItemClick} class="!text-lg">
+                          {$t(`common.pages.${subitem.key}.title`)}
+                          <span class="ongoing desktop">
+                            {$t(`common.common.ongoing`)}
+                          </span>
+                        </a>
+                      {:else}
+                        <a href={subitem.url} on:click={onMenuItemClick}>
+                          {$t(`common.pages.${subitem.key}.title`)}
+                        </a>
+                      {/if}
+                    </li>
+                  {/each}
+                </ul>
+              {/if}
             {:else}
               <a
                 href={item.url}
@@ -244,42 +291,6 @@
       </button>
     </nav>
   </div>
-
-  {#if activeMenuItem && !mobileMenu}
-    <aside class="submenu">
-      <div class="submenu-inner">
-        <ul>
-          {#each activeMenuItem.submenu as item }
-            <li>
-              <a href={item.url} on:click={onMenuItemClick}>
-                {$t(`common.pages.${item.key}.title`)}
-              </a>
-            </li>
-          {/each}
-        </ul>
-
-        <ul class="special-list">
-          {#each specialItemList as item }
-            <li>
-              <a href={item.url} on:click={onMenuItemClick}>
-                {$t(`common.pages.${item.key}.title`)}
-                <span>
-                  {$t(`common.common.ongoing`)}
-                </span>
-              </a>
-            </li>
-          {/each}
-        </ul>
-
-        <button
-          class="submenu-inner--close"
-          on:click={closeSubmenu}
-        >
-          {$t(`common.actions.close`)} &times;
-        </button>
-      </div>
-    </aside>
-  {/if}
 </header>
 
 {#if mobileMenu}
@@ -291,7 +302,7 @@
             <li>
               <a href={item.url} on:click={onMenuItemClick}>
                 {$t(`common.pages.${item.key}.title`)}
-                <span>
+                <span class="ongoing">
                   {$t(`common.common.ongoing`)}
                 </span>
               </a>
@@ -372,13 +383,15 @@
     @apply w-full;
     @apply fixed top-0 left-0 right-0 z-30;
     @apply h-[var(--header-height)];
-    @apply px-5 lg:px-0;
+    @apply px-5 lg:px-4;
     @apply transition-colors duration-500 ease-in-out;
 
     &.header-blured {
-      &:not(.header-toggled) {
-        @apply bg-black/70 backdrop-blur-md;
-      }
+      @apply bg-black/70 backdrop-blur-md;
+    }
+
+    &:hover {
+      @apply bg-[#2C2C2C];
     }
 
     &-inner {
@@ -396,8 +409,8 @@
     }
 
     .nav {
-      @apply py-7;
-      @apply hidden lg:flex lg:flex-row;
+      // @apply py-7;
+      @apply hidden lg:flex lg:flex-row items-center;
 
       .menu-link {
         @apply text-white;
@@ -419,6 +432,35 @@
 
         > li {
           @apply relative;
+          @apply py-7;
+          > ul {
+            @apply block;
+            @apply absolute;
+            @apply w-[310px];
+            @apply top-full left-0;
+            @apply bg-[#2C2C2C];
+            @apply rounded-b-xl;
+            @apply transition-all;
+
+            > li {
+              > a {
+                @apply text-2xl;
+                @apply block;
+                @apply px-6 pb-6;
+                @apply transition-all;
+                @apply relative;
+
+                &:hover {
+                  @apply text-[#B29370];
+                }
+              }
+              &:first-child {
+                > a {
+                  @apply pt-6;
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -459,9 +501,9 @@
           @apply flex flex-col;
 
           li {
-
             a {
               @apply inline-block;
+              @apply relative;
               @apply transition-all;
               &:hover {
                 @apply text-[var(--color-brown-100)];
@@ -477,17 +519,21 @@
             a {
               @apply inline-block;
               @apply relative;
-
-              span {
-                @apply absolute left-[calc(100%+10px)] -top-1;
-                @apply bg-[var(--color-brown-100)];
-                @apply inline-block rounded-lg px-1.5 py-0.5;
-                @apply whitespace-nowrap text-sm text-white;
-              }
             }
           }
         }
       }
     }
+
+    .ongoing {
+      @apply absolute left-[calc(100%+10px)] -top-1;
+      @apply bg-[var(--color-brown-100)];
+      @apply inline-block rounded-lg px-1.5 py-0.5;
+      @apply whitespace-nowrap text-sm text-white;
+      &.desktop {
+        @apply left-auto right-6 top-1
+      }
+    }
+
   }
 </style>

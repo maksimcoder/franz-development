@@ -12,7 +12,7 @@
   let previewUrl = project.poster?.fields?.file?.url || '';
 </script>
 
-<a href={`/portfolio/${project.slug}`} class={`project-item ${$$props.class}`}>
+<a href={`/projects/${project.slug}`} class={`project-item ${$$props.class}`}>
   <figure
     class="preview"
     style={`background-image: url(${previewUrl})`}

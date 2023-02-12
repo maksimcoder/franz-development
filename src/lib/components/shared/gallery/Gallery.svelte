@@ -7,10 +7,10 @@
   // Props
   export let images: IPicture[];
   export let visible = false;
+  export let index = 0
 
   // Data
   let total = images.length;
-  let index = 0;
 
   // Reactive
   $: currentImage = images[index]
@@ -31,10 +31,9 @@
 
 {#if visible}
   <section class="gallery">
-    <figure
-      class="gallery__slider"
-      style={`background-image: url(${currentImage.file.url})`}
-    >
+    <!-- style={`background-image: url(${currentImage.file.url})`} -->
+    <figure class="gallery__slider">
+      <img src={currentImage.file.url} alt="" class="rounded-[32px]">
       <button on:click={onClickClose} class="control control-close">
         <IconClose />
       </button>
@@ -51,15 +50,17 @@
 <style lang="scss">
   .gallery {
     @apply fixed inset-0 z-[100];
+    @apply px-4;
     @apply bg-black/50 backdrop-blur-md;
     @apply flex flex-col justify-center items-center;
 
     &__slider {
       @apply relative;
-      @apply h-[70%] max-w-[1024] w-full;
+      @apply h-auto max-w-[1024] w-fit;
+      // @apply bg-no-repeat bg-center bg-cover;
+      // @apply h-[70%] max-w-[1024] w-full;
       @apply bg-black;
       @apply rounded-[32px];
-      @apply bg-no-repeat bg-center bg-cover;
     }
 
     &__close-button {

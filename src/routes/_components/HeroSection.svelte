@@ -25,9 +25,9 @@
     <div class="flex flex-col lg:flex-row pt-[160px] px-5 lg:px-0">
       <div class="w-full lg:w-8/12">
         <h1 class="h1 hero-title">
-          Franz<br>
-          real <i>estate<br>
-          developer</i>
+          Real<br>
+          Estate<br>
+          <i>Developer</i>
         </h1>
       </div>
       <div class="w-full lg:w-4/12 flex flex-col sm:flex-row: lg:flex-col pt-8 sm:pt-16">
@@ -71,6 +71,7 @@
     @apply rounded-b-3xl;
     @apply relative;
     @apply overflow-hidden;
+    @apply px-4;
 
     .section-fixed {
       @apply relative z-[2]

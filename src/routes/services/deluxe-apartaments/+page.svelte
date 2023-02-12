@@ -29,8 +29,11 @@
     "/deluxe/2.jpg",
     "/deluxe/3.jpg",
     "/deluxe/4.jpg",
+    "/deluxe/apt-plan-1.jpg",
+    "/deluxe/apt-plan-2.jpg",
   ];
 
+  let selectedIndex = 0;
   const gallery = pictures.map(el => {
     return {
       title: "",
@@ -138,7 +141,8 @@
   }
 
   // Methods
-  const openGallery = () => {
+  const openGallery = (index = 0) => {
+    selectedIndex = index;
     visible = true;
   }
 </script>
@@ -148,7 +152,7 @@
 	<meta name="description" content={page.fields.metaDescription} />
 </svelte:head>
 
-<div class="page page-padded min-h-screen page-deluxe">
+<div class="page page-padded min-h-screen page-deluxe lg:px-4">
   <div
     use:inview={{ unobserveOnEnter: true, rootMargin: '-20%' }}
     on:change={({ detail }) => { animate.main = detail.inView }}
@@ -165,11 +169,11 @@
     <section class="section-fixed">
       <div class="section-gallery">
         <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <picture class="slide slide-1" on:click={openGallery} style={`background-image: url(${pictures[0]})`} />
+        <picture class="slide slide-1" on:click={() => { openGallery(0) }} style={`background-image: url(${pictures[0]})`} />
         <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <picture class="slide slide-2" on:click={openGallery} style={`background-image: url(${pictures[1]})`} />
+        <picture class="slide slide-2" on:click={() => { openGallery(1) }} style={`background-image: url(${pictures[1]})`} />
         <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <picture class="slide slide-3" on:click={openGallery} style={`background-image: url(${pictures[2]})`} />
+        <picture class="slide slide-3" on:click={() => { openGallery(2) }} style={`background-image: url(${pictures[2]})`} />
       </div>
     </section>
   </div>
@@ -179,7 +183,7 @@
     on:change={({ detail }) => { animate.stats = detail.inView }}
     class={`fly-transition ${animate.stats ? "fly-show" : "fly-hidden"}`}
   >
-    <section class="section-fixed mb-[84px] md:mb-32 px-4 lg:px-0 flex flex-col items-end">
+    <section class="section-fixed mb-[84px] md:mb-32 px-4 lg:px-0 flex flex-col items-center">
 
       <div class="w-full lg:w-1/2">
         {@html documentToHtmlString(blocks[0].fields.content)}
@@ -217,13 +221,30 @@
 
       <div class="gallery-small">
         <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <picture class="slide slide-1" on:click={openGallery} style={`background-image: url(${pictures[1]})`} />
+        <picture class="slide slide-1" on:click={() => { openGallery(1) }} style={`background-image: url(${pictures[1]})`} />
         <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <picture class="slide slide-2" on:click={openGallery} style={`background-image: url(${pictures[3]})`} />
+        <picture class="slide slide-2" on:click={() => { openGallery(3) }} style={`background-image: url(${pictures[3]})`} />
       </div>
 
       <div class="w-full lg:w-1/2">
         {@html documentToHtmlString(blocks[1].fields.content)}
+      </div>
+
+      <div class="w-full lg:w-1/2 flex flex-row justify-center space-x-3 md:space-x-6">
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <img
+          src="/deluxe/apt-plan-1.jpg"
+          alt="apt plan 1"
+          class="w-[48%] md:w-full cursor-pointer"
+          on:click={() => { openGallery(4) }}
+        >
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <img
+          src="/deluxe/apt-plan-2.jpg"
+          alt="apt plan 2"
+          class="w-[48%] md:w-full cursor-pointer"
+          on:click={() => { openGallery(5) }}
+        >
       </div>
     </section>
   </div>
@@ -240,7 +261,7 @@
 
       <div class="flex flex-col lg:flex-row lg:space-x-8">
         <div class="w-full mb-8 lg:mb-0 lg:w-1/2">
-          <img src="/deluxe/map.jpg" alt="" class="rounded-3xl block w-full">
+          <img src="/deluxe/map.jpg" alt="map plan" class="rounded-3xl block w-full">
         </div>
 
         <div class="w-full lg:w-1/2">
@@ -266,7 +287,7 @@
     <ContactForm />
   </section>
 
-  <Gallery bind:visible={visible} images={gallery} />
+  <Gallery bind:visible={visible} images={gallery} index={selectedIndex} />
 </div>
 
 <style lang="scss">

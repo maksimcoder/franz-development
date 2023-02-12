@@ -78,7 +78,7 @@
 .footer {
   @apply bg-[var(--color-middle-black)];
   @apply pt-16;
-  @apply px-5 lg:px-0;
+  @apply px-5 lg:px-4;
 
   .footer-inner {
     @apply max-w-[var(--max-content-width)];
@@ -93,6 +93,7 @@
 
   .contacts {
     @apply flex flex-col lg:flex-row w-full;
+    @apply lg:space-x-4;
     h6 {
       @apply text-lg;
     }
