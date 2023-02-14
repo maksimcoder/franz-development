@@ -28,7 +28,7 @@
   {/if}
 </svelte:head>
 
-<div class="page page-padded page-about-us">
+<div class="page page-padded page-about-us lg:px-4 2xl:px-0">
   <div
     use:inview={{ unobserveOnEnter: true, rootMargin: '-20%' }}
     on:change={({ detail }) => { animate.title = detail.inView }}

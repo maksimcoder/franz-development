@@ -71,7 +71,7 @@
     @apply rounded-b-3xl;
     @apply relative;
     @apply overflow-hidden;
-    @apply px-4;
+    @apply 2xl:px-4;
 
     .section-fixed {
       @apply relative z-[2]

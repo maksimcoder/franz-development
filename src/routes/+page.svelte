@@ -48,8 +48,8 @@
   <ClientsList />
 </div>
 
-<section class="section-fixed mb-[80px] lg:mb-[200px] sm:px-5 lg:px-4">
-  <h2 class="h2 px-4 lg:px-0">
+<section class="section-fixed mb-[80px] lg:mb-[200px] sm:px-5 2lg:px-4">
+  <h2 class="h2 lg:px-4 2xl:px-0">
     {@html $t("common.pages.home.title2")}
   </h2>
 
@@ -107,7 +107,7 @@
 </section>
 
 <section
-  class="section-fixed section-statistic lg:px-4"
+  class="section-fixed section-statistic lg:px-4 2xl:px-0"
 >
   <div
     use:inview={{ unobserveOnEnter: true, rootMargin }}
@@ -131,11 +131,11 @@
 <style lang="scss">
 .section-recent-projects {
   @apply mb-[200px];
-  @apply px-6 lg:px-4;
+  @apply px-4 lg:px-4 2xl:px-0;
 }
 
 .section-statistic {
   @apply mb-[200px];
-  @apply px-6 lg:px-4;
+  @apply px-4 lg:px-4 2xl:px-0;
 }
 </style>

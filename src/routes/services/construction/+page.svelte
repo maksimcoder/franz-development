@@ -21,7 +21,7 @@
 	<meta name="description" content={page.fields.metaDescription} />
 </svelte:head>
 
-<div class="page page-padded min-h-screen">
+<div class="page page-padded min-h-screen lg:px-4 2xl:px-0">
   <section class="section-fixed pt-10 mb-32">
     <div
       use:inview={{ unobserveOnEnter: true, rootMargin: '-20%' }}

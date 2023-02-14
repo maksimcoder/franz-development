@@ -114,8 +114,8 @@
   <figure class="project-poster__fader" />
 </section>
 
-<div class="page page-padded min-h-screen">
-  <section class="section-fixed px-4 lg:px-0">
+<div class="page page-padded min-h-screen px-4 2xl:px-0">
+  <section class="section-fixed">
     <div class="content">
       <h1 class="h1">
         {@html project.fields.title}

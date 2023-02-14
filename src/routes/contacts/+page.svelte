@@ -9,7 +9,7 @@
 </svelte:head>
 
 <div class="page page-padded min-h-screen">
-  <section class="section-fixed px-4 lg:px-0 mb-32 lg:mb-[144px]">
+  <section class="section-fixed mb-32 lg:mb-[144px] px-4 2xl:px-0">
     <div class="content">
       <h1 class="h1">
         Contacts
@@ -45,7 +45,7 @@
     </div>
   </section>
 
-  <section class="mb-20 px-4 lg:px-0">
+  <section class="mb-20  px-4 2xl:px-0">
     <ContactForm />
   </section>
 </div>

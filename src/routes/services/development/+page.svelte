@@ -50,7 +50,7 @@
   on:change={({ detail }) => { animate.plot = detail.inView }}
   class={`fly-transition ${animate.plot ? "fly-show" : "fly-hidden"}`}
 >
-  <div class="page page-padded section-plot-search">
+  <div class="page page-padded section-plot-search lg:px-4 2xl:px-0">
     <section class="section-fixed color-invert">
       <div class="pls-content">
         <div class="pls-content-item">
@@ -75,7 +75,7 @@
   </div>
 </div>
 
-<div class="page">
+<div class="page lg:px-4 2xl:px-0">
   <div
     use:inview={{ unobserveOnEnter: true, rootMargin: '-20%' }}
     on:change={({ detail }) => { animate.architecture = detail.inView }}
@@ -105,8 +105,7 @@
   on:change={({ detail }) => { animate.constraction = detail.inView }}
   class={`fly-transition ${animate.constraction ? "fly-show" : "fly-hidden"}`}
 >
-  <div class="section-white">
-
+  <div class="section-white lg:px-4 2xl:px-0">
     <section class="section-fixed color-invert section-constraction">
       <div class="inner">
         <div class="sc-content">
@@ -117,7 +116,7 @@
             {@html documentToHtmlString(blocks[3].fields.content)}
           </p>
         </div>
-        <div class="sc-gallery ">
+        <div class="sc-gallery">
           <div>
             <img src="/development/construction-1.png" alt="" class="w-full">
           </div>

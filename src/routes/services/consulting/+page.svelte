@@ -47,7 +47,7 @@
 	<meta name="description" content={page.fields.metaDescription} />
 </svelte:head>
 
-<div class="page page-padded min-h-screen page-consulting">
+<div class="page page-padded min-h-screen page-consulting lg:px-4 2xl:px-0">
     <div
       use:inview={{ unobserveOnEnter: true, rootMargin: '-20%' }}
       on:change={({ detail }) => { animate.title = detail.inView }}

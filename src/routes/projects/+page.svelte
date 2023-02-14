@@ -17,7 +17,7 @@
 
 <div class="page page-padded first-letter:min-h-screen">
   <section class="section-fixed">
-    <div class="content pb-20 px-4 lx:px-0">
+    <div class="content pb-20 px-4 2xl:px-0">
       <h1 class="h1">
         {$t('common.pages.projects.title')}
       </h1>

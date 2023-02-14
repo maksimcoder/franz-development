@@ -32,7 +32,7 @@
 </section>
 
 <div class="page page-padded min-h-screen">
-  <section class="section-fixed px-4 lg:px-0 mb-20">
+  <section class="section-fixed px-4 2xl:px-0 mb-20">
     <div class="content">
       <div class="post-date">
         {publishedAt}
@@ -47,7 +47,7 @@
     </div>
   </section>
 
-  <section class="section-fixed px-4 lg:px-0 mb-20">
+  <section class="section-fixed px-4 2xl:px-0 mb-20">
     <div class="project-gallery mb-20">
       <figure
         class="project-gallery__preview"
