@@ -40,14 +40,14 @@
 
 <style lang="scss">
   .marquee-string {
-    height: 76px;
+    height: 80px;
     width: 100%;
     overflow: hidden;
     position: relative;
 
     ul {
       @apply flex flex-row;
-      height: 76px;
+      height: 80px;
       position: absolute;
       overflow: hidden;
       animation: marquee 10s linear infinite;
@@ -56,8 +56,8 @@
     li {
       float: left;
       width: 50%;
-      font-size: 76px;
-      line-height: 76px;
+      font-size: 70px;
+      line-height: 70px;
       font-weight: 400;
       margin: 0 80px;
     }

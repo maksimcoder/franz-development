@@ -78,7 +78,10 @@
         value: optionKeys[key].hasValue ? project.fields[key] : "",
         icon: optionKeys[key].icon,
         unit: optionKeys[key].unit,
-        template: $t(`common.common.${key}`, {count: project.fields[key]}),
+        // template: $t(`common.common.${key}`, {count: project.fields[key]}),
+        template: optionKeys[key].hasValue
+          ? $t(`common.common.${key}`)
+          : $t(`common.common.${key}`, {count: project.fields[key]}),
       });
     }
   });
