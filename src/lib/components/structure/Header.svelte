@@ -197,7 +197,7 @@
 >
   <div class="header-inner">
     <a href="/" class="logo" on:click={onMenuItemClick}>
-      <img src={ mobileMenu ? `/logo-black.png` : `/logo.png`} alt="Franz Development">
+      <img src={ mobileMenu ? `/logo-black.png` : `/logo.svg`} alt="Franz Development">
     </a>
 
     <div class="mobile-actions flex flex-row lg:hidden space-x-6">
