@@ -24,7 +24,7 @@
               {$t('common.footer.working_hours')}
             </h6>
             <p>
-              {$t('common.footer.monday')} - {$t('common.footer.friday')} 9:00 am - 6:00pm
+              {$t('common.footer.monday')} - {$t('common.footer.friday')} 9:00 am - 6:00 pm
             </p>
           </div>
           <div class="w-full lg:w-1/3">
