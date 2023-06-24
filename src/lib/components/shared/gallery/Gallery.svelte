@@ -63,10 +63,6 @@
       @apply rounded-[32px];
     }
 
-    &__close-button {
-      @apply absolute;
-    }
-
     .control {
       @apply absolute z-[1];
       @apply flex flex-col justify-center items-center;

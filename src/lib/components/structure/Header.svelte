@@ -282,13 +282,17 @@
         {/each}
       </ul>
 
-      <button
-        class="ml-4 pt-1 flex flex-row space-x-1"
-        on:click={() => { changeLocale(nextLocale) }}
-      >
-        <IconLocale/>
-        <span>{nextLocale}</span>
-      </button>
+      <!--
+        <button
+          class="ml-4 pt-1 flex flex-row space-x-1"
+          on:click={() => { changeLocale(nextLocale) }}
+        >
+          <IconLocale/>
+          <span>
+            {nextLocale}
+          </span>
+        </button>
+      -->
     </nav>
   </div>
 </header>
