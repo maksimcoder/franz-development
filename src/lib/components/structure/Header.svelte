@@ -201,13 +201,17 @@
     </a>
 
     <div class="mobile-actions flex flex-row lg:hidden space-x-6">
-      <button
-        class="ml-0 mt-7 flex flex-row space-x-1"
-        on:click={() => { changeLocale(nextLocale) }}
-      >
-        <IconLocale/>
-        <span>{nextLocale}</span>
-      </button>
+      <!--
+        <button
+          class="ml-0 mt-7 flex flex-row space-x-1"
+          on:click={() => { changeLocale(nextLocale) }}
+        >
+          <IconLocale/>
+          <span>
+            {nextLocale}
+          </span>
+        </button>
+      -->
 
       <button
         class="mobile-menu-burger"
